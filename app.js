@@ -1170,23 +1170,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 11. WEB AUDIO AMBIENT SOUND GENERATOR & VISUALIZER
+  // 11. AUDIO SOUND EFFECTS & SOUNDTRACK CONTROLLER
   // ========================================================
   let audioCtx = null;
-  let isAudioPlaying = false;
-  let audioTimer = null;
-  const audioToggleBtn = document.getElementById('audio-toggle-btn');
-  const audioIcon = document.getElementById('audio-icon');
-  const audioStatusText = document.getElementById('audio-status-text');
-  const audioVisualizer = document.getElementById('audio-visualizer');
-
-  const calmChords = [
-    [370.0, 440.0, 554.37, 659.25],
-    [329.63, 415.30, 493.88, 659.25],
-    [293.66, 370.0, 440.0, 554.37],
-    [329.63, 392.0, 493.88, 587.33]
-  ];
-  let chordIndex = 0;
 
   function initAudioContext() {
     if (!audioCtx) {
@@ -1218,9 +1204,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {}
   }
 
-  // ========================================================
-  // 11. AUDIO SOUNDTRACK CONTROLLER (CRUSH SOUNDTRACK)
-  // ========================================================
   const bgAudio = document.getElementById('bg-audio');
   const audioToggleBtn = document.getElementById('audio-toggle-btn');
   const audioIcon = document.getElementById('audio-icon');
@@ -1246,7 +1229,7 @@ document.addEventListener('DOMContentLoaded', () => {
           audioToggleBtn.classList.add('border-lime-400', 'bg-lime-950/80');
         }
       }).catch(() => {
-        // Auto-play prevented fallback to click
+        // Auto-play policy fallback
       });
     }
   }
