@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Medhavie ✨ | The One & Only</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-outfit antialiased selection:bg-rose-500 selection:text-white relative overflow-x-hidden min-h-screen">
+
+  <!-- Background Animated Canvas (Petals & Stardust) -->
+  <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Ambient Glow Orbs -->
+  <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-rose-600/15 rounded-full blur-[140px] pointer-events-none z-0 animate-pulse-slow"></div>
+  <div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-indigo-600/15 rounded-full blur-[160px] pointer-events-none z-0 animate-pulse-slower"></div>
+  <div class="fixed top-[40%] right-[20%] w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+  <!-- Top Floating Navigation & Music Control -->
+  <header class="fixed top-4 left-0 right-0 z-50 px-4 max-w-6xl mx-auto flex items-center justify-between">
+    <div class="glass-pill px-4 py-2 flex items-center space-x-2 border border-white/10 rounded-full shadow-lg backdrop-blur-md">
+      <span class="text-rose-400 font-dancing text-xl font-bold">Medhavie</span>
+      <span class="text-xs bg-rose-500/20 text-rose-300 border border-rose-500/30 px-2 py-0.5 rounded-full">Mahadevi 👑</span>
+    </div>
+
+    <div class="flex items-center space-x-3">
+      <!-- Quick De-stress Shortcut -->
+      <a href="#destress-section" class="hidden sm:flex items-center space-x-1 text-xs font-medium text-amber-300 bg-amber-500/15 border border-amber-500/30 px-3 py-2 rounded-full hover:bg-amber-500/25 transition-all shadow-md">
+        <span>🌿</span>
+        <span>De-Stress Zone</span>
+      </a>
+
+      <!-- Letter Shortcut -->
+      <a href="#letter-section" class="flex items-center space-x-1 text-xs font-medium text-rose-300 bg-rose-500/15 border border-rose-500/30 px-3 py-2 rounded-full hover:bg-rose-500/25 transition-all shadow-md">
+        <span>💌</span>
+        <span>Secret Letter</span>
+      </a>
+
+      <!-- Ambient Audio Toggle Button -->
+      <button id="audio-toggle-btn" class="glass-btn px-3 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 backdrop-blur-md flex items-center space-x-2 text-xs font-medium text-slate-200 transition-all shadow-lg active:scale-95" title="Toggle Calming Ambient Melody">
+        <span id="audio-icon" class="text-base">🎵</span>
+        <span id="audio-status-text" class="hidden md:inline">Play Melody</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="relative z-10 pt-24 pb-20 px-4 max-w-6xl mx-auto space-y-24 sm:space-y-32">
+
+    <!-- ============================================== -->
+    <!-- 1. HERO SECTION -->
+    <!-- ============================================== -->
+    <section class="min-h-[85vh] flex flex-col items-center justify-center text-center relative pt-8 sm:pt-12">
+      
+      <!-- Special Badges Container -->
+      <div class="flex flex-wrap justify-center gap-2 mb-6 animate-fade-in-down">
+        <span class="badge-pill border-rose-500/30 bg-rose-500/10 text-rose-300 hover:scale-105 transition-transform">
+          🌹 23rd February
+        </span>
+        <span class="badge-pill border-amber-500/30 bg-amber-500/10 text-amber-300 hover:scale-105 transition-transform">
+          🏏 Punjab State Cricket
+        </span>
+        <span class="badge-pill border-emerald-500/30 bg-emerald-500/10 text-emerald-300 hover:scale-105 transition-transform">
+          🎖️ NCC Leader & Cadet
+        </span>
+        <span class="badge-pill border-cyan-500/30 bg-cyan-500/10 text-cyan-300 hover:scale-105 transition-transform">
+          💻 Java & DSA Ninja
+        </span>
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-playfair font-extrabold tracking-tight mb-4">
+        <span class="block text-slate-300 text-lg sm:text-2xl font-outfit font-normal tracking-wider uppercase mb-2 text-rose-400/90">
+          Dedicated To An Exceptional Soul
+        </span>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-rose-300 via-pink-200 to-amber-200 drop-shadow-sm">
+          Medhavie
+        </span>
+      </h1>
+
+      <!-- Nicknames Interactive Pill -->
+      <div class="inline-flex items-center gap-2 bg-slate-900/60 border border-slate-800 px-4 py-1.5 rounded-full mb-8 shadow-inner">
+        <span class="text-slate-400 text-xs sm:text-sm">Also known as:</span>
+        <button id="nickname-trigger" class="text-xs sm:text-sm font-semibold text-rose-300 bg-rose-950/80 px-3 py-1 rounded-full border border-rose-500/30 hover:border-rose-400 transition-all flex items-center gap-1.5 cursor-pointer">
+          <span id="current-nickname">"Medu Vada" 🥟</span>
+          <span class="text-[10px] text-slate-400">↻ tap</span>
+        </button>
+      </div>
+
+      <!-- Hero Subtitle & Quote -->
+      <p class="max-w-2xl text-base sm:text-lg md:text-xl text-slate-300/90 font-light leading-relaxed mb-10 px-4">
+        Fierce as a commander, graceful as a cover drive, razor-sharp in logic, and carrying a heart that has weathered storms with silent courage.
+      </p>
+
+      <!-- LIVE TIMELINE COUNTER (Known since 6th Sept 2024) -->
+      <div class="w-full max-w-2xl bg-gradient-to-b from-slate-900/80 to-slate-950/90 border border-rose-500/20 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden group">
+        <div class="absolute -right-12 -top-12 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl group-hover:bg-rose-500/20 transition-all"></div>
+        
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/5">
+          <div class="flex items-center space-x-2">
+            <span class="text-rose-400 animate-pulse text-lg">✨</span>
+            <span class="text-xs sm:text-sm font-medium uppercase tracking-widest text-slate-400">Timeline of Knowing You</span>
+          </div>
+          <span class="text-xs font-mono text-rose-300/80 bg-rose-500/10 px-2.5 py-1 rounded-md border border-rose-500/20">Since 6 Sept 2024</span>
+        </div>
+
+        <!-- Live Clock Grid -->
+        <div class="grid grid-cols-4 gap-2 sm:gap-4 my-2">
+          <div class="counter-box">
+            <span id="days-count" class="counter-num text-rose-300">0</span>
+            <span class="counter-label">Days</span>
+          </div>
+          <div class="counter-box">
+            <span id="hours-count" class="counter-num text-amber-300">0</span>
+            <span class="counter-label">Hours</span>
+          </div>
+          <div class="counter-box">
+            <span id="mins-count" class="counter-num text-cyan-300">0</span>
+            <span class="counter-label">Minutes</span>
+          </div>
+          <div class="counter-box">
+            <span id="secs-count" class="counter-num text-emerald-300">0</span>
+            <span class="counter-label">Seconds</span>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-400 mt-4 italic font-light">
+          "Every single day of knowing someone as determined and authentic as you is genuinely inspiring."
+        </p>
+      </div>
+
+      <!-- Quick Scroll Indicator -->
+      <div class="mt-12 flex flex-col items-center space-y-2 opacity-70 animate-bounce">
+        <span class="text-[11px] uppercase tracking-widest text-slate-400">Explore Her Story</span>
+        <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 2. THE MULTIFACETED JOURNEY (HER IDENTITY & ACHIEVEMENTS) -->
+    <!-- ============================================== -->
+    <section id="identity-section" class="space-y-10">
+      <div class="text-center space-y-3">
+        <span class="text-xs uppercase tracking-widest text-rose-400 font-semibold bg-rose-500/10 px-3 py-1 rounded-full border border-rose-500/20">The Dimensions of Medhavie</span>
+        <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-slate-100">
+          More Than Just A Name — A Force of Nature
+        </h2>
+        <p class="text-slate-400 max-w-xl mx-auto text-sm sm:text-base">
+          From the 22 yards of Punjab cricket to the disciplined ranks of NCC and the structured logic of Java DSA.
+        </p>
+      </div>
+
+      <!-- 4 Pillars Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Pillar 1: Punjab Cricket -->
+        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10 backdrop-blur-md">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              🏏
+            </div>
+            <span class="text-[11px] font-mono uppercase bg-amber-500/15 text-amber-300 px-3 py-1 rounded-full border border-amber-500/25 font-semibold">State Player • Punjab</span>
+          </div>
+          <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-amber-300 transition-colors">
+            The 22-Yard Warrior
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Representing Punjab at state levels takes relentless sweat, dedication, and athletic fire. The discipline on the pitch, the timing of a shot, and the courage under pressure — pure match-winner mindset.
+          </p>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <button id="cricket-shot-btn" class="interactive-tag hover:border-amber-400 text-amber-300 text-xs flex items-center space-x-1.5">
+              <span>⚡ Play a Shot</span>
+              <span id="cricket-score" class="ml-1 font-mono font-bold text-white bg-amber-600/30 px-1.5 py-0.5 rounded">Hit 4!</span>
+            </button>
+            <span class="text-xs text-slate-500 italic">Grit & Passion</span>
+          </div>
+        </div>
+
+        <!-- Pillar 2: NCC & Patriotism -->
+        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/10 backdrop-blur-md">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              🎖️
+            </div>
+            <span class="text-[11px] font-mono uppercase bg-emerald-500/15 text-emerald-300 px-3 py-1 rounded-full border border-emerald-500/25 font-semibold">NCC Cadet & Leadership</span>
+          </div>
+          <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-emerald-300 transition-colors">
+            The Cadet & The Leader
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            Deep love for the Indian Armed Forces, Indian Geography, and the political fabric of Bharat. Natural leadership in uniform with an upright spine and pride that inspires everyone around her.
+          </p>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <button id="salute-btn" class="interactive-tag hover:border-emerald-400 text-emerald-300 text-xs flex items-center space-x-1.5">
+              <span>🇮🇳 Jai Hind Salute</span>
+              <span id="salute-status" class="ml-1 font-mono text-white text-[10px] bg-emerald-700/40 px-1.5 py-0.5 rounded">🫡 Saluted!</span>
+            </button>
+            <span class="text-xs text-slate-500 italic">Discipline & Pride</span>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Java DSA Ninja -->
+        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 backdrop-blur-md">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              ☕
+            </div>
+            <span class="text-[11px] font-mono uppercase bg-cyan-500/15 text-cyan-300 px-3 py-1 rounded-full border border-cyan-500/25 font-semibold">Java • DSA Ninja</span>
+          </div>
+          <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-cyan-300 transition-colors">
+            The Algorithmic Mind
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            From Graphs to Dynamic Programming, mastering Java DSA takes structured thinking and persistence. Building logic block by block, debugging complexities with sharp clarity.
+          </p>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <a href="#java-terminal-section" class="interactive-tag hover:border-cyan-400 text-cyan-300 text-xs flex items-center space-x-1.5">
+              <span>💻 Inspect Java Console</span>
+              <span class="text-xs">→</span>
+            </a>
+            <span class="text-xs text-slate-500 font-mono">Time: O(1) Resilience</span>
+          </div>
+        </div>
+
+        <!-- Pillar 4: The Resilient Soul -->
+        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800 hover:border-rose-500/40 transition-all duration-300 hover:shadow-2xl hover:shadow-rose-500/10 backdrop-blur-md">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              🌹
+            </div>
+            <span class="text-[11px] font-mono uppercase bg-rose-500/15 text-rose-300 px-3 py-1 rounded-full border border-rose-500/25 font-semibold">Unbreakable Spirit</span>
+          </div>
+          <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-rose-300 transition-colors">
+            The Real Girl Inside
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            You have walked through challenging phases, fought silent battles, and held yourself up with immense dignity. Behind all the tough armor is a truly genuine, kind, and precious person.
+          </p>
+          <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <button id="rose-shower-btn" class="interactive-tag hover:border-rose-400 text-rose-300 text-xs flex items-center space-x-1.5">
+              <span>🌹 Send Rose Petals</span>
+              <span id="rose-counter" class="font-mono text-white text-[10px] bg-rose-600/40 px-1.5 py-0.5 rounded">0</span>
+            </button>
+            <span class="text-xs text-slate-500 italic">Authentic & Rare</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 3. DE-STRESS & BREATHE SANCTUARY (SPECIALLY CRAFTED) -->
+    <!-- ============================================== -->
+    <section id="destress-section" class="scroll-mt-24">
+      <div class="rounded-3xl bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-indigo-950/40 border border-indigo-500/20 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl relative overflow-hidden">
+        
+        <!-- Ambient Decor -->
+        <div class="absolute top-0 right-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="text-center max-w-2xl mx-auto space-y-3 mb-10">
+          <span class="text-xs uppercase tracking-widest text-emerald-400 font-semibold bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+            For When Overthinking Kicks In 🌿
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-playfair font-bold text-slate-100">
+            Medhavie's Calm Sanctuary
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            "You are ambitious and work hard, but remember — you don't have to carry the whole world on your shoulders every second. Take a pause, breathe, and unwind."
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Guided Breathing Sphere (Col 1-5) -->
+          <div class="lg:col-span-5 flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-950/50 border border-slate-800/80 text-center">
+            <h4 class="text-sm font-semibold text-slate-300 mb-6 uppercase tracking-wider">4-7-8 Breathing Guide</h4>
+            
+            <!-- Breathing Visualizer -->
+            <div class="relative w-44 h-44 sm:w-52 sm:h-52 flex items-center justify-center my-4">
+              <div id="breath-circle" class="absolute inset-0 rounded-full border-2 border-emerald-400/40 bg-emerald-500/15 backdrop-blur-md transition-all duration-1000 flex items-center justify-center shadow-lg shadow-emerald-500/10">
+                <div class="text-center px-2">
+                  <span id="breath-text" class="block text-base sm:text-lg font-bold text-emerald-200 transition-all">Breathe In</span>
+                  <span id="breath-timer" class="text-xs font-mono text-emerald-400/80">4s</span>
+                </div>
+              </div>
+            </div>
+
+            <button id="toggle-breathe-btn" class="mt-6 px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-medium hover:bg-emerald-500/30 transition-all">
+              Start Guided Session 🧘‍♀️
+            </button>
+            <p class="text-[11px] text-slate-500 mt-2">Inhale courage • Hold peace • Exhale tension</p>
+          </div>
+
+          <!-- "Pop The Overthinking" Interactive Game (Col 6-12) -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-semibold text-slate-200">Pop Away The Overthinking 🫧</h4>
+                <p class="text-xs text-slate-400">Click each bubble to pop stress and unveil a supportive note!</p>
+              </div>
+              <button id="reset-bubbles-btn" class="text-xs text-slate-400 hover:text-white bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-700">
+                Reset ↻
+              </button>
+            </div>
+
+            <!-- Bubbles Grid -->
+            <div id="bubbles-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <!-- Dynamically populated in app.js -->
+            </div>
+
+            <!-- Revealed Note Box -->
+            <div id="revealed-note-box" class="p-4 rounded-xl bg-slate-950/70 border border-rose-500/30 min-h-[70px] flex items-center space-x-3 transition-all">
+              <span class="text-2xl" id="revealed-icon">💡</span>
+              <p id="revealed-text" class="text-xs sm:text-sm text-slate-300 italic">
+                "Pop a bubble above whenever a heavy thought tries to cloud your smile."
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 4. JAVA DSA INTERACTIVE TERMINAL (EASTER EGG) -->
+    <!-- ============================================== -->
+    <section id="java-terminal-section" class="scroll-mt-24 space-y-6">
+      <div class="text-center space-y-2">
+        <span class="text-xs uppercase tracking-widest text-cyan-400 font-semibold bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">Java Terminal v2.3</span>
+        <h2 class="text-2xl sm:text-3xl font-playfair font-bold text-slate-100">
+          Medhavie.java — Execution Console
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400">
+          A personalized program written in her favorite language: Java ☕
+        </p>
+      </div>
+
+      <!-- Terminal Window -->
+      <div class="max-w-4xl mx-auto rounded-2xl bg-slate-950 border border-slate-800 shadow-2xl overflow-hidden font-mono text-xs sm:text-sm">
+        
+        <!-- Terminal Header Bar -->
+        <div class="bg-slate-900 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+            <span class="ml-2 text-slate-400 text-xs">Medhavie.java — JDK 21</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button id="run-java-btn" class="px-3 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30 flex items-center space-x-1 transition-all active:scale-95">
+              <span>▶ Run Program</span>
+            </button>
+            <button id="optimize-stress-btn" class="px-3 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/30 flex items-center space-x-1 transition-all active:scale-95">
+              <span>⚡ Optimize(Stress)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Terminal Code Editor View -->
+        <div class="p-4 sm:p-6 bg-slate-950/90 text-slate-300 leading-relaxed overflow-x-auto">
+<pre class="font-mono text-[11px] sm:text-xs text-slate-300">
+<span class="text-rose-400">import</span> java.util.*;
+
+<span class="text-cyan-400">public class</span> <span class="text-amber-300">Medhavie</span> {
+    <span class="text-cyan-400">public static void</span> <span class="text-emerald-400">main</span>(String[] args) {
+        Warrior <span class="text-purple-300">medu</span> = <span class="text-rose-400">new</span> Warrior(<span class="text-emerald-300">"Medhavie"</span>, <span class="text-emerald-300">"Mahadevi"</span>);
+        
+        <span class="text-slate-500">// Stack of strengths</span>
+        medu.addTalent(<span class="text-emerald-300">"Punjab State Cricket 🏏"</span>);
+        medu.addTalent(<span class="text-emerald-300">"NCC Cadet & Leadership 🎖️"</span>);
+        medu.addTalent(<span class="text-emerald-300">"Master of DSA in Java 💻"</span>);
+        medu.addTalent(<span class="text-emerald-300">"Deep Heart & Authentic Soul 🌹"</span>);
+        
+        <span class="text-slate-500">// Handling any tension with O(1) space complexity</span>
+        <span class="text-cyan-400">if</span> (medu.isStressed()) {
+            medu.clearOverthinking();
+            System.out.println(<span class="text-emerald-300">"Reminder: You have conquered far bigger mountains!"</span>);
+        }
+        
+        medu.shineUnapologetically();
+    }
+}
+</pre>
+        </div>
+
+        <!-- Output Terminal Window -->
+        <div class="bg-black/90 border-t border-slate-800 p-4 font-mono text-xs">
+          <div class="flex items-center space-x-2 text-slate-500 mb-2">
+            <span>Terminal Output:</span>
+          </div>
+          <div id="terminal-output" class="text-emerald-400 space-y-1">
+            <p class="text-slate-400">> Press [▶ Run Program] to execute Medhavie.java ...</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 5. FUN TRIVIA CHALLENGE: THE MEDHAVIE REALM -->
+    <!-- ============================================== -->
+    <section class="space-y-6">
+      <div class="text-center space-y-2">
+        <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Mini Fun Challenge</span>
+        <h2 class="text-2xl sm:text-3xl font-playfair font-bold text-slate-100">
+          The Medhavie Trivia 🎯
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm">
+          A playful quiz inspired by your passions!
+        </p>
+      </div>
+
+      <div class="max-w-2xl mx-auto bg-slate-900/70 border border-slate-800 rounded-3xl p-6 sm:p-8 backdrop-blur-md">
+        <div id="quiz-container" class="space-y-6">
+          <div class="flex justify-between items-center text-xs text-slate-400">
+            <span id="quiz-progress">Question 1 of 4</span>
+            <span id="quiz-score-badge" class="text-amber-400 font-semibold">Score: 0</span>
+          </div>
+
+          <h3 id="quiz-question" class="text-base sm:text-lg font-semibold text-slate-100">
+            Loading question...
+          </h3>
+
+          <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- Dynamic Buttons -->
+          </div>
+
+          <div id="quiz-feedback" class="hidden p-3 rounded-xl text-xs font-medium"></div>
+        </div>
+
+        <div id="quiz-complete" class="hidden text-center py-6 space-y-4">
+          <div class="text-4xl">🏆</div>
+          <h3 class="text-xl font-bold text-slate-100">Quiz Completed, Champ!</h3>
+          <p id="quiz-final-text" class="text-slate-300 text-sm">You aced this just like you ace state cricket & DSA!</p>
+          <button id="quiz-restart-btn" class="px-5 py-2 rounded-full bg-rose-500 text-white font-medium text-xs hover:bg-rose-600 transition-all">
+            Play Again ↻
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 6. THE WAX-SEALED SECRET LETTER -->
+    <!-- ============================================== -->
+    <section id="letter-section" class="scroll-mt-24 space-y-8">
+      <div class="text-center space-y-2">
+        <span class="text-xs uppercase tracking-widest text-rose-400 font-semibold bg-rose-500/10 px-3 py-1 rounded-full border border-rose-500/20">From The Heart</span>
+        <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-slate-100">
+          A Letter For You, Medhavie 💌
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm max-w-md mx-auto">
+          Tap the wax seal below to unlock and unfold what I've wanted to share with you.
+        </p>
+      </div>
+
+      <!-- Wax Sealed Envelope Container -->
+      <div class="max-w-3xl mx-auto flex flex-col items-center">
+
+        <!-- Envelope Visual -->
+        <div id="envelope-wrapper" class="w-full max-w-xl relative cursor-pointer group transition-transform duration-300 hover:scale-[1.01]">
+          
+          <!-- Closed Envelope Front -->
+          <div id="envelope-closed" class="w-full bg-gradient-to-b from-amber-100/90 to-amber-200/90 border-2 border-amber-300/40 rounded-3xl p-8 sm:p-12 text-slate-900 shadow-2xl flex flex-col items-center justify-center text-center relative overflow-hidden transition-all duration-700">
+            
+            <!-- Diagonal Envelope Flap Illusion -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-amber-200/40 via-transparent to-amber-300/30 pointer-events-none"></div>
+            
+            <div class="text-xs font-mono tracking-widest uppercase text-amber-900/60 mb-2">Confidential & Warm</div>
+            <div class="font-dancing text-2xl sm:text-3xl font-bold text-amber-950 mb-6">To: Medhavie (Mahadevi)</div>
+
+            <!-- Wax Seal Stamp -->
+            <div id="wax-seal" class="w-20 h-20 rounded-full bg-gradient-to-tr from-rose-700 via-rose-600 to-red-500 shadow-xl border-4 border-rose-800/40 flex items-center justify-center text-amber-200 font-serif text-2xl font-bold hover:scale-110 active:scale-95 transition-all shadow-rose-900/50 animate-pulse">
+              <span>M</span>
+            </div>
+
+            <p class="text-xs text-amber-900/80 mt-6 font-medium tracking-wide">
+              (Click the wax seal to open)
+            </p>
+          </div>
+
+          <!-- Opened Letter Body -->
+          <div id="envelope-open" class="hidden w-full bg-[#fcfaf2] text-slate-800 rounded-3xl p-6 sm:p-10 md:p-12 shadow-2xl border border-amber-200 relative animate-unfold font-outfit">
+            
+            <!-- Letter Watermark / Header -->
+            <div class="flex items-center justify-between border-b border-amber-300/50 pb-4 mb-6">
+              <div>
+                <span class="font-dancing text-2xl sm:text-3xl font-bold text-rose-700">Dear Medhavie,</span>
+                <span class="block text-[11px] text-slate-500 font-mono">Known since 06.09.2024</span>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-semibold text-amber-800 uppercase tracking-widest">A Heartfelt Note</span>
+                <span class="block text-lg">🌹</span>
+              </div>
+            </div>
+
+            <!-- Letter Text (Hindi & English blend, heartfelt & supportive) -->
+            <div class="space-y-4 text-sm sm:text-base leading-relaxed text-slate-700 font-normal">
+              
+              <p>
+                Jab maine tumhe pehli baar jaana, ek cheez bohot jaldi clear ho gayi thi — <span class="font-semibold text-slate-900">tum aam ladkiyon jaisi nahi ho.</span> Punjab ke liye cricket khelna, sports ka wahi fearless attitude, NCC ki leadership, aur Java DSA jaise tough subjects ko master karna… you are truly phenomenal.
+              </p>
+
+              <p>
+                Lekin pata hai mujhe sabse zyada kya pasand hai? Sirf tumhare achievements nahi, balki <span class="font-semibold text-rose-800">tumhare andar ki ladki.</span>
+              </p>
+
+              <p>
+                Maine dekha hai tum kitni ambitious ho apni life ko lekar. Tumne life mein bohot kuch dekha aur jhela hai, fir bhi tum har subah khadi hoti ho aur aage badhti ho. Bas kabhi kabhi tum bohot zyada tension le leti ho — har cheez ko khud solve karne ka bojh utha leti ho.
+              </p>
+
+              <div class="my-4 p-4 rounded-xl bg-amber-50 border-l-4 border-rose-500 text-slate-800 italic text-sm">
+                "Hamesha itna strong rehna zaroori nahi hota, Medu Vada. Kabhi kabhi bas saans lena, rukna aur khud par proud feel karna bhi kaafi hota hai."
+              </div>
+
+              <p>
+                I know shayad tum mere baare mein abhi utna feel na karti ho ya utna na maanti ho, aur sach kahoon toh mujhe koi jaldi ya expectations nahi hain. Mera dil bas itna chahta tha ki main tumhe yeh bata saku ki tum kitni inspiring, genuine aur precious ho.
+              </p>
+
+              <p>
+                Tumhare political debates, Indian army aur geography ke baare mein baat karne ka shauk, tumhari smile, aur tumhari honesty — everything about you is special.
+              </p>
+
+              <p class="pt-2 font-medium text-slate-900">
+                Never lose that spark, Mahadevi. Tum jaisi ho, perfect ho. ✨
+              </p>
+
+            </div>
+
+            <!-- Letter Signoff -->
+            <div class="mt-8 pt-4 border-t border-amber-300/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="font-dancing text-xl text-rose-800">
+                Always cheering for you, always in your corner 🤍
+              </div>
+              <button id="send-reaction-btn" class="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold shadow-md flex items-center space-x-1.5 transition-all">
+                <span>❤️ Send Warmth</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 7. FOOTER -->
+    <!-- ============================================== -->
+    <footer class="text-center pt-10 border-t border-slate-800/80 space-y-4 text-xs text-slate-500">
+      <p>
+        Crafted with deep respect & admiration for <span class="text-rose-400 font-semibold">Medhavie</span> 🌸
+      </p>
+      <div class="flex items-center justify-center space-x-4 text-slate-400">
+        <span>🏏 Punjab Cricket</span>
+        <span>•</span>
+        <span>🎖️ NCC Leadership</span>
+        <span>•</span>
+        <span>💻 Java DSA</span>
+        <span>•</span>
+        <span>🌹 Feb 23</span>
+      </div>
+      <p class="text-[11px] text-slate-600 font-mono">
+        "May your boundaries be many, and your stresses be zero."
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- Interactive Sound Effects & Logic Script -->
+  <script src="app.js"></script>
+</body>
+</html>
