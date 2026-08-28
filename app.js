@@ -1,97 +1,549 @@
 /**
- * Medhavie's Personalized Web Experience
- * Interactive scripts, canvas particle engine, sound synthesizer & stress buster
+ * Medhavie's Dedicated Web App
+ * Features: Classic Love Tree Canvas Engine, Particle System, Typewriter, 
+ * Stress-Relief Oasis, Java DSA Console, Trivia Quiz, and Web Audio Synthesis.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // ========================================================
-  // 1. ROSE PETALS & PARTICLES CANVAS ENGINE
+  // 0. CLASSIC LOVE TREE CANVAS ENGINE (ES6 MODERNIZED)
   // ========================================================
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-  let width, height;
-  let particles = [];
 
-  function initCanvas() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+  function random(min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1));
   }
-  window.addEventListener('resize', initCanvas);
-  initCanvas();
 
-  class Particle {
+  function bezier(cp, t) {  
+    const p1 = cp[0].mul((1 - t) * (1 - t));
+    const p2 = cp[1].mul(2 * t * (1 - t));
+    const p3 = cp[2].mul(t * t); 
+    return p1.add(p2).add(p3);
+  }
+
+  function inHeart(x, y, r) {
+    const z = Math.pow(Math.pow(x / r, 2) + Math.pow(y / r, 2) - 1, 3) - Math.pow(x / r, 2) * Math.pow(y / r, 3);
+    return z < 0;
+  }
+
+  class Point {
+    constructor(x = 0, y = 0) {
+      this.x = x;
+      this.y = y;
+    }
+    clone() { return new Point(this.x, this.y); }
+    add(o) { return new Point(this.x + o.x, this.y + o.y); }
+    sub(o) { return new Point(this.x - o.x, this.y - o.y); }
+    div(n) { return new Point(this.x / n, this.y / n); }
+    mul(n) { return new Point(this.x * n, this.y * n); }
+  }
+
+  class HeartShape {
     constructor() {
-      this.reset(true);
-    }
-
-    reset(initial = false) {
-      this.x = Math.random() * width;
-      this.y = initial ? Math.random() * height : -20;
-      this.size = Math.random() * 8 + 6;
-      this.speedY = Math.random() * 1.2 + 0.6;
-      this.speedX = Math.random() * 1.5 - 0.75;
-      this.angle = Math.random() * Math.PI * 2;
-      this.spinSpeed = (Math.random() - 0.5) * 0.03;
-      this.isPetal = Math.random() > 0.3; // 70% petals, 30% golden stars
-      this.opacity = Math.random() * 0.5 + 0.3;
-      this.color = this.isPetal 
-        ? `rgba(${220 + Math.random() * 35}, ${50 + Math.random() * 40}, ${90 + Math.random() * 40}, ${this.opacity})`
-        : `rgba(251, 191, 36, ${this.opacity * 0.8})`;
-    }
-
-    update() {
-      this.y += this.speedY;
-      this.x += Math.sin(this.angle) * 0.8 + this.speedX;
-      this.angle += this.spinSpeed;
-
-      if (this.y > height + 20 || this.x < -30 || this.x > width + 30) {
-        this.reset(false);
+      this.points = [];
+      for (let i = 10; i < 30; i += 0.2) {
+        const t = i / Math.PI;
+        const x = 16 * Math.pow(Math.sin(t), 3);
+        const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+        this.points.push(new Point(x, y));
       }
+      this.length = this.points.length;
     }
+    get(i, scale = 1) {
+      return this.points[i].mul(scale);
+    }
+  }
 
+  class TreeSeed {
+    constructor(tree, point, scale = 2.4, color = '#f43f5e') {
+      this.tree = tree;
+      this.point = point;
+      this.scale = scale;
+      this.color = color;
+      this.figure = new HeartShape();
+      this.radius = 8;
+    }
     draw() {
+      const ctx = this.tree.ctx;
       ctx.save();
-      ctx.translate(this.x, this.y);
-      ctx.rotate(this.angle);
-
-      if (this.isPetal) {
-        // Draw Soft Rose Petal
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.bezierCurveTo(-this.size, -this.size / 2, -this.size / 2, -this.size * 1.2, 0, -this.size * 1.5);
-        ctx.bezierCurveTo(this.size / 2, -this.size * 1.2, this.size, -this.size / 2, 0, 0);
-        ctx.fill();
-      } else {
-        // Draw Golden Stardust
-        ctx.fillStyle = this.color;
-        ctx.shadowColor = 'rgba(251, 191, 36, 0.8)';
-        ctx.shadowBlur = 8;
-        ctx.beginPath();
-        ctx.arc(0, 0, this.size * 0.25, 0, Math.PI * 2);
-        ctx.fill();
+      ctx.fillStyle = this.color;
+      ctx.shadowColor = 'rgba(244, 63, 94, 0.8)';
+      ctx.shadowBlur = 15;
+      ctx.translate(this.point.x, this.point.y);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      for (let i = 0; i < this.figure.length; i++) {
+        const p = this.figure.get(i, this.scale);
+        ctx.lineTo(p.x, -p.y);
       }
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+    canScale() { return this.scale > 0.3; }
+    scaleDown(factor = 0.94) { this.scale *= factor; }
+    canMove() { return this.point.y < (this.tree.height - 10); }
+    move(dy = 3) { this.point.y += dy; }
+    hover(x, y) {
+      const dx = x - this.point.x;
+      const dy = y - this.point.y;
+      return Math.sqrt(dx * dx + dy * dy) < 45;
+    }
+  }
 
+  class TreeFooter {
+    constructor(tree, width = 1100, height = 4, speed = 12) {
+      this.tree = tree;
+      this.point = new Point(tree.width / 2, tree.height - height / 2);
+      this.maxWidth = width;
+      this.height = height;
+      this.speed = speed;
+      this.length = 0;
+    }
+    draw() {
+      const ctx = this.tree.ctx;
+      const len = this.length / 2;
+      ctx.save();
+      ctx.strokeStyle = '#fda4af';
+      ctx.shadowColor = '#f43f5e';
+      ctx.shadowBlur = 8;
+      ctx.lineWidth = this.height;
+      ctx.lineCap = 'round';
+      ctx.translate(this.point.x, this.point.y);
+      ctx.beginPath();
+      ctx.moveTo(-len, 0);
+      ctx.lineTo(len, 0);
+      ctx.stroke();
+      ctx.restore();
+
+      if (this.length < this.maxWidth) {
+        this.length += this.speed;
+      }
+    }
+  }
+
+  class TreeBranch {
+    constructor(tree, p1, p2, p3, radius, length, subBranches = []) {
+      this.tree = tree;
+      this.p1 = p1;
+      this.p2 = p2;
+      this.p3 = p3;
+      this.radius = radius;
+      this.length = length || 100;
+      this.len = 0;
+      this.t = 1 / (this.length - 1);
+      this.subBranches = subBranches;
+    }
+    grow() {
+      if (this.len <= this.length) {
+        const p = bezier([this.p1, this.p2, this.p3], this.len * this.t);
+        this.draw(p);
+        this.len++;
+        this.radius *= 0.975;
+      } else {
+        this.tree.removeBranch(this);
+        this.tree.addBranchData(this.subBranches);
+      }
+    }
+    draw(p) {
+      const ctx = this.tree.ctx;
+      ctx.save();
+      ctx.beginPath();
+      ctx.fillStyle = '#fda4af';
+      ctx.shadowColor = '#fb7185';
+      ctx.shadowBlur = 4;
+      ctx.arc(p.x, p.y, Math.max(0.6, this.radius), 0, Math.PI * 2);
+      ctx.fill();
       ctx.restore();
     }
   }
 
-  // Populate particles
-  const particleCount = window.innerWidth < 640 ? 30 : 60;
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
+  class TreeBloom {
+    constructor(tree, point, figure, color, alpha, scale, place, speed) {
+      this.tree = tree;
+      this.point = point;
+      this.figure = figure;
+      const hues = ['#f43f5e', '#fb7185', '#fda4af', '#fecdd3', '#e11d48', '#fbbf24'];
+      this.color = color || hues[Math.floor(Math.random() * hues.length)];
+      this.alpha = alpha || (Math.random() * 0.6 + 0.4);
+      this.angle = Math.random() * Math.PI * 2;
+      this.scale = scale || 0.1;
+      this.maxScale = Math.random() * 0.6 + 0.6;
+      this.place = place;
+      this.speed = speed;
+    }
+    flower() {
+      this.draw();
+      this.scale += 0.06;
+      if (this.scale > this.maxScale) {
+        this.tree.removeBloom(this);
+      }
+    }
+    draw() {
+      const ctx = this.tree.ctx;
+      ctx.save();
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = this.alpha;
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 6;
+      ctx.translate(this.point.x, this.point.y);
+      ctx.scale(this.scale, this.scale);
+      ctx.rotate(this.angle);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      for (let i = 0; i < this.figure.length; i++) {
+        const p = this.figure.get(i);
+        ctx.lineTo(p.x, -p.y);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+    jump() {
+      if (this.point.x < -30 || this.point.y > this.tree.height + 30) {
+        this.tree.removeBloom(this);
+      } else {
+        this.draw();
+        this.point = this.place.sub(this.point).div(this.speed).add(this.point);
+        this.angle += 0.04;
+        this.speed = Math.max(10, this.speed - 0.5);
+      }
+    }
   }
 
-  function animateParticles() {
-    ctx.clearRect(0, 0, width, height);
-    for (let p of particles) {
+  class LoveTree {
+    constructor(canvas, width = 1100, height = 680) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      this.width = width;
+      this.height = height;
+
+      this.seed = new TreeSeed(this, new Point(width / 2, height / 2 + 30));
+      this.footer = new TreeFooter(this, width, 4, 12);
+      this.branches = [];
+      this.blooms = [];
+      this.bloomsCache = [];
+      this.figure = this.seed.figure;
+      this.initBranchesData();
+      this.initBloomsCache(450);
+    }
+
+    initBranchesData() {
+      // Scale-friendly organic branch tree architecture
+      const cx = this.width / 2;
+      const cy = this.height;
+      this.rawBranchData = [
+        [cx, cy, cx + 25, cy - 430, cx - 35, cy - 480, 24, 90, [
+          [cx + 5, cy - 180, cx - 80, cy - 265, cx - 190, cy - 280, 11, 80, [
+            [cx - 85, cy - 245, cx - 100, cy - 250, cx - 140, cy - 285, 2, 40]
+          ]],
+          [cx + 15, cy - 235, cx + 65, cy - 325, cx + 145, cy - 335, 10, 80, [
+            [cx + 45, cy - 280, cx + 115, cy - 270, cx + 130, cy - 255, 3, 60]
+          ]],
+          [cx + 4, cy - 400, cx + 2, cy - 430, cx - 2, cy - 460, 3, 40],
+          [cx + 11, cy - 285, cx - 120, cy - 430, cx - 205, cy - 435, 8, 70, [
+            [cx - 105, cy - 395, cx - 150, cy - 425, cx - 160, cy - 475, 2, 40],
+            [cx - 35, cy - 335, cx - 100, cy - 365, cx - 140, cy - 350, 3, 50]
+          ]],
+          [cx + 11, cy - 325, cx + 75, cy - 430, cx + 145, cy - 460, 6, 80, [
+            [cx + 55, cy - 390, cx + 110, cy - 405, cx + 115, cy - 410, 2, 60]
+          ]]
+        ]]
+      ];
+    }
+
+    startGrowing() {
+      this.addBranchData(this.rawBranchData);
+    }
+
+    addBranchData(dataList) {
+      for (let b of dataList) {
+        const p1 = new Point(b[0], b[1]);
+        const p2 = new Point(b[2], b[3]);
+        const p3 = new Point(b[4], b[5]);
+        const r = b[6];
+        const l = b[7];
+        const sub = b[8] || [];
+        this.branches.push(new TreeBranch(this, p1, p2, p3, r, l, sub));
+      }
+    }
+
+    removeBranch(branch) {
+      const idx = this.branches.indexOf(branch);
+      if (idx !== -1) this.branches.splice(idx, 1);
+    }
+
+    canGrow() { return this.branches.length > 0; }
+    
+    grow() {
+      for (let i = 0; i < this.branches.length; i++) {
+        const b = this.branches[i];
+        if (b) b.grow();
+      }
+    }
+
+    initBloomsCache(num = 450) {
+      const r = 210;
+      const w = this.width;
+      const h = this.height;
+      for (let i = 0; i < num; i++) {
+        let x, y;
+        while (true) {
+          x = random(40, w - 40);
+          y = random(40, h - 100);
+          // Mathematical heart shape canopy test
+          if (inHeart(x - w / 2, h - (h - 60) / 2 - y, r)) {
+            this.bloomsCache.push(new TreeBloom(this, new Point(x, y), this.figure));
+            break;
+          }
+        }
+      }
+    }
+
+    canFlower() { return this.bloomsCache.length > 0 || this.blooms.length > 0; }
+
+    flower(batch = 4) {
+      const fresh = this.bloomsCache.splice(0, batch);
+      for (let b of fresh) {
+        this.blooms.push(b);
+      }
+      for (let i = 0; i < this.blooms.length; i++) {
+        this.blooms[i].flower();
+      }
+    }
+
+    removeBloom(bloom) {
+      const idx = this.blooms.indexOf(bloom);
+      if (idx !== -1) this.blooms.splice(idx, 1);
+    }
+
+    jump() {
+      for (let i = 0; i < this.blooms.length; i++) {
+        this.blooms[i].jump();
+      }
+      if (this.blooms.length < 15) {
+        const r = 210;
+        const w = this.width;
+        const h = this.height;
+        for (let i = 0; i < random(1, 3); i++) {
+          let x = random(w / 2 - 200, w / 2 + 200);
+          let y = random(100, 400);
+          const target = new Point(random(-50, w + 50), h + 40);
+          this.blooms.push(new TreeBloom(this, new Point(x, y), this.figure, null, 0.9, 0.8, target, random(140, 220)));
+        }
+      }
+    }
+  }
+
+
+  // ========================================================
+  // INITIALIZE TREE & STAGE CONTROLLER
+  // ========================================================
+  const treeCanvas = document.getElementById('tree-canvas');
+  let treeApp = null;
+  let treeStarted = false;
+
+  function initLoveTree() {
+    if (!treeCanvas) return;
+    const rect = treeCanvas.getBoundingClientRect();
+    treeCanvas.width = 1100;
+    treeCanvas.height = 680;
+    treeApp = new LoveTree(treeCanvas, 1100, 680);
+    
+    // Draw initial pulsing heart seed
+    treeCanvas.classList.add('clickable-seed');
+    renderSeedPulsing();
+  }
+
+  let seedPulseAngle = 0;
+  let seedAnimId = null;
+
+  function renderSeedPulsing() {
+    if (treeStarted || !treeApp) return;
+    treeApp.ctx.clearRect(0, 0, treeApp.width, treeApp.height);
+    
+    // Slight pulse scale
+    seedPulseAngle += 0.05;
+    treeApp.seed.scale = 2.4 + Math.sin(seedPulseAngle) * 0.3;
+    treeApp.seed.draw();
+
+    seedAnimId = requestAnimationFrame(renderSeedPulsing);
+  }
+
+  const seedInstruction = document.getElementById('seed-instruction');
+  const treeTextOverlay = document.getElementById('tree-text-overlay');
+  const postBloomReveal = document.getElementById('post-bloom-reveal');
+
+  async function startTreeSequence() {
+    if (treeStarted) return;
+    treeStarted = true;
+    cancelAnimationFrame(seedAnimId);
+    treeCanvas.classList.remove('clickable-seed');
+
+    if (seedInstruction) {
+      seedInstruction.style.opacity = '0';
+      setTimeout(() => seedInstruction.remove(), 700);
+    }
+
+    playSoundEffect(523, 'triangle', 0.4);
+
+    // 1. Shrink and plant seed
+    while (treeApp.seed.canScale()) {
+      treeApp.ctx.clearRect(0, 0, treeApp.width, treeApp.height);
+      treeApp.seed.scaleDown(0.92);
+      treeApp.seed.draw();
+      await sleep(15);
+    }
+
+    while (treeApp.seed.canMove()) {
+      treeApp.ctx.clearRect(0, 0, treeApp.width, treeApp.height);
+      treeApp.seed.move(4);
+      treeApp.seed.draw();
+      treeApp.footer.draw();
+      await sleep(12);
+    }
+
+    // 2. Grow Branches
+    treeApp.startGrowing();
+    while (treeApp.canGrow()) {
+      treeApp.grow();
+      treeApp.footer.draw();
+      await sleep(10);
+    }
+
+    // 3. Bloom Heart Petals
+    while (treeApp.canFlower()) {
+      treeApp.flower(3);
+      await sleep(12);
+    }
+
+    // 4. Reveal Left-Hand Typewriter Tribute & Bear Card
+    if (treeTextOverlay) {
+      treeTextOverlay.classList.remove('hidden');
+      const lines = treeTextOverlay.querySelectorAll('.typewriter-line');
+      lines.forEach((line) => {
+        const delay = parseInt(line.getAttribute('data-delay') || '0', 10);
+        setTimeout(() => {
+          line.classList.add('visible');
+          playSoundEffect(660, 'sine', 0.08);
+        }, delay);
+      });
+    }
+
+    if (postBloomReveal) {
+      setTimeout(() => {
+        postBloomReveal.classList.remove('opacity-0', 'translate-y-6');
+        postBloomReveal.classList.add('opacity-100', 'translate-y-0');
+      }, 2500);
+    }
+
+    // 5. Continuous flutter of falling heart blossoms
+    function loopJump() {
+      // Don't clear branches/flowers; draw falling petals over with slight trails
+      treeApp.jump();
+      requestAnimationFrame(loopJump);
+    }
+    loopJump();
+  }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  if (treeCanvas) {
+    treeCanvas.addEventListener('click', (e) => {
+      if (treeStarted) return;
+      const rect = treeCanvas.getBoundingClientRect();
+      const scaleX = treeCanvas.width / rect.width;
+      const scaleY = treeCanvas.height / rect.height;
+      const x = (e.clientX - rect.left) * scaleX;
+      const y = (e.clientY - rect.top) * scaleY;
+
+      if (treeApp && treeApp.seed.hover(x, y)) {
+        startTreeSequence();
+      } else {
+        // Any click on canvas starts if near center
+        startTreeSequence();
+      }
+    });
+  }
+  initLoveTree();
+
+
+  // ========================================================
+  // 1. BACKGROUND ROSE PETALS & STARDUST CANVAS
+  // ========================================================
+  const bgCanvas = document.getElementById('bg-canvas');
+  const bgCtx = bgCanvas.getContext('2d');
+  let bgWidth, bgHeight;
+  let bgParticles = [];
+
+  function initBgCanvas() {
+    bgWidth = bgCanvas.width = window.innerWidth;
+    bgHeight = bgCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', initBgCanvas);
+  initBgCanvas();
+
+  class BgParticle {
+    constructor() { this.reset(true); }
+    reset(initial = false) {
+      this.x = Math.random() * bgWidth;
+      this.y = initial ? Math.random() * bgHeight : -20;
+      this.size = Math.random() * 8 + 5;
+      this.speedY = Math.random() * 1.0 + 0.5;
+      this.speedX = Math.random() * 1.2 - 0.6;
+      this.angle = Math.random() * Math.PI * 2;
+      this.spinSpeed = (Math.random() - 0.5) * 0.025;
+      this.isPetal = Math.random() > 0.35;
+      this.opacity = Math.random() * 0.4 + 0.25;
+      this.color = this.isPetal 
+        ? `rgba(${220 + Math.random() * 35}, ${50 + Math.random() * 40}, ${90 + Math.random() * 40}, ${this.opacity})`
+        : `rgba(251, 191, 36, ${this.opacity * 0.8})`;
+    }
+    update() {
+      this.y += this.speedY;
+      this.x += Math.sin(this.angle) * 0.7 + this.speedX;
+      this.angle += this.spinSpeed;
+      if (this.y > bgHeight + 20 || this.x < -30 || this.x > bgWidth + 30) {
+        this.reset(false);
+      }
+    }
+    draw() {
+      bgCtx.save();
+      bgCtx.translate(this.x, this.y);
+      bgCtx.rotate(this.angle);
+      if (this.isPetal) {
+        bgCtx.fillStyle = this.color;
+        bgCtx.beginPath();
+        bgCtx.moveTo(0, 0);
+        bgCtx.bezierCurveTo(-this.size, -this.size / 2, -this.size / 2, -this.size * 1.2, 0, -this.size * 1.5);
+        bgCtx.bezierCurveTo(this.size / 2, -this.size * 1.2, this.size, -this.size / 2, 0, 0);
+        bgCtx.fill();
+      } else {
+        bgCtx.fillStyle = this.color;
+        bgCtx.shadowColor = 'rgba(251, 191, 36, 0.8)';
+        bgCtx.shadowBlur = 6;
+        bgCtx.beginPath();
+        bgCtx.arc(0, 0, this.size * 0.22, 0, Math.PI * 2);
+        bgCtx.fill();
+      }
+      bgCtx.restore();
+    }
+  }
+
+  const pCount = window.innerWidth < 640 ? 25 : 50;
+  for (let i = 0; i < pCount; i++) bgParticles.push(new BgParticle());
+
+  function animateBg() {
+    bgCtx.clearRect(0, 0, bgWidth, bgHeight);
+    for (let p of bgParticles) {
       p.update();
       p.draw();
     }
-    requestAnimationFrame(animateParticles);
+    requestAnimationFrame(animateBg);
   }
-  animateParticles();
+  animateBg();
 
 
   // ========================================================
@@ -117,6 +569,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hoursEl) hoursEl.textContent = hours;
     if (minsEl) minsEl.textContent = mins;
     if (secsEl) secsEl.textContent = secs;
+
+    const treeClockText = document.getElementById('tree-clock-text');
+    if (treeClockText) {
+      treeClockText.textContent = `${days} Days • ${hours} Hours • ${mins} Mins • ${secs} Secs`;
+    }
   }
   setInterval(updateTimeline, 1000);
   updateTimeline();
@@ -153,8 +610,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========================================================
   // 4. INTERACTIVE PILLARS (CRICKET, SALUTE, ROSES)
   // ========================================================
-  
-  // Cricket Shot Button
   const cricketBtn = document.getElementById('cricket-shot-btn');
   const cricketScore = document.getElementById('cricket-score');
   const shots = [
@@ -171,7 +626,6 @@ document.addEventListener('DOMContentLoaded', () => {
       shotIndex = (shotIndex + 1) % shots.length;
       cricketScore.textContent = shot.text;
       
-      // Play triumphant chord
       shot.sound.forEach((freq, i) => {
         setTimeout(() => playSoundEffect(freq, 'triangle', 0.25), i * 70);
       });
@@ -187,13 +641,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Salute Button
   const saluteBtn = document.getElementById('salute-btn');
   const saluteStatus = document.getElementById('salute-status');
   if (saluteBtn && saluteStatus) {
     saluteBtn.addEventListener('click', () => {
       saluteStatus.textContent = "🫡 Jai Hind!";
-      // Play brass salute triad
       [392, 523, 659, 784].forEach((freq, idx) => {
         setTimeout(() => playSoundEffect(freq, 'sawtooth', 0.2, 0.08), idx * 110);
       });
@@ -202,13 +654,12 @@ document.addEventListener('DOMContentLoaded', () => {
           particleCount: 30,
           spread: 70,
           origin: { y: 0.7 },
-          colors: ['#ff9933', '#ffffff', '#138808'] // Indian tricolor
+          colors: ['#ff9933', '#ffffff', '#138808']
         });
       }
     });
   }
 
-  // Rose Shower Button
   const roseBtn = document.getElementById('rose-shower-btn');
   const roseCounter = document.getElementById('rose-counter');
   let roseCount = 0;
@@ -232,15 +683,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========================================================
   // 5. DE-STRESS ZONE (BREATHING & BUBBLE WRAP)
   // ========================================================
-  
-  // 4-7-8 Breathing Guide
   const breathCircle = document.getElementById('breath-circle');
   const breathText = document.getElementById('breath-text');
   const breathTimer = document.getElementById('breath-timer');
   const toggleBreatheBtn = document.getElementById('toggle-breathe-btn');
   let isBreathingActive = false;
   let breathInterval = null;
-  let breathState = 'inhale'; // inhale (4s), hold (7s), exhale (8s)
+  let breathState = 'inhale';
   let secondsRemaining = 4;
 
   function runBreathStep() {
@@ -301,7 +750,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Pop The Overthinking Bubble Game
   const stressBubbles = [
     { title: "Exam / Career Pressure", note: "You have an exceptionally sharp mind and top-tier resilience. One step at a time, Medhavie! 🌟", icon: "📚" },
     { title: "Carrying Everything Alone", note: "You don't always have to be the strongest in the room. It's okay to lean back and rest. 🤍", icon: "🫂" },
@@ -484,7 +932,6 @@ document.addEventListener('DOMContentLoaded', () => {
       : 'p-3 rounded-xl text-xs font-medium bg-rose-950/60 border border-rose-500/40 text-rose-300 block';
     quizFeedback.textContent = q.expl;
 
-    // Disable all option buttons
     const buttons = quizOptions.querySelectorAll('button');
     buttons.forEach((b, i) => {
       b.disabled = true;
@@ -572,7 +1019,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 9. WEB AUDIO AMBIENT SOUND GENERATOR (RELIABLE & SOOTHING)
+  // 9. WEB AUDIO AMBIENT SOUND GENERATOR
   // ========================================================
   let audioCtx = null;
   let isAudioPlaying = false;
@@ -581,12 +1028,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const audioIcon = document.getElementById('audio-icon');
   const audioStatusText = document.getElementById('audio-status-text');
 
-  // Pentatonic warm calm scale chords (F# major / peaceful frequencies)
   const calmChords = [
-    [370.0, 440.0, 554.37, 659.25], // F#m7
-    [329.63, 415.30, 493.88, 659.25], // E
-    [293.66, 370.0, 440.0, 554.37],  // Dmaj7
-    [329.63, 392.0, 493.88, 587.33]  // Em7
+    [370.0, 440.0, 554.37, 659.25],
+    [329.63, 415.30, 493.88, 659.25],
+    [293.66, 370.0, 440.0, 554.37],
+    [329.63, 392.0, 493.88, 587.33]
   ];
   let chordIndex = 0;
 
@@ -617,9 +1063,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       osc.start();
       osc.stop(audioCtx.currentTime + duration);
-    } catch (e) {
-      // Audio context policy fallback
-    }
+    } catch (e) {}
   }
 
   function playAmbientChord() {
@@ -638,7 +1082,6 @@ document.addEventListener('DOMContentLoaded', () => {
           osc.type = 'sine';
           osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-          // Soft slow attack & gentle decay
           const now = audioCtx.currentTime;
           gain.gain.setValueAtTime(0.001, now);
           gain.gain.linearRampToValueAtTime(0.025, now + 1.2);
