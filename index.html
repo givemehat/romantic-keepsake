@@ -423,69 +423,207 @@
     </section>
 
     <!-- ============================================== -->
-    <!-- 5. DE-STRESS & BREATHE SANCTUARY -->
+    <!-- 5. REMEMBER WHO YOU ARE? (PSYCHOLOGICAL EMPOWERMENT & AFFIRMATIONS) -->
     <!-- ============================================== -->
-    <section id="destress-section" class="w-full scroll-mt-24 flex flex-col items-center justify-center mx-auto">
-      <div class="w-full max-w-4xl rounded-3xl bg-gradient-to-br from-[#141f15]/95 via-[#101911]/90 to-[#1a2818]/60 border border-lime-700/30 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl relative overflow-hidden mx-auto">
+    <section id="destress-section" class="w-full scroll-mt-24 flex flex-col items-center justify-center mx-auto space-y-8">
+      <div class="w-full max-w-4xl rounded-3xl bg-gradient-to-br from-[#141f15]/95 via-[#101911]/90 to-[#1a2818]/60 border border-lime-700/30 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl relative overflow-hidden mx-auto space-y-8">
         
         <div class="absolute top-0 right-0 w-80 h-80 bg-lime-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="text-center max-w-2xl mx-auto space-y-3 mb-10">
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto space-y-3">
           <span class="text-xs uppercase tracking-widest text-lime-400 font-semibold bg-lime-950/60 px-3 py-1 rounded-full border border-lime-700/40">
-            For When Overthinking Kicks In 🌿
+            Psychological Grounding & Truths 🌿
           </span>
-          <h2 class="text-2xl sm:text-4xl font-playfair font-bold text-stone-100">
-            Medhavie's Calm Sanctuary
+          <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-stone-100">
+            Remember Who You Are? 👑
           </h2>
-          <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
-            "You are ambitious and work hard, but remember — you don't have to carry the whole world on your shoulders every second. Take a pause, breathe, and unwind."
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+            "Responsibilities, expectations, aur tension kabhi kabhi bohot heavy lagne lagti hain. Whenever self-doubt tries to enter your mind, tap each card below to reconnect with your real strength."
+          </p>
+
+          <!-- Interactive Progress Meter -->
+          <div class="pt-2 flex items-center justify-center gap-3">
+            <span class="text-xs font-mono text-lime-300 bg-lime-950/80 px-3 py-1 rounded-full border border-lime-700/40" id="affirmation-counter">
+              Truths Unlocked: 0 / 8 ⚡
+            </span>
+            <button id="reset-affirmations-btn" class="text-[11px] text-stone-400 hover:text-white bg-[#0f1710] px-2.5 py-1 rounded-lg border border-lime-800/40 transition-all">
+              Reset ↻
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Flip Affirmation Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full" id="affirmations-grid">
+          
+          <!-- Card 1 -->
+          <div class="flip-card-container" data-card-id="1">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="text-2xl mb-1">👑</span>
+                <span class="text-xs font-semibold text-amber-300">Truth #1</span>
+                <p class="text-[11px] text-stone-300 mt-1">Jab problems badi lagein...</p>
+                <span class="text-[10px] text-lime-400/80 mt-2 font-mono">👆 Tap to flip</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="text-xs font-bold text-lime-300 uppercase tracking-wider">I AM THE BEST</span>
+                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Maine 100% storms survive kiye hain aur hamesha jeet kar nikli hu."</p>
+                <span class="text-[10px] text-amber-400 font-semibold mt-1">Unstoppable ✨</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="flip-card-container" data-card-id="2">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="text-2xl mb-1">🌿</span>
+                <span class="text-xs font-semibold text-emerald-300">Truth #2</span>
+                <p class="text-[11px] text-stone-300 mt-1">Jab aas-paas shor ho...</p>
+                <span class="text-[10px] text-lime-400/80 mt-2 font-mono">👆 Tap to flip</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="text-xs font-bold text-emerald-300 uppercase tracking-wider">I AM THE CALMEST</span>
+                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Baahar ka koi bhi shor meri andar ki peace ko hila nahi sakta."</p>
+                <span class="text-[10px] text-emerald-400 font-semibold mt-1">Inner Peace 🧘‍♀️</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="flip-card-container" data-card-id="3">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="text-2xl mb-1">⚡</span>
+                <span class="text-xs font-semibold text-yellow-300">Truth #3</span>
+                <p class="text-[11px] text-stone-300 mt-1">Jab aage badhna ho...</p>
+                <span class="text-[10px] text-lime-400/80 mt-2 font-mono">👆 Tap to flip</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="text-xs font-bold text-yellow-300 uppercase tracking-wider">MOST ENERGETIC</span>
+                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Mere andar sports ka woh fire aur speed hai jo kabhi bujhta nahi."</p>
+                <span class="text-[10px] text-yellow-400 font-semibold mt-1">Pure Fire 🔥</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="flip-card-container" data-card-id="4">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="text-2xl mb-1">💅</span>
+                <span class="text-xs font-semibold text-pink-300">Truth #4</span>
+                <p class="text-[11px] text-stone-300 mt-1">Style aur dimaag...</p>
+                <span class="text-[10px] text-lime-400/80 mt-2 font-mono">👆 Tap to flip</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="text-xs font-bold text-pink-300 uppercase tracking-wider">I AM A SLAY QUEEN</span>
+                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Hardest algorithms solve karna aur slay karna dono effortless hai."</p>
+                <span class="text-[10px] text-pink-400 font-semibold mt-1">Effortless Grace 👑</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="flip-card-container" data-card-id="5">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="text-2xl mb-1">🏏</span>
+                <span class="text-xs font-semibold text-amber-300">Truth #5</span>
+                <p class="text-[11px] text-stone-300 mt-1">22-Yard pitch par...</p>
+                <span class="text-[10px] text-lime-400/80 mt-2 font-mono">👆 Tap to flip</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="text-xs font-bold text-amber-300 uppercase tracking-wider">STATE ATHLETE</span>
+                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Punjab ke rang me ranga discipline, sweat aur match-winning grit."</p>
+                <span class="text-[10px] text-amber-400 font-semibold mt-1">Match Winner 🏆</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="flip-card-container" data-card-id="6">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="text-2xl mb-1">🎖️</span>
+                <span class="text-xs font-semibold text-lime-300">Truth #6</span>
+                <p class="text-[11px] text-stone-300 mt-1">Leadership aur team me...</p>
+                <span class="text-[10px] text-lime-400/80 mt-2 font-mono">👆 Tap to flip</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="text-xs font-bold text-lime-300 uppercase tracking-wider">SABKO SAATH LEKAR</span>
+                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Apne logon ko protect karna aur sabko inspire karte hue aage badhna."</p>
+                <span class="text-[10px] text-lime-400 font-semibold mt-1">True Leader 🫡</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="flip-card-container" data-card-id="7">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="text-2xl mb-1">🛡️</span>
+                <span class="text-xs font-semibold text-cyan-300">Truth #7</span>
+                <p class="text-[11px] text-stone-300 mt-1">Musibat ke time...</p>
+                <span class="text-[10px] text-lime-400/80 mt-2 font-mono">👆 Tap to flip</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="text-xs font-bold text-cyan-300 uppercase tracking-wider">SELF-CONTROLLED</span>
+                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Apne dimaag aur emotions par full command. Steady, grounded, sharp."</p>
+                <span class="text-[10px] text-cyan-400 font-semibold mt-1">Grounded Soul ⚓</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="flip-card-container" data-card-id="8">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <span class="text-2xl mb-1">🌹</span>
+                <span class="text-xs font-semibold text-rose-300">Truth #8</span>
+                <p class="text-[11px] text-stone-300 mt-1">Har duty se aage...</p>
+                <span class="text-[10px] text-lime-400/80 mt-2 font-mono">👆 Tap to flip</span>
+              </div>
+              <div class="flip-card-back">
+                <span class="text-xs font-bold text-rose-300 uppercase tracking-wider">GENUINELY CHERISHED</span>
+                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Sirf achievements nahi, tumhare andar ka pyaara dil priceless hai."</p>
+                <span class="text-[10px] text-rose-400 font-semibold mt-1">Pure Gold 🤍</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Master Celebration Affirmation Banner (Revealed when all 8 are flipped) -->
+        <div id="all-unlocked-banner" class="hidden p-6 rounded-2xl bg-gradient-to-r from-lime-950/80 via-emerald-900/70 to-rose-950/80 border-2 border-lime-500/50 text-center animate-unfold space-y-2">
+          <div class="text-3xl animate-bounce">👑✨🏆</div>
+          <h3 class="text-lg sm:text-xl font-bold text-stone-100 font-playfair">
+            You Are The One & Only Medhavie!
+          </h3>
+          <p class="text-xs sm:text-sm text-lime-200 italic max-w-xl mx-auto leading-relaxed">
+            "You are not just surviving life, Mahadevi — you are ruling it. Never let temporary tension make you forget your immense worth!"
           </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          <!-- Guided Breathing Sphere -->
-          <div class="lg:col-span-5 flex flex-col items-center justify-center p-6 rounded-2xl bg-[#0b100c]/80 border border-lime-800/30 text-center">
-            <h4 class="text-sm font-semibold text-stone-300 mb-6 uppercase tracking-wider">4-7-8 Breathing Guide</h4>
-            
-            <div class="relative w-44 h-44 sm:w-52 sm:h-52 flex items-center justify-center my-4">
-              <div id="breath-circle" class="absolute inset-0 rounded-full border-2 border-lime-400/40 bg-lime-500/15 backdrop-blur-md transition-all duration-1000 flex items-center justify-center shadow-lg shadow-lime-500/10">
-                <div class="text-center px-2">
-                  <span id="breath-text" class="block text-base sm:text-lg font-bold text-lime-200 transition-all">Breathe In</span>
-                  <span id="breath-timer" class="text-xs font-mono text-lime-400/80">4s</span>
-                </div>
-              </div>
-            </div>
-
-            <button id="toggle-breathe-btn" class="mt-6 px-4 py-2 rounded-full bg-lime-500/20 border border-lime-500/40 text-lime-300 text-xs font-medium hover:bg-lime-500/30 transition-all">
-              Start Guided Session 🧘‍♀️
-            </button>
-            <p class="text-[11px] text-stone-400 mt-2">Inhale courage • Hold peace • Exhale tension</p>
+        <!-- 4-7-8 Breathing Guide Mini Recharger -->
+        <div class="pt-6 border-t border-lime-800/30 flex flex-col items-center justify-center text-center space-y-4">
+          <div class="space-y-1">
+            <h4 class="text-xs font-semibold text-stone-300 uppercase tracking-wider">Instant 4-7-8 Calm Reset</h4>
+            <p class="text-[11px] text-stone-400">Take a 30-second breath whenever pressure builds up.</p>
           </div>
 
-          <!-- "Pop The Overthinking" Interactive Game -->
-          <div class="lg:col-span-7 space-y-4">
-            <div class="flex items-center justify-between">
-              <div>
-                <h4 class="text-sm font-semibold text-stone-200">Pop Away The Overthinking 🫧</h4>
-                <p class="text-xs text-stone-400">Click each bubble to pop stress and unveil a supportive note!</p>
+          <div class="relative w-36 h-36 flex items-center justify-center my-2">
+            <div id="breath-circle" class="absolute inset-0 rounded-full border-2 border-lime-400/40 bg-lime-500/15 backdrop-blur-md transition-all duration-1000 flex items-center justify-center shadow-lg shadow-lime-500/10">
+              <div class="text-center px-2">
+                <span id="breath-text" class="block text-sm font-bold text-lime-200 transition-all">Breathe In</span>
+                <span id="breath-timer" class="text-[11px] font-mono text-lime-400/80">4s</span>
               </div>
-              <button id="reset-bubbles-btn" class="text-xs text-stone-300 hover:text-white bg-lime-950/80 px-2.5 py-1 rounded-lg border border-lime-700/40">
-                Reset ↻
-              </button>
             </div>
-
-            <div id="bubbles-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
-
-            <div id="revealed-note-box" class="p-4 rounded-xl bg-[#0b100c]/85 border border-lime-700/40 min-h-[70px] flex items-center space-x-3 transition-all">
-              <span class="text-2xl" id="revealed-icon">💡</span>
-              <p id="revealed-text" class="text-xs sm:text-sm text-stone-200 italic">
-                "Pop a bubble above whenever a heavy thought tries to cloud your smile."
-              </p>
-            </div>
-
           </div>
 
+          <button id="toggle-breathe-btn" class="px-5 py-2 rounded-full bg-lime-500/20 border border-lime-500/40 text-lime-300 text-xs font-medium hover:bg-lime-500/30 transition-all">
+            Start Breath Session 🧘‍♀️
+          </button>
         </div>
 
       </div>

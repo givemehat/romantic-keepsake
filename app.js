@@ -794,53 +794,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const stressBubbles = [
-    { title: "Exam / Career Pressure", note: "You have an exceptionally sharp mind and top-tier resilience. One step at a time, Medhavie! 🌟", icon: "📚" },
-    { title: "Carrying Everything Alone", note: "You don't always have to be the strongest in the room. It's okay to lean back and rest. 🤍", icon: "🫂" },
-    { title: "Self-Doubt Moments", note: "Remember: You played state cricket for Punjab and lead in NCC! You are a born warrior! 🏏", icon: "👑" },
-    { title: "Overthinking The Future", note: "Time Complexity of current worry = O(0). Focus on today's peace, the rest will align. ☕", icon: "💻" },
-    { title: "Fear of Failing Expectations", note: "You are doing great just as you are. Your worth is never tied to perfection. 🌹", icon: "✨" },
-    { title: "Midnight Restlessness", note: "Medu Vada, drink some water, take a deep breath, and let your mind unwind. 🌙", icon: "🥟" }
-  ];
+  // ========================================================
+  // 6. REMEMBER WHO YOU ARE - 3D FLIP AFFIRMATIONS
+  // ========================================================
+  const flipCards = document.querySelectorAll('.flip-card-container');
+  const affirmationCounter = document.getElementById('affirmation-counter');
+  const resetAffirmationsBtn = document.getElementById('reset-affirmations-btn');
+  const allUnlockedBanner = document.getElementById('all-unlocked-banner');
+  let flippedSet = new Set();
 
-  const bubblesGrid = document.getElementById('bubbles-grid');
-  const revealedIcon = document.getElementById('revealed-icon');
-  const revealedText = document.getElementById('revealed-text');
-  const resetBubblesBtn = document.getElementById('reset-bubbles-btn');
+  flipCards.forEach((card, index) => {
+    card.addEventListener('click', () => {
+      const inner = card.querySelector('.flip-card-inner');
+      if (!inner) return;
 
-  function renderBubbles() {
-    if (!bubblesGrid) return;
-    bubblesGrid.innerHTML = '';
-    stressBubbles.forEach((item, index) => {
-      const bubble = document.createElement('button');
-      bubble.className = 'stress-bubble flex items-center justify-between p-3 rounded-xl border';
-      bubble.innerHTML = `
-        <span class="truncate">${item.title}</span>
-        <span class="text-sm">🫧</span>
-      `;
-      bubble.addEventListener('click', () => {
-        if (!bubble.classList.contains('popped')) {
-          bubble.classList.add('popped');
-          bubble.innerHTML = `
-            <span class="truncate text-lime-300">Popped! ✓</span>
-            <span class="text-sm">✨</span>
-          `;
-          playSoundEffect(800 + index * 60, 'sine', 0.15);
-          if (revealedIcon) revealedIcon.textContent = item.icon;
-          if (revealedText) revealedText.textContent = `"${item.note}"`;
+      if (!inner.classList.contains('flipped')) {
+        inner.classList.add('flipped');
+        flippedSet.add(index);
+        
+        playSoundEffect(480 + flippedSet.size * 55, 'sine', 0.25);
+
+        if (affirmationCounter) {
+          affirmationCounter.textContent = `Truths Unlocked: ${flippedSet.size} / 8 ⚡`;
+          affirmationCounter.classList.add('scale-105', 'border-lime-400');
+          setTimeout(() => affirmationCounter.classList.remove('scale-105', 'border-lime-400'), 300);
         }
-      });
-      bubblesGrid.appendChild(bubble);
-    });
-  }
-  renderBubbles();
 
-  if (resetBubblesBtn) {
-    resetBubblesBtn.addEventListener('click', () => {
-      renderBubbles();
-      if (revealedText) revealedText.textContent = `"Pop a bubble above whenever a heavy thought tries to cloud your smile."`;
-      if (revealedIcon) revealedIcon.textContent = "💡";
-      playSoundEffect(400, 'sine', 0.1);
+        if (flippedSet.size === 8) {
+          if (allUnlockedBanner) allUnlockedBanner.classList.remove('hidden');
+          playSoundEffect(523, 'triangle', 0.4);
+          setTimeout(() => playSoundEffect(659, 'sine', 0.4), 120);
+          setTimeout(() => playSoundEffect(784, 'sine', 0.5), 240);
+
+          if (window.confetti) {
+            confetti({
+              particleCount: 80,
+              spread: 100,
+              origin: { y: 0.6 },
+              colors: ['#84cc16', '#a3c28d', '#fbbf24', '#f43f5e']
+            });
+          }
+        }
+      } else {
+        // Toggle back if clicked again
+        inner.classList.remove('flipped');
+        flippedSet.delete(index);
+        playSoundEffect(350, 'sine', 0.15);
+        if (affirmationCounter) {
+          affirmationCounter.textContent = `Truths Unlocked: ${flippedSet.size} / 8 ⚡`;
+        }
+      }
+    });
+  });
+
+  if (resetAffirmationsBtn) {
+    resetAffirmationsBtn.addEventListener('click', () => {
+      flipCards.forEach(card => {
+        const inner = card.querySelector('.flip-card-inner');
+        if (inner) inner.classList.remove('flipped');
+      });
+      flippedSet.clear();
+      if (affirmationCounter) {
+        affirmationCounter.textContent = `Truths Unlocked: 0 / 8 ⚡`;
+      }
+      if (allUnlockedBanner) {
+        allUnlockedBanner.classList.add('hidden');
+      }
+      playSoundEffect(300, 'sine', 0.1);
     });
   }
 
