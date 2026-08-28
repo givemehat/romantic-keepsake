@@ -1,7 +1,8 @@
 /**
  * Medhavie's Dedicated Web App
  * Features: Classic Love Tree Canvas Engine, Particle System, Typewriter, 
- * Stress-Relief Oasis, Java DSA Console, Trivia Quiz, Runaway "No" Button & Web Audio Synthesis.
+ * Polaroid Gallery, PIN Vault, Stress-Relief Oasis, Java DSA Console, Trivia Quiz, 
+ * Runaway "No" Button & Web Audio Synthesis.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -104,8 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const ctx = this.tree.ctx;
       const len = this.length / 2;
       ctx.save();
-      ctx.strokeStyle = '#fda4af';
-      ctx.shadowColor = '#f43f5e';
+      ctx.strokeStyle = '#a3c28d';
+      ctx.shadowColor = '#84cc16';
       ctx.shadowBlur = 8;
       ctx.lineWidth = this.height;
       ctx.lineCap = 'round';
@@ -149,8 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const ctx = this.tree.ctx;
       ctx.save();
       ctx.beginPath();
-      ctx.fillStyle = '#fda4af';
-      ctx.shadowColor = '#fb7185';
+      ctx.fillStyle = '#a3c28d';
+      ctx.shadowColor = '#657e55';
       ctx.shadowBlur = 4;
       ctx.arc(p.x, p.y, Math.max(0.6, this.radius), 0, Math.PI * 2);
       ctx.fill();
@@ -163,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.tree = tree;
       this.point = point;
       this.figure = figure;
-      const hues = ['#f43f5e', '#fb7185', '#fda4af', '#fecdd3', '#e11d48', '#fbbf24'];
+      const hues = ['#f43f5e', '#fb7185', '#fda4af', '#fecdd3', '#e11d48', '#84cc16', '#fbbf24'];
       this.color = color || hues[Math.floor(Math.random() * hues.length)];
       this.alpha = alpha || (Math.random() * 0.6 + 0.4);
       this.angle = Math.random() * Math.PI * 2;
@@ -433,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (treeCanvas) {
-    treeCanvas.addEventListener('click', (e) => {
+    treeCanvas.addEventListener('click', () => {
       if (treeStarted) return;
       startTreeSequence();
     });
@@ -442,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 1. BACKGROUND ROSE PETALS & STARDUST CANVAS
+  // 1. BACKGROUND ROSE PETALS & OLIVE-GOLD STARDUST CANVAS
   // ========================================================
   const bgCanvas = document.getElementById('bg-canvas');
   const bgCtx = bgCanvas.getContext('2d');
@@ -466,11 +467,11 @@ document.addEventListener('DOMContentLoaded', () => {
       this.speedX = Math.random() * 1.2 - 0.6;
       this.angle = Math.random() * Math.PI * 2;
       this.spinSpeed = (Math.random() - 0.5) * 0.025;
-      this.isPetal = Math.random() > 0.35;
+      this.isPetal = Math.random() > 0.4;
       this.opacity = Math.random() * 0.4 + 0.25;
       this.color = this.isPetal 
         ? `rgba(${220 + Math.random() * 35}, ${50 + Math.random() * 40}, ${90 + Math.random() * 40}, ${this.opacity})`
-        : `rgba(251, 191, 36, ${this.opacity * 0.8})`;
+        : `rgba(163, 194, 141, ${this.opacity * 0.9})`;
     }
     update() {
       this.y += this.speedY;
@@ -493,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bgCtx.fill();
       } else {
         bgCtx.fillStyle = this.color;
-        bgCtx.shadowColor = 'rgba(251, 191, 36, 0.8)';
+        bgCtx.shadowColor = 'rgba(163, 194, 141, 0.8)';
         bgCtx.shadowBlur = 6;
         bgCtx.beginPath();
         bgCtx.arc(0, 0, this.size * 0.22, 0, Math.PI * 2);
@@ -606,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
           particleCount: 25,
           spread: 60,
           origin: { y: 0.7 },
-          colors: ['#f59e0b', '#fbbf24', '#ffffff']
+          colors: ['#84cc16', '#a3c28d', '#ffffff']
         });
       }
     });
@@ -652,7 +653,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 5. DE-STRESS ZONE (BREATHING & BUBBLE WRAP)
+  // 5. SECRET PASSCODE PIN VAULT LOGIC
+  // ========================================================
+  const pinInputs = [
+    document.getElementById('pin-1'),
+    document.getElementById('pin-2'),
+    document.getElementById('pin-3'),
+    document.getElementById('pin-4')
+  ];
+  const pinUnlockBtn = document.getElementById('pin-unlock-btn');
+  const pinErrorMsg = document.getElementById('pin-error-msg');
+  const vaultModal = document.getElementById('vault-modal');
+  const closeVaultBtn = document.getElementById('close-vault-btn');
+
+  // Auto-focus next input box as user types
+  pinInputs.forEach((input, index) => {
+    if (!input) return;
+    input.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (val.length === 1 && index < pinInputs.length - 1) {
+        pinInputs[index + 1].focus();
+      }
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && !input.value && index > 0) {
+        pinInputs[index - 1].focus();
+      }
+      if (e.key === 'Enter') {
+        checkPinCode();
+      }
+    });
+  });
+
+  function checkPinCode() {
+    const enteredPin = pinInputs.map(i => i.value).join('');
+    // Accepts: '0609' (6 Sept) OR '2302' (23 Feb)
+    if (enteredPin === '0609' || enteredPin === '2302') {
+      if (pinErrorMsg) pinErrorMsg.classList.add('hidden');
+      playSoundEffect(523, 'triangle', 0.3);
+      setTimeout(() => playSoundEffect(659, 'sine', 0.3), 100);
+      setTimeout(() => playSoundEffect(784, 'sine', 0.4), 200);
+
+      if (vaultModal) vaultModal.classList.remove('hidden');
+
+      if (window.confetti) {
+        confetti({
+          particleCount: 70,
+          spread: 80,
+          origin: { y: 0.5 },
+          colors: ['#fbbf24', '#f59e0b', '#84cc16']
+        });
+      }
+    } else {
+      if (pinErrorMsg) pinErrorMsg.classList.remove('hidden');
+      pinInputs.forEach(i => {
+        i.classList.add('pin-shake');
+        setTimeout(() => i.classList.remove('pin-shake'), 500);
+      });
+      playSoundEffect(220, 'sawtooth', 0.2);
+    }
+  }
+
+  if (pinUnlockBtn) pinUnlockBtn.addEventListener('click', checkPinCode);
+  if (closeVaultBtn) {
+    closeVaultBtn.addEventListener('click', () => {
+      if (vaultModal) vaultModal.classList.add('hidden');
+    });
+  }
+
+
+  // ========================================================
+  // 6. DE-STRESS ZONE (BREATHING & BUBBLE WRAP)
   // ========================================================
   const breathCircle = document.getElementById('breath-circle');
   const breathText = document.getElementById('breath-text');
@@ -691,7 +763,7 @@ document.addEventListener('DOMContentLoaded', () => {
         secondsRemaining = 4;
         if (breathText) breathText.textContent = "Breathe In 🌸";
         if (breathCircle) {
-          breathCircle.className = "absolute inset-0 rounded-full border-2 border-emerald-400/50 bg-emerald-500/20 backdrop-blur-md transition-all duration-1000 flex items-center justify-center shadow-xl shadow-emerald-500/20 breathe-expand";
+          breathCircle.className = "absolute inset-0 rounded-full border-2 border-lime-400/50 bg-lime-500/20 backdrop-blur-md transition-all duration-1000 flex items-center justify-center shadow-xl shadow-lime-500/20 breathe-expand";
         }
         playSoundEffect(523, 'sine', 0.2);
       }
@@ -705,7 +777,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isBreathingActive = !isBreathingActive;
       if (isBreathingActive) {
         toggleBreatheBtn.textContent = "Pause Session ⏸️";
-        toggleBreatheBtn.classList.replace('bg-emerald-500/20', 'bg-amber-500/20');
+        toggleBreatheBtn.classList.replace('bg-lime-500/20', 'bg-amber-500/20');
         breathState = 'inhale';
         secondsRemaining = 4;
         if (breathText) breathText.textContent = "Breathe In 🌸";
@@ -713,7 +785,7 @@ document.addEventListener('DOMContentLoaded', () => {
         breathInterval = setInterval(runBreathStep, 1000);
       } else {
         toggleBreatheBtn.textContent = "Resume Session ▶️";
-        toggleBreatheBtn.classList.replace('bg-amber-500/20', 'bg-emerald-500/20');
+        toggleBreatheBtn.classList.replace('bg-amber-500/20', 'bg-lime-500/20');
         clearInterval(breathInterval);
         if (breathText) breathText.textContent = "Paused";
         if (breathTimer) breathTimer.textContent = "--";
@@ -749,7 +821,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!bubble.classList.contains('popped')) {
           bubble.classList.add('popped');
           bubble.innerHTML = `
-            <span class="truncate text-emerald-300">Popped! ✓</span>
+            <span class="truncate text-lime-300">Popped! ✓</span>
             <span class="text-sm">✨</span>
           `;
           playSoundEffect(800 + index * 60, 'sine', 0.15);
@@ -773,7 +845,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 6. JAVA DSA INTERACTIVE TERMINAL
+  // 7. JAVA DSA INTERACTIVE TERMINAL
   // ========================================================
   const runJavaBtn = document.getElementById('run-java-btn');
   const optimizeBtn = document.getElementById('optimize-stress-btn');
@@ -795,7 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lines.forEach((line, i) => {
         setTimeout(() => {
           const p = document.createElement('p');
-          p.className = i >= 3 ? 'text-emerald-300' : 'text-slate-300';
+          p.className = i >= 3 ? 'text-lime-300' : 'text-stone-300';
           p.textContent = line;
           terminalOutput.appendChild(p);
           playSoundEffect(300 + i * 80, 'sine', 0.08);
@@ -828,7 +900,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 7. THE MEDHAVIE TRIVIA QUIZ
+  // 8. THE MEDHAVIE TRIVIA QUIZ
   // ========================================================
   const quizData = [
     {
@@ -880,7 +952,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     q.options.forEach((opt, idx) => {
       const btn = document.createElement('button');
-      btn.className = 'p-3 text-left rounded-xl bg-slate-800/80 border border-slate-700 hover:border-rose-500 text-xs sm:text-sm text-slate-200 transition-all';
+      btn.className = 'p-3 text-left rounded-xl bg-[#121c13] border border-lime-800/40 hover:border-lime-400 text-xs sm:text-sm text-stone-200 transition-all';
       btn.textContent = opt;
       btn.addEventListener('click', () => handleAnswer(idx));
       quizOptions.appendChild(btn);
@@ -945,7 +1017,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 8. THE PLAYFUL RUNAWAY 'NO' BUTTON & CONFIRMATION FLOW
+  // 9. THE PLAYFUL RUNAWAY 'NO' BUTTON & CONFIRMATION FLOW
   // ========================================================
   const runawayNoBtn = document.getElementById('runaway-no-btn');
   const runawayHint = document.getElementById('runaway-hint');
@@ -971,24 +1043,19 @@ document.addEventListener('DOMContentLoaded', () => {
   function moveNoButton() {
     if (!runawayNoBtn || !buttonsStage) return;
 
-    // Get boundaries of the arena
     const stageRect = buttonsStage.getBoundingClientRect();
     const maxX = (stageRect.width / 2) - 50;
     const maxY = (stageRect.height / 2) - 20;
 
-    // Generate smart random displacement away from current
     const randomX = (Math.random() * (maxX * 2) - maxX);
     const randomY = (Math.random() * (maxY * 2) - maxY);
 
     runawayNoBtn.style.transform = `translate(${randomX}px, ${randomY}px) scale(0.95)`;
-    
-    // Play funny squeak/dodge sound
     playSoundEffect(850 + Math.random() * 200, 'triangle', 0.1, 0.08);
 
-    // Update hint text
     if (runawayHint) {
       runawayHint.textContent = `"${runawayPhrases[runawayCount % runawayPhrases.length]}"`;
-      runawayHint.classList.add('text-rose-400', 'font-semibold');
+      runawayHint.classList.add('text-lime-300', 'font-semibold');
     }
     runawayCount++;
   }
@@ -1005,7 +1072,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // YES Button -> Opens Confirmation Modal
   if (agreementYesBtn) {
     agreementYesBtn.addEventListener('click', () => {
       playSoundEffect(659, 'sine', 0.3);
@@ -1022,12 +1088,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => playSoundEffect(784, 'sine', 0.5), 240);
 
     if (window.confetti) {
-      // Multi-stage confetti celebration
       confetti({
         particleCount: 100,
         spread: 120,
         origin: { y: 0.5 },
-        colors: ['#f43f5e', '#fb7185', '#10b981', '#fbbf24']
+        colors: ['#84cc16', '#a3c28d', '#f43f5e', '#fbbf24']
       });
       setTimeout(() => {
         confetti({
@@ -1035,14 +1100,14 @@ document.addEventListener('DOMContentLoaded', () => {
           angle: 60,
           spread: 80,
           origin: { x: 0 },
-          colors: ['#f43f5e', '#e11d48']
+          colors: ['#84cc16', '#eab308']
         });
         confetti({
           particleCount: 60,
           angle: 120,
           spread: 80,
           origin: { x: 1 },
-          colors: ['#10b981', '#fbbf24']
+          colors: ['#f43f5e', '#a3c28d']
         });
       }, 300);
     }
@@ -1059,7 +1124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 9. WAX-SEALED SECRET LETTER UNLOCK
+  // 10. WAX-SEALED SECRET LETTER UNLOCK
   // ========================================================
   const waxSeal = document.getElementById('wax-seal');
   const envelopeClosed = document.getElementById('envelope-closed');
@@ -1078,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         particleCount: 60,
         spread: 90,
         origin: { y: 0.6 },
-        colors: ['#f43f5e', '#fb7185', '#ffe4e6']
+        colors: ['#84cc16', '#a3c28d', '#f43f5e']
       });
     }
   }
@@ -1089,14 +1154,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (sendReactionBtn) {
     sendReactionBtn.addEventListener('click', () => {
       sendReactionBtn.innerHTML = `<span>Sent with Love ❤️</span>`;
-      sendReactionBtn.classList.replace('bg-rose-600', 'bg-emerald-600');
+      sendReactionBtn.classList.replace('bg-emerald-700', 'bg-lime-700');
       playSoundEffect(784, 'sine', 0.3);
       if (window.confetti) {
         confetti({
           particleCount: 50,
           spread: 70,
           origin: { y: 0.7 },
-          colors: ['#e11d48', '#fb7185']
+          colors: ['#84cc16', '#f43f5e']
         });
       }
     });
@@ -1104,7 +1169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 10. WEB AUDIO AMBIENT SOUND GENERATOR
+  // 11. WEB AUDIO AMBIENT SOUND GENERATOR & VISUALIZER
   // ========================================================
   let audioCtx = null;
   let isAudioPlaying = false;
@@ -1112,6 +1177,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const audioToggleBtn = document.getElementById('audio-toggle-btn');
   const audioIcon = document.getElementById('audio-icon');
   const audioStatusText = document.getElementById('audio-status-text');
+  const audioVisualizer = document.getElementById('audio-visualizer');
 
   const calmChords = [
     [370.0, 440.0, 554.37, 659.25],
@@ -1191,13 +1257,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (isAudioPlaying) {
         if (audioIcon) audioIcon.textContent = "🔊";
-        if (audioStatusText) audioStatusText.textContent = "Melody Playing";
-        audioToggleBtn.classList.add('border-rose-400', 'bg-rose-500/20');
+        if (audioStatusText) audioStatusText.textContent = "Playing Melody";
+        if (audioVisualizer) {
+          audioVisualizer.classList.remove('hidden');
+          audioVisualizer.classList.add('flex');
+        }
+        audioToggleBtn.classList.add('border-lime-400', 'bg-lime-950/80');
         playAmbientChord();
       } else {
         if (audioIcon) audioIcon.textContent = "🎵";
         if (audioStatusText) audioStatusText.textContent = "Play Melody";
-        audioToggleBtn.classList.remove('border-rose-400', 'bg-rose-500/20');
+        if (audioVisualizer) {
+          audioVisualizer.classList.add('hidden');
+          audioVisualizer.classList.remove('flex');
+        }
+        audioToggleBtn.classList.remove('border-lime-400', 'bg-lime-950/80');
         if (audioTimer) clearTimeout(audioTimer);
       }
     });
