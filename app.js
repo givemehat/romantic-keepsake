@@ -375,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     playSoundEffect(523, 'triangle', 0.4);
+    startMusicTrack();
 
     while (treeApp.seed.canScale()) {
       treeApp.ctx.clearRect(0, 0, treeApp.width, treeApp.height);
@@ -1217,64 +1218,73 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {}
   }
 
-  function playAmbientChord() {
-    if (!isAudioPlaying || !audioCtx) return;
+  // ========================================================
+  // 11. AUDIO SOUNDTRACK CONTROLLER (CRUSH SOUNDTRACK)
+  // ========================================================
+  const bgAudio = document.getElementById('bg-audio');
+  const audioToggleBtn = document.getElementById('audio-toggle-btn');
+  const audioIcon = document.getElementById('audio-icon');
+  const audioStatusText = document.getElementById('audio-status-text');
+  const audioVisualizer = document.getElementById('audio-visualizer');
+  let isAudioPlaying = false;
 
-    const chord = calmChords[chordIndex];
-    chordIndex = (chordIndex + 1) % calmChords.length;
-
-    chord.forEach((freq, idx) => {
-      setTimeout(() => {
-        if (!isAudioPlaying) return;
-        try {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-          const now = audioCtx.currentTime;
-          gain.gain.setValueAtTime(0.001, now);
-          gain.gain.linearRampToValueAtTime(0.025, now + 1.2);
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.8);
-
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-
-          osc.start(now);
-          osc.stop(now + 4.0);
-        } catch (e) {}
-      }, idx * 180);
-    });
-
-    audioTimer = setTimeout(playAmbientChord, 3800);
+  if (bgAudio) {
+    bgAudio.volume = 0.65;
   }
 
-  if (audioToggleBtn) {
-    audioToggleBtn.addEventListener('click', () => {
-      initAudioContext();
-      isAudioPlaying = !isAudioPlaying;
-
-      if (isAudioPlaying) {
+  function startMusicTrack() {
+    if (bgAudio && !isAudioPlaying) {
+      bgAudio.play().then(() => {
+        isAudioPlaying = true;
         if (audioIcon) audioIcon.textContent = "🔊";
         if (audioStatusText) audioStatusText.textContent = "Playing Melody";
         if (audioVisualizer) {
           audioVisualizer.classList.remove('hidden');
           audioVisualizer.classList.add('flex');
         }
-        audioToggleBtn.classList.add('border-lime-400', 'bg-lime-950/80');
-        playAmbientChord();
-      } else {
-        if (audioIcon) audioIcon.textContent = "🎵";
-        if (audioStatusText) audioStatusText.textContent = "Play Melody";
-        if (audioVisualizer) {
-          audioVisualizer.classList.add('hidden');
-          audioVisualizer.classList.remove('flex');
+        if (audioToggleBtn) {
+          audioToggleBtn.classList.add('border-lime-400', 'bg-lime-950/80');
         }
-        audioToggleBtn.classList.remove('border-lime-400', 'bg-lime-950/80');
-        if (audioTimer) clearTimeout(audioTimer);
-      }
-    });
+      }).catch(() => {
+        // Auto-play prevented fallback to click
+      });
+    }
   }
+
+  function toggleMusicTrack() {
+    if (!bgAudio) return;
+    if (isAudioPlaying) {
+      bgAudio.pause();
+      isAudioPlaying = false;
+      if (audioIcon) audioIcon.textContent = "🎵";
+      if (audioStatusText) audioStatusText.textContent = "Play Melody";
+      if (audioVisualizer) {
+        audioVisualizer.classList.add('hidden');
+        audioVisualizer.classList.remove('flex');
+      }
+      if (audioToggleBtn) {
+        audioToggleBtn.classList.remove('border-lime-400', 'bg-lime-950/80');
+      }
+    } else {
+      bgAudio.play().then(() => {
+        isAudioPlaying = true;
+        if (audioIcon) audioIcon.textContent = "🔊";
+        if (audioStatusText) audioStatusText.textContent = "Playing Melody";
+        if (audioVisualizer) {
+          audioVisualizer.classList.remove('hidden');
+          audioVisualizer.classList.add('flex');
+        }
+        if (audioToggleBtn) {
+          audioToggleBtn.classList.add('border-lime-400', 'bg-lime-950/80');
+        }
+      }).catch(e => console.log(e));
+    }
+  }
+
+  if (audioToggleBtn) {
+    audioToggleBtn.addEventListener('click', toggleMusicTrack);
+  }
+
+  window.startMusicTrack = startMusicTrack;
 
 });
