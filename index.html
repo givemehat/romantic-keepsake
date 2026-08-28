@@ -61,7 +61,7 @@
   <main class="relative z-10 pt-20 pb-20 px-4 max-w-6xl mx-auto space-y-24 sm:space-y-32">
 
     <!-- ============================================== -->
-    <!-- 0. THE GRAND LOVE TREE OPENING (INSPIRED BY CLASSIC LOVE CANVAS) -->
+    <!-- 0. THE GRAND LOVE TREE OPENING -->
     <!-- ============================================== -->
     <section id="tree-opening-section" class="relative pt-4 sm:pt-8 flex flex-col items-center justify-center">
       
@@ -87,7 +87,7 @@
         <!-- Canvas for the Growing Blooming Love Tree -->
         <canvas id="tree-canvas" width="1100" height="680"></canvas>
 
-        <!-- Initial Seed Invitation Prompt (Visible until seed is clicked) -->
+        <!-- Initial Seed Invitation Prompt -->
         <div id="seed-instruction" class="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-700">
           <div class="glass-pill px-6 py-3 rounded-full border border-rose-500/40 shadow-2xl backdrop-blur-xl pointer-events-auto flex items-center space-x-3 mb-32 animate-bounce">
             <span class="text-2xl animate-pulse">👆</span>
@@ -126,7 +126,7 @@
 
       </div>
 
-      <!-- Cute Bear Card & Universe Entrance (Revealed after blooming) -->
+      <!-- Cute Bear Card & Universe Entrance -->
       <div id="post-bloom-reveal" class="w-full max-w-xl mx-auto mt-8 opacity-0 translate-y-6 transition-all duration-1000 flex flex-col items-center text-center space-y-5">
         
         <!-- Uploaded Bear Image Sticker Card -->
@@ -316,7 +316,7 @@
     </section>
 
     <!-- ============================================== -->
-    <!-- 3. DE-STRESS & BREATHE SANCTUARY (SPECIALLY CRAFTED) -->
+    <!-- 3. DE-STRESS & BREATHE SANCTUARY -->
     <!-- ============================================== -->
     <section id="destress-section" class="scroll-mt-24">
       <div class="rounded-3xl bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-indigo-950/40 border border-indigo-500/20 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl relative overflow-hidden">
@@ -391,7 +391,7 @@
     </section>
 
     <!-- ============================================== -->
-    <!-- 4. JAVA DSA INTERACTIVE TERMINAL (EASTER EGG) -->
+    <!-- 4. JAVA DSA INTERACTIVE TERMINAL -->
     <!-- ============================================== -->
     <section id="java-terminal-section" class="scroll-mt-24 space-y-6">
       <div class="text-center space-y-2">
@@ -509,7 +509,59 @@
     </section>
 
     <!-- ============================================== -->
-    <!-- 6. THE WAX-SEALED SECRET LETTER -->
+    <!-- 6. THE PLAYFUL QUESTION (RUNAWAY 'NO' BUTTON & RAJNISH CONFIRMATION) -->
+    <!-- ============================================== -->
+    <section id="question-section" class="scroll-mt-24 space-y-6">
+      <div class="text-center space-y-2">
+        <span class="text-xs uppercase tracking-widest text-pink-400 font-semibold bg-pink-500/10 px-3 py-1 rounded-full border border-pink-500/20">A Special Question For You</span>
+        <h2 class="text-2xl sm:text-4xl font-playfair font-bold text-slate-100">
+          The Unbreakable Bond Agreement 🌸
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto">
+          No complicated terms, just a simple playful question from the heart!
+        </p>
+      </div>
+
+      <!-- Question Arena Box -->
+      <div class="max-w-2xl mx-auto question-arena p-8 sm:p-12 flex flex-col items-center justify-center text-center shadow-2xl relative">
+        
+        <div class="w-16 h-16 rounded-full bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-3xl mb-4 animate-bounce">
+          🤝
+        </div>
+
+        <!-- Main Question -->
+        <h3 class="text-xl sm:text-2xl md:text-3xl font-playfair font-bold text-slate-100 mb-3 leading-snug">
+          "Agar life ek complex DSA problem ya 22-yard pitch hai, will you always let <span class="text-rose-400 underline decoration-rose-500/40">Rajnish</span> be in your corner supporting you?" 🏏☕
+        </h3>
+        
+        <p class="text-xs sm:text-sm text-slate-300 font-light mb-8 max-w-md italic">
+          (Har match me, har tension me, hamesha cheering for Mahadevi!)
+        </p>
+
+        <!-- Buttons Container -->
+        <div id="buttons-stage" class="relative w-full max-w-md h-28 flex items-center justify-center gap-6">
+          
+          <!-- YES Button -->
+          <button id="agreement-yes-btn" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold text-sm shadow-xl hover:shadow-rose-500/40 hover:scale-105 active:scale-95 transition-all flex items-center space-x-2 z-20">
+            <span>YES, Absolutely! 🥰</span>
+          </button>
+
+          <!-- Elusive Runaway NO Button -->
+          <button id="runaway-no-btn" class="px-6 py-3 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-xs border border-slate-600 shadow-md transition-all z-20 whitespace-nowrap">
+            <span>No 🙈</span>
+          </button>
+
+        </div>
+
+        <p id="runaway-hint" class="text-[11px] text-slate-400 mt-2 italic transition-all h-5">
+          "Tip: Try clicking No if you dare! 😉"
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- 7. THE WAX-SEALED SECRET LETTER -->
     <!-- ============================================== -->
     <section id="letter-section" class="scroll-mt-24 space-y-8">
       <div class="text-center space-y-2">
@@ -562,7 +614,7 @@
               </div>
             </div>
 
-            <!-- Letter Text (Hindi & English blend, heartfelt & supportive) -->
+            <!-- Letter Text -->
             <div class="space-y-4 text-sm sm:text-base leading-relaxed text-slate-700 font-normal">
               
               <p>
@@ -621,7 +673,7 @@
     </section>
 
     <!-- ============================================== -->
-    <!-- 7. FOOTER -->
+    <!-- 8. FOOTER -->
     <!-- ============================================== -->
     <footer class="text-center pt-10 border-t border-slate-800/80 space-y-4 text-xs text-slate-500">
       <p>
@@ -642,6 +694,72 @@
     </footer>
 
   </main>
+
+  <!-- ============================================== -->
+  <!-- MODAL: RAJNISH CONFIRMATION POPUP -->
+  <!-- ============================================== -->
+  <div id="confirmation-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border-2 border-rose-500/40 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl space-y-5 animate-unfold relative overflow-hidden">
+      
+      <div class="absolute -right-8 -top-8 w-24 h-24 bg-rose-500/20 rounded-full blur-xl"></div>
+      
+      <!-- Bear Sticker inside Modal -->
+      <div class="flex justify-center">
+        <img src="assets/bears.png" alt="Happy Bears" class="w-32 h-auto object-contain drop-shadow-md">
+      </div>
+
+      <h3 class="text-xl sm:text-2xl font-playfair font-bold text-slate-100">
+        Ek baar fir soch lo... 😉
+      </h3>
+
+      <div class="p-3.5 rounded-2xl bg-rose-500/10 border border-rose-500/25 text-xs sm:text-sm text-slate-200 leading-relaxed font-light">
+        <p class="mb-2 font-medium text-rose-300">
+          "Yahan <strong class="text-white font-bold">Rajnish</strong> ki baat ho rahi hai! 🌟"
+        </p>
+        <p class="text-slate-300 text-xs">
+          Lifetime 24/7 unlimited cheering, de-stressing support, and Punjab cricket fan club package included! Final lock kar dein?
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <button id="modal-confirm-btn" class="flex-1 py-3 rounded-full bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-bold text-xs sm:text-sm shadow-lg transition-all active:scale-95">
+          Haan Baba, 100% Lock In! 🔒❤️
+        </button>
+        <button id="modal-yes-too-btn" class="flex-1 py-3 rounded-full bg-slate-800 hover:bg-slate-700 text-rose-300 font-medium text-xs border border-rose-500/30 transition-all active:scale-95">
+          Soch Liya, YES hi hai! 🥰
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: FINAL CELEBRATION CONTRACT POPUP -->
+  <!-- ============================================== -->
+  <div id="celebration-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="bg-gradient-to-b from-slate-900 via-slate-900 to-rose-950/60 border-2 border-emerald-500/40 rounded-3xl p-6 sm:p-10 max-w-lg w-full text-center shadow-2xl space-y-6 animate-unfold">
+      
+      <div class="text-5xl animate-bounce">🎉🏆✨</div>
+
+      <h3 class="text-2xl sm:text-3xl font-playfair font-bold text-slate-100">
+        Agreement Sealed, Mahadevi!
+      </h3>
+
+      <div class="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 text-xs sm:text-sm text-emerald-200 space-y-2">
+        <p class="font-semibold text-emerald-300">
+          📜 Official Support Contract Active:
+        </p>
+        <p class="text-slate-300 text-xs leading-relaxed">
+          From this moment onwards, whenever you feel overloaded with stress or tension, remember you have a dedicated friend & supporter in <strong>Rajnish</strong> forever in your corner!
+        </p>
+      </div>
+
+      <button id="close-celebration-btn" class="px-8 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-lg transition-all">
+        You're the best! 🌸
+      </button>
+
+    </div>
+  </div>
 
   <!-- Interactive Sound Effects & Logic Script -->
   <script src="app.js"></script>

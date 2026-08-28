@@ -1,7 +1,7 @@
 /**
  * Medhavie's Dedicated Web App
  * Features: Classic Love Tree Canvas Engine, Particle System, Typewriter, 
- * Stress-Relief Oasis, Java DSA Console, Trivia Quiz, and Web Audio Synthesis.
+ * Stress-Relief Oasis, Java DSA Console, Trivia Quiz, Runaway "No" Button & Web Audio Synthesis.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -229,7 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initBranchesData() {
-      // Scale-friendly organic branch tree architecture
       const cx = this.width / 2;
       const cy = this.height;
       this.rawBranchData = [
@@ -291,7 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
         while (true) {
           x = random(40, w - 40);
           y = random(40, h - 100);
-          // Mathematical heart shape canopy test
           if (inHeart(x - w / 2, h - (h - 60) / 2 - y, r)) {
             this.bloomsCache.push(new TreeBloom(this, new Point(x, y), this.figure));
             break;
@@ -335,22 +333,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-
-  // ========================================================
-  // INITIALIZE TREE & STAGE CONTROLLER
-  // ========================================================
   const treeCanvas = document.getElementById('tree-canvas');
   let treeApp = null;
   let treeStarted = false;
 
   function initLoveTree() {
     if (!treeCanvas) return;
-    const rect = treeCanvas.getBoundingClientRect();
     treeCanvas.width = 1100;
     treeCanvas.height = 680;
     treeApp = new LoveTree(treeCanvas, 1100, 680);
-    
-    // Draw initial pulsing heart seed
     treeCanvas.classList.add('clickable-seed');
     renderSeedPulsing();
   }
@@ -361,12 +352,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderSeedPulsing() {
     if (treeStarted || !treeApp) return;
     treeApp.ctx.clearRect(0, 0, treeApp.width, treeApp.height);
-    
-    // Slight pulse scale
     seedPulseAngle += 0.05;
     treeApp.seed.scale = 2.4 + Math.sin(seedPulseAngle) * 0.3;
     treeApp.seed.draw();
-
     seedAnimId = requestAnimationFrame(renderSeedPulsing);
   }
 
@@ -387,7 +375,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     playSoundEffect(523, 'triangle', 0.4);
 
-    // 1. Shrink and plant seed
     while (treeApp.seed.canScale()) {
       treeApp.ctx.clearRect(0, 0, treeApp.width, treeApp.height);
       treeApp.seed.scaleDown(0.92);
@@ -403,7 +390,6 @@ document.addEventListener('DOMContentLoaded', () => {
       await sleep(12);
     }
 
-    // 2. Grow Branches
     treeApp.startGrowing();
     while (treeApp.canGrow()) {
       treeApp.grow();
@@ -411,13 +397,11 @@ document.addEventListener('DOMContentLoaded', () => {
       await sleep(10);
     }
 
-    // 3. Bloom Heart Petals
     while (treeApp.canFlower()) {
       treeApp.flower(3);
       await sleep(12);
     }
 
-    // 4. Reveal Left-Hand Typewriter Tribute & Bear Card
     if (treeTextOverlay) {
       treeTextOverlay.classList.remove('hidden');
       const lines = treeTextOverlay.querySelectorAll('.typewriter-line');
@@ -437,9 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 2500);
     }
 
-    // 5. Continuous flutter of falling heart blossoms
     function loopJump() {
-      // Don't clear branches/flowers; draw falling petals over with slight trails
       treeApp.jump();
       requestAnimationFrame(loopJump);
     }
@@ -453,18 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (treeCanvas) {
     treeCanvas.addEventListener('click', (e) => {
       if (treeStarted) return;
-      const rect = treeCanvas.getBoundingClientRect();
-      const scaleX = treeCanvas.width / rect.width;
-      const scaleY = treeCanvas.height / rect.height;
-      const x = (e.clientX - rect.left) * scaleX;
-      const y = (e.clientY - rect.top) * scaleY;
-
-      if (treeApp && treeApp.seed.hover(x, y)) {
-        startTreeSequence();
-      } else {
-        // Any click on canvas starts if near center
-        startTreeSequence();
-      }
+      startTreeSequence();
     });
   }
   initLoveTree();
@@ -974,7 +945,121 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 8. WAX-SEALED SECRET LETTER UNLOCK
+  // 8. THE PLAYFUL RUNAWAY 'NO' BUTTON & CONFIRMATION FLOW
+  // ========================================================
+  const runawayNoBtn = document.getElementById('runaway-no-btn');
+  const runawayHint = document.getElementById('runaway-hint');
+  const buttonsStage = document.getElementById('buttons-stage');
+  const agreementYesBtn = document.getElementById('agreement-yes-btn');
+  const confirmationModal = document.getElementById('confirmation-modal');
+  const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+  const modalYesTooBtn = document.getElementById('modal-yes-too-btn');
+  const celebrationModal = document.getElementById('celebration-modal');
+  const closeCelebrationBtn = document.getElementById('close-celebration-btn');
+
+  const runawayPhrases = [
+    "Medu Vada, 'No' is disabled by Java compiler! ☕",
+    "Catch me if you can, State Cricketer! 🏃‍♀️🏏",
+    "Oops! 'No' button jumped to safe harbor! ⚓",
+    "Rajnish ke samne 'No' option error throw karta hai! 😂",
+    "Punjab batting line-up doesn't give up! 💪",
+    "Only 'YES' has O(1) time complexity! 😉",
+    "Mahadevi, 'No' is not on the syllabus! 👑"
+  ];
+  let runawayCount = 0;
+
+  function moveNoButton() {
+    if (!runawayNoBtn || !buttonsStage) return;
+
+    // Get boundaries of the arena
+    const stageRect = buttonsStage.getBoundingClientRect();
+    const maxX = (stageRect.width / 2) - 50;
+    const maxY = (stageRect.height / 2) - 20;
+
+    // Generate smart random displacement away from current
+    const randomX = (Math.random() * (maxX * 2) - maxX);
+    const randomY = (Math.random() * (maxY * 2) - maxY);
+
+    runawayNoBtn.style.transform = `translate(${randomX}px, ${randomY}px) scale(0.95)`;
+    
+    // Play funny squeak/dodge sound
+    playSoundEffect(850 + Math.random() * 200, 'triangle', 0.1, 0.08);
+
+    // Update hint text
+    if (runawayHint) {
+      runawayHint.textContent = `"${runawayPhrases[runawayCount % runawayPhrases.length]}"`;
+      runawayHint.classList.add('text-rose-400', 'font-semibold');
+    }
+    runawayCount++;
+  }
+
+  if (runawayNoBtn) {
+    runawayNoBtn.addEventListener('mouseenter', moveNoButton);
+    runawayNoBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+    runawayNoBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+  }
+
+  // YES Button -> Opens Confirmation Modal
+  if (agreementYesBtn) {
+    agreementYesBtn.addEventListener('click', () => {
+      playSoundEffect(659, 'sine', 0.3);
+      if (confirmationModal) confirmationModal.classList.remove('hidden');
+    });
+  }
+
+  function triggerGrandCelebration() {
+    if (confirmationModal) confirmationModal.classList.add('hidden');
+    if (celebrationModal) celebrationModal.classList.remove('hidden');
+
+    playSoundEffect(523, 'triangle', 0.4);
+    setTimeout(() => playSoundEffect(659, 'sine', 0.4), 120);
+    setTimeout(() => playSoundEffect(784, 'sine', 0.5), 240);
+
+    if (window.confetti) {
+      // Multi-stage confetti celebration
+      confetti({
+        particleCount: 100,
+        spread: 120,
+        origin: { y: 0.5 },
+        colors: ['#f43f5e', '#fb7185', '#10b981', '#fbbf24']
+      });
+      setTimeout(() => {
+        confetti({
+          particleCount: 60,
+          angle: 60,
+          spread: 80,
+          origin: { x: 0 },
+          colors: ['#f43f5e', '#e11d48']
+        });
+        confetti({
+          particleCount: 60,
+          angle: 120,
+          spread: 80,
+          origin: { x: 1 },
+          colors: ['#10b981', '#fbbf24']
+        });
+      }, 300);
+    }
+  }
+
+  if (modalConfirmBtn) modalConfirmBtn.addEventListener('click', triggerGrandCelebration);
+  if (modalYesTooBtn) modalYesTooBtn.addEventListener('click', triggerGrandCelebration);
+  
+  if (closeCelebrationBtn) {
+    closeCelebrationBtn.addEventListener('click', () => {
+      if (celebrationModal) celebrationModal.classList.add('hidden');
+    });
+  }
+
+
+  // ========================================================
+  // 9. WAX-SEALED SECRET LETTER UNLOCK
   // ========================================================
   const waxSeal = document.getElementById('wax-seal');
   const envelopeClosed = document.getElementById('envelope-closed');
@@ -1019,7 +1104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 9. WEB AUDIO AMBIENT SOUND GENERATOR
+  // 10. WEB AUDIO AMBIENT SOUND GENERATOR
   // ========================================================
   let audioCtx = null;
   let isAudioPlaying = false;
