@@ -21,12 +21,21 @@
 </head>
 <body class="bg-[#0b100c] text-stone-100 font-outfit antialiased selection:bg-lime-600 selection:text-white relative overflow-x-hidden min-h-screen flex flex-col items-center justify-start">
 
+  <!-- Ambient Video Background Layer (Letter Writing Video) -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <video id="bg-video" autoplay loop muted playsinline class="w-full h-full object-cover opacity-40 filter brightness-75 contrast-110">
+      <source src="assets/background_letter.mp4" type="video/mp4">
+    </video>
+    <!-- Dark Camo Olive Gradient Overlay for perfect readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0b100c]/85 via-[#0e160f]/80 to-[#0b100c]/90"></div>
+  </div>
+
   <!-- Background Animated Canvas (Petals & Olive-Gold Stardust) -->
   <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
   <!-- Camouflage Ambient Glow Orbs -->
-  <div class="fixed top-[-10%] left-[-10%] w-[520px] h-[520px] bg-[#3f4f2c]/25 rounded-full blur-[140px] pointer-events-none z-0"></div>
-  <div class="fixed bottom-[-10%] right-[-10%] w-[620px] h-[620px] bg-[#1e2d1a]/35 rounded-full blur-[160px] pointer-events-none z-0"></div>
+  <div class="fixed top-[-10%] left-[-10%] w-[520px] h-[520px] bg-[#3f4f2c]/20 rounded-full blur-[140px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-[-10%] right-[-10%] w-[620px] h-[620px] bg-[#1e2d1a]/30 rounded-full blur-[160px] pointer-events-none z-0"></div>
   <div class="fixed top-[40%] right-[15%] w-[420px] h-[420px] bg-rose-900/15 rounded-full blur-[130px] pointer-events-none z-0"></div>
 
   <!-- Background Audio Element from kunal-beatz/Crush -->
