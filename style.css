@@ -498,3 +498,40 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #546e45;
 }
+
+/* ======================================================== */
+/* LIVE VISUAL TEXT EDITOR DOCK */
+/* ======================================================== */
+#editor-dock {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 99999;
+  background: rgba(16, 26, 17, 0.95);
+  border: 1px solid rgba(132, 204, 22, 0.5);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(132, 204, 22, 0.25);
+  border-radius: 9999px;
+  padding: 0.45rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
+}
+
+.edit-mode-active [data-editable="true"] {
+  outline: 1px dashed rgba(250, 204, 21, 0.65) !important;
+  outline-offset: 3px;
+  border-radius: 4px;
+  cursor: text !important;
+}
+
+.edit-mode-active [data-editable="true"]:hover {
+  background-color: rgba(250, 204, 21, 0.15) !important;
+  outline: 2px solid rgba(250, 204, 21, 0.9) !important;
+}
+
+.edit-mode-active [data-editable="true"]:focus {
+  background-color: rgba(132, 204, 22, 0.18) !important;
+  outline: 2px solid #84cc16 !important;
+}
