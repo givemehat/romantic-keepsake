@@ -653,75 +653,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // ========================================================
-  // 5. SECRET PASSCODE PIN VAULT LOGIC
-  // ========================================================
-  const pinInputs = [
-    document.getElementById('pin-1'),
-    document.getElementById('pin-2'),
-    document.getElementById('pin-3'),
-    document.getElementById('pin-4')
-  ];
-  const pinUnlockBtn = document.getElementById('pin-unlock-btn');
-  const pinErrorMsg = document.getElementById('pin-error-msg');
-  const vaultModal = document.getElementById('vault-modal');
-  const closeVaultBtn = document.getElementById('close-vault-btn');
 
-  // Auto-focus next input box as user types
-  pinInputs.forEach((input, index) => {
-    if (!input) return;
-    input.addEventListener('input', (e) => {
-      const val = e.target.value;
-      if (val.length === 1 && index < pinInputs.length - 1) {
-        pinInputs[index + 1].focus();
-      }
-    });
-
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Backspace' && !input.value && index > 0) {
-        pinInputs[index - 1].focus();
-      }
-      if (e.key === 'Enter') {
-        checkPinCode();
-      }
-    });
-  });
-
-  function checkPinCode() {
-    const enteredPin = pinInputs.map(i => i.value).join('');
-    // Accepts: '0609' (6 Sept) OR '2302' (23 Feb)
-    if (enteredPin === '0609' || enteredPin === '2302') {
-      if (pinErrorMsg) pinErrorMsg.classList.add('hidden');
-      playSoundEffect(523, 'triangle', 0.3);
-      setTimeout(() => playSoundEffect(659, 'sine', 0.3), 100);
-      setTimeout(() => playSoundEffect(784, 'sine', 0.4), 200);
-
-      if (vaultModal) vaultModal.classList.remove('hidden');
-
-      if (window.confetti) {
-        confetti({
-          particleCount: 70,
-          spread: 80,
-          origin: { y: 0.5 },
-          colors: ['#fbbf24', '#f59e0b', '#84cc16']
-        });
-      }
-    } else {
-      if (pinErrorMsg) pinErrorMsg.classList.remove('hidden');
-      pinInputs.forEach(i => {
-        i.classList.add('pin-shake');
-        setTimeout(() => i.classList.remove('pin-shake'), 500);
-      });
-      playSoundEffect(220, 'sawtooth', 0.2);
-    }
-  }
-
-  if (pinUnlockBtn) pinUnlockBtn.addEventListener('click', checkPinCode);
-  if (closeVaultBtn) {
-    closeVaultBtn.addEventListener('click', () => {
-      if (vaultModal) vaultModal.classList.add('hidden');
-    });
-  }
 
 
   // ========================================================
