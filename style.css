@@ -140,13 +140,13 @@
 /* POLAROID GALLERY WITH WASHI TAPE & TILT */
 /* ======================================================== */
 .polaroid-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
-  justify-items: center;
+  align-items: flex-start;
   width: 100%;
-  max-width: 960px;
+  max-width: 980px;
   margin-left: auto;
   margin-right: auto;
   padding: 1rem 0;
@@ -155,14 +155,14 @@
 .polaroid-card {
   position: relative;
   width: 100%;
-  max-width: 280px;
+  width: 275px;
   background: #fdfaf3;
   padding: 0.9rem 0.9rem 1.4rem 0.9rem;
   border-radius: 0.5rem;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
   transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .polaroid-card:hover {
