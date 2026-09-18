@@ -1,7 +1,11 @@
 // ========================================================
 // LIVE VISUAL WYSIWYG TEXT EDITOR WITH CODE SAVE & GIT SYNC
+// (Restricted to localhost & ?edit only)
 // ========================================================
 (function () {
+  const isAuth = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.search.includes('edit'));
+  if (!isAuth) return;
+
   let isEditMode = false;
   let allFlipped = false;
 
@@ -49,12 +53,10 @@
     const eligible = [];
 
     all.forEach(el => {
-      // Exclude editor dock, media, scripts, canvases
       if (el.closest('#editor-dock') || ['SCRIPT', 'STYLE', 'VIDEO', 'AUDIO', 'CANVAS', 'SOURCE', 'BR', 'HR', 'HEAD', 'META', 'LINK'].includes(el.tagName)) {
         return;
       }
 
-      // Check if element contains direct text nodes with content
       let hasText = false;
       for (let node of el.childNodes) {
         if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0) {
@@ -63,7 +65,6 @@
         }
       }
 
-      // Also include common containers if they have text
       if (hasText || ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'SPAN', 'EM', 'STRONG', 'B', 'I', 'BUTTON', 'A', 'BLOCKQUOTE', 'LI', 'LABEL', 'DIV'].includes(el.tagName)) {
         if (el.textContent.trim().length > 0) {
           eligible.push(el);
@@ -92,19 +93,15 @@
     });
   }
 
-  // Intercept click & hover events in edit mode so buttons/links don't navigate or run away
   function handleCaptureEvent(e) {
     if (!isEditMode) return;
     const target = e.target;
     if (target.closest('#editor-dock')) return;
 
-    // In edit mode, allow placing text cursor freely
-    // Prevent links from navigating
     if (target.tagName === 'A' || target.closest('a')) {
       e.preventDefault();
     }
 
-    // Stop propagation for action buttons so they focus for typing instead of triggering action
     if (target.closest('button:not(#editor-dock button)') || target.closest('#runaway-no-btn') || target.closest('.interactive-tag') || target.closest('.flip-card-container')) {
       e.stopPropagation();
     }
@@ -120,7 +117,7 @@
   }
 
   let activeModalIndex = -1;
-  const modalIds = ['confirmation-modal', 'celebration-modal'];
+  const modalIds = ['confirmation-modal', 'celebration-modal', 'polaroid-lightbox'];
 
   function toggleModalsPreview() {
     if (activeModalIndex >= 0 && activeModalIndex < modalIds.length) {
@@ -173,7 +170,6 @@
 
       applyEditable();
 
-      // Intercept clicks, touches, hovers on capture phase
       window.addEventListener('click', handleCaptureEvent, true);
       window.addEventListener('mouseover', handleCaptureMouseover, true);
       window.addEventListener('mouseenter', handleCaptureMouseover, true);
@@ -189,7 +185,6 @@
       saveBtn.classList.add('hidden');
       showStatus('');
 
-      // Close open modals if left open during editing
       modalIds.forEach(id => {
         const m = document.getElementById(id);
         if (m) m.classList.add('hidden');
@@ -215,11 +210,9 @@
       if (m) m.classList.add('hidden');
     });
 
-    // Unflip cards before saving
     const inners = document.querySelectorAll('.flip-card-inner');
     inners.forEach(inner => inner.classList.remove('flipped'));
 
-    // Clean editable attributes
     removeEditable();
     document.body.classList.remove('edit-mode-active');
 
@@ -228,10 +221,29 @@
     const dockInClone = clone.querySelector('#editor-dock');
     if (dockInClone) dockInClone.remove();
 
-    // Clean any stray inline styling added during editing
+    // Clean runtime states in clone before serializing
+    const cloneLines = clone.querySelectorAll('.typewriter-line');
+    cloneLines.forEach(line => line.classList.remove('visible'));
+
+    const clonePostBloom = clone.querySelector('#post-bloom-reveal');
+    if (clonePostBloom) {
+      clonePostBloom.className = 'mt-8 transition-all duration-700 flex flex-col items-center justify-center text-center mx-auto opacity-0 translate-y-6 pointer-events-none';
+    }
+
+    const cloneEnvClosed = clone.querySelector('#envelope-closed');
+    if (cloneEnvClosed) cloneEnvClosed.classList.remove('hidden');
+
+    const cloneEnvOpen = clone.querySelector('#envelope-open');
+    if (cloneEnvOpen) cloneEnvOpen.classList.add('hidden');
+
+    const cloneTreeText = clone.querySelector('#tree-text-overlay');
+    if (cloneTreeText) {
+      cloneTreeText.classList.add('opacity-0', 'pointer-events-none');
+      cloneTreeText.classList.remove('opacity-100');
+    }
+
     const cleanHtml = '<!DOCTYPE html>\n' + clone.outerHTML;
 
-    // Restore edit state for user
     if (isEditMode) {
       document.body.classList.add('edit-mode-active');
       applyEditable();

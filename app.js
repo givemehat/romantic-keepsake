@@ -1,6 +1,6 @@
 /**
  * Medhavie's Dedicated Web App
- * Features: High-DPI Love Tree Canvas Engine, Particle System, Typewriter, 
+ * Features: High-DPI Love Tree Canvas Engine with Offscreen Buffer, Particle System, Typewriter, 
  * Polaroid Lightbox, Interactive Pillars, Runaway "No" Physics, 
  * Smooth Audio Fading & Sparkle Cursor.
  */
@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, {
       root: null,
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.1,
+      rootMargin: '0px 0px -30px 0px'
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 1. CLASSIC LOVE TREE CANVAS ENGINE (HIGH-DPI & RESPONSIVE)
+  // 1. CLASSIC LOVE TREE CANVAS ENGINE (HIGH-DPI & OFFSCREEN BUFFER)
   // ========================================================
 
   function random(min, max) {
@@ -255,6 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.width = width;
       this.height = height;
       this.treeCenterX = 720;
+      this.staticTreeCanvas = null;
 
       this.seed = new TreeSeed(this, new Point(this.treeCenterX, height / 2 + 30));
       this.footer = new TreeFooter(this, width, 4, 12);
@@ -355,7 +356,22 @@ document.addEventListener('DOMContentLoaded', () => {
       if (idx !== -1) this.blooms.splice(idx, 1);
     }
 
+    captureStaticTree() {
+      if (!this.staticTreeCanvas) {
+        this.staticTreeCanvas = document.createElement('canvas');
+        this.staticTreeCanvas.width = this.width;
+        this.staticTreeCanvas.height = this.height;
+        const staticCtx = this.staticTreeCanvas.getContext('2d');
+        staticCtx.drawImage(this.canvas, 0, 0);
+      }
+    }
+
     jump() {
+      if (this.staticTreeCanvas) {
+        this.ctx.clearRect(0, 0, this.width, this.height);
+        this.ctx.drawImage(this.staticTreeCanvas, 0, 0);
+      }
+
       for (let i = 0; i < this.blooms.length; i++) {
         this.blooms[i].jump();
       }
@@ -409,7 +425,8 @@ document.addEventListener('DOMContentLoaded', () => {
       stage.appendChild(prompt);
     }
     const btn = document.getElementById('start-tree-btn');
-    if (btn) {
+    if (btn && !btn.dataset.bound) {
+      btn.dataset.bound = 'true';
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         startTreeSequence();
@@ -435,6 +452,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cancelAnimationFrame(seedAnimId);
     treeCanvas.classList.remove('clickable-seed');
 
+    // Start music synchronously in user click gesture context for iOS
+    startMusicTrack();
+
     const prompt = document.getElementById('tree-seed-prompt');
     if (prompt) {
       prompt.style.opacity = '0';
@@ -444,7 +464,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     playSoundEffect(523, 'triangle', 0.4);
-    startMusicTrack();
 
     while (treeApp.seed.canScale()) {
       treeApp.ctx.clearRect(0, 0, treeApp.width, treeApp.height);
@@ -488,6 +507,9 @@ document.addEventListener('DOMContentLoaded', () => {
       await sleep(10);
     }
 
+    // Capture clean static tree snapshot onto offscreen canvas to prevent smearing
+    treeApp.captureStaticTree();
+
     // Confetti celebration pop
     if (window.confetti) {
       confetti({
@@ -500,7 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (postBloomReveal) {
       setTimeout(() => {
-        postBloomReveal.classList.remove('opacity-0', 'translate-y-6');
+        postBloomReveal.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
         postBloomReveal.classList.add('opacity-100', 'translate-y-0');
       }, 1500);
     }
@@ -518,13 +540,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  const btn = document.getElementById('start-tree-btn');
-  if (btn) {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      startTreeSequence();
-    });
-  }
   if (treeCanvas) {
     treeCanvas.addEventListener('click', () => {
       if (treeStarted) return;
@@ -791,7 +806,7 @@ document.addEventListener('DOMContentLoaded', () => {
     saluteBtn.addEventListener('click', () => {
       saluteStatus.textContent = "🫡 Jai Hind!";
       [392, 523, 659, 784].forEach((freq, idx) => {
-        setTimeout(() => playSoundEffect(freq, 'sawtooth', 0.2, 0.08), idx * 110);
+        setTimeout(() => playSoundEffect(freq, 'triangle', 0.22, 0.1), idx * 110);
       });
       if (window.confetti) {
         confetti({
@@ -852,8 +867,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!runawayNoBtn || !buttonsStage) return;
 
     const stageRect = buttonsStage.getBoundingClientRect();
-    const maxX = Math.max(50, Math.min(140, (stageRect.width / 2) - 55));
-    const maxY = Math.max(30, Math.min(60, (stageRect.height / 2) - 20));
+    const noWidth = runawayNoBtn.offsetWidth || 100;
+    const noHeight = runawayNoBtn.offsetHeight || 44;
+
+    const maxX = Math.max(30, (stageRect.width / 2) - (noWidth / 2) - 10);
+    const maxY = Math.max(20, (stageRect.height / 2) - (noHeight / 2) - 8);
 
     const randomX = (Math.random() * (maxX * 2) - maxX);
     const randomY = (Math.random() * (maxY * 2) - maxY);
@@ -960,14 +978,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 7. WAX-SEALED SECRET LETTER UNLOCK
+  // 7. WAX-SEALED SECRET LETTER UNLOCK (IDEMPOTENT FIX)
   // ========================================================
   const waxSeal = document.getElementById('wax-seal');
   const envelopeClosed = document.getElementById('envelope-closed');
   const envelopeOpen = document.getElementById('envelope-open');
   const sendReactionBtn = document.getElementById('send-reaction-btn');
+  let letterOpened = false;
 
-  function openLetter() {
+  function openLetter(e) {
+    if (e) e.stopPropagation();
+    if (letterOpened) return;
+    letterOpened = true;
+
     playSoundEffect(587, 'triangle', 0.4);
     setTimeout(() => playSoundEffect(880, 'sine', 0.5), 150);
 
@@ -987,13 +1010,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (waxSeal) waxSeal.addEventListener('click', openLetter);
-  if (envelopeClosed) envelopeClosed.addEventListener('click', openLetter);
+  if (waxSeal) {
+    waxSeal.addEventListener('click', openLetter);
+  } else if (envelopeClosed) {
+    envelopeClosed.addEventListener('click', openLetter);
+  }
 
   if (sendReactionBtn) {
     sendReactionBtn.addEventListener('click', () => {
       sendReactionBtn.innerHTML = `<span>Sent with Love ❤️</span>`;
-      sendReactionBtn.classList.replace('bg-rose-700', 'bg-pink-600');
+      sendReactionBtn.classList.remove('bg-rose-600', 'hover:bg-rose-500');
+      sendReactionBtn.classList.add('bg-pink-600', 'hover:bg-pink-500', 'pointer-events-none', 'opacity-90');
       playSoundEffect(784, 'sine', 0.3);
       if (window.confetti) {
         confetti({
@@ -1025,20 +1052,22 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       initAudioContext();
       if (!audioCtx) return;
+      const now = audioCtx.currentTime;
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
 
       osc.type = type;
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      osc.frequency.setValueAtTime(freq, now);
 
-      gain.gain.setValueAtTime(volume, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.linearRampToValueAtTime(volume, now + 0.015); // 15ms attack ramp eliminates clicks
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
       osc.connect(gain);
       gain.connect(audioCtx.destination);
 
-      osc.start();
-      osc.stop(audioCtx.currentTime + duration);
+      osc.start(now);
+      osc.stop(now + duration);
     } catch (e) {}
   }
 
