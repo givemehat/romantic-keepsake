@@ -106,26 +106,63 @@
 
         <!-- Left-Hand Typewriter Text Overlay -->
         <div id="tree-text-overlay" class="hidden">
-          <div class="p-6 rounded-2xl bg-slate-900/80 border border-sky-400/40 backdrop-blur-xl shadow-2xl space-y-3 text-left">
+          <div class="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#0c1322]/92 via-[#16132a]/88 to-[#1a0f20]/92 border border-sky-400/35 backdrop-blur-2xl shadow-2xl shadow-black/60 space-y-3.5 text-left relative overflow-hidden max-w-md w-full">
             
-            <div class="flex items-center justify-between border-b border-sky-500/20 pb-2 mb-2">
-              <span class="font-dancing text-2xl sm:text-3xl font-bold text-sky-300">For Medhavie ✨</span>
-              <span class="text-[11px] font-mono text-rose-300 bg-rose-950/50 px-2 py-0.5 rounded border border-rose-700/30">Medu Vada 🥟</span>
+            <!-- Subtle ambient card light -->
+            <div class="absolute -top-10 -right-10 w-28 h-28 bg-pink-500/15 rounded-full blur-xl pointer-events-none"></div>
+
+            <!-- Header Row -->
+            <div class="flex items-center justify-between pb-1 relative z-10">
+              <h3 class="font-dancing text-2xl sm:text-3xl font-bold text-sky-200 tracking-wide drop-shadow-[0_0_12px_rgba(56,189,248,0.45)]">
+                For Medhavie ✨
+              </h3>
+              <span class="badge-pill border border-pink-500/40 bg-pink-950/70 text-pink-200 text-xs px-3 py-1 rounded-full backdrop-blur-md shadow-sm">
+                Medu Vada 🥟
+              </span>
             </div>
 
-            <!-- Typewriter Content -->
-            <div id="typewriter-content" class="text-xs sm:text-sm text-stone-200 font-light space-y-2 leading-relaxed">
-              <span class="typewriter-line" data-delay="100">🏏 <strong>From Punjab's 22 yards</strong> to leading with pride in NCC...</span>
-              <span class="typewriter-line" data-delay="600">☕ Mastering sharp algorithms in <strong>Java DSA</strong>...</span>
-              <span class="typewriter-line" data-delay="1100">🛡️ Standing resilient through life's hardest battles...</span>
-              <span class="typewriter-line" data-delay="1600">🌹 <em>Your bravery, your honesty, and your smile are truly rare.</em></span>
-              <span class="typewriter-line font-dancing text-lg text-amber-300 pt-1 block" data-delay="2100">fr HEERA HO JO KI MUJHE GBU MINES MAI MILL GYA</span>
+            <!-- Glowing Horizontal Divider -->
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-sky-400/35 to-transparent my-1"></div>
+
+            <!-- Main Vertical Achievements Composition -->
+            <div id="typewriter-content" class="space-y-2.5 text-xs sm:text-[13px] text-stone-200 font-normal leading-relaxed relative z-10">
+              <div class="typewriter-line flex items-center space-x-2" data-delay="100">
+                <span class="text-base flex-shrink-0">🏏</span>
+                <span>From Punjab’s <strong class="text-white font-semibold">22 yards</strong> to leading with pride in <strong class="text-white font-semibold">NCC</strong>…</span>
+              </div>
+              <div class="typewriter-line flex items-center space-x-2" data-delay="600">
+                <span class="text-base flex-shrink-0">☕</span>
+                <span>Mastering sharp algorithms in <strong class="text-sky-300 font-semibold">Java DSA</strong>…</span>
+              </div>
+              <div class="typewriter-line flex items-center space-x-2" data-delay="1100">
+                <span class="text-base flex-shrink-0">🛡️</span>
+                <span>Standing <strong class="text-pink-300 font-semibold">resilient</strong> through life's hardest battles…</span>
+              </div>
+              
+              <!-- Emotional Line (Distinct, Italic, Elegant) -->
+              <div class="typewriter-line pt-2" data-delay="1600">
+                <div class="p-3 rounded-2xl bg-white/[0.04] border border-rose-400/25 text-xs sm:text-[13px] text-pink-100 italic leading-relaxed shadow-inner">
+                  🌹 <em>Your bravery, your honesty, and your smile are truly rare.</em>
+                </div>
+              </div>
+
+              <!-- Main Handwritten Gold Quote -->
+              <div class="typewriter-line text-center pt-2 pb-1" data-delay="2100">
+                <span class="font-caveat text-xl sm:text-2xl font-bold text-amber-200 tracking-wide drop-shadow-[0_0_15px_rgba(253,230,138,0.5)] block">
+                  “GBU Mines में मुझे एक ऐसा हीरा मिल गया… ✨”
+                </span>
+              </div>
             </div>
 
-            <!-- Live Clock inside Tree Screen -->
-            <div id="tree-clock-box" class="pt-3 border-t border-sky-500/20 flex flex-col space-y-1">
-              <span class="text-[10px] uppercase font-mono tracking-widest text-sky-300/80">dekho&nbsp;</span>
-              <div id="tree-clock-text" class="text-xs sm:text-sm font-mono font-bold text-sky-200">742 Days • 18 Hours • 25 Mins</div>
+            <!-- Glowing Horizontal Divider -->
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-sky-400/35 to-transparent my-1"></div>
+
+            <!-- Live Countdown Panel -->
+            <div id="tree-clock-box" class="pt-1.5 flex flex-col items-center justify-center space-y-1 text-center relative z-10">
+              <span class="text-[10px] uppercase font-mono tracking-widest text-sky-300 font-semibold">DEKHO</span>
+              <div id="tree-clock-text" class="text-xs sm:text-sm font-mono font-bold text-sky-200 tracking-wider drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]">
+                742 Days • 18 Hours • 25 Mins • 36 Secs
+              </div>
             </div>
 
           </div>
