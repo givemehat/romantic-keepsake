@@ -96,11 +96,11 @@
         <canvas id="tree-canvas" width="1100" height="680" class=""></canvas>
 
         <!-- Initial Seed Invitation Prompt -->
-        
+        <div id="seed-instruction" class="hidden"></div>
 
         <!-- Left-Hand Typewriter Text Overlay -->
         <div id="tree-text-overlay" class="">
-          <div class="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#0c1322]/92 via-[#16132a]/88 to-[#1a0f20]/92 border border-sky-400/35 backdrop-blur-2xl shadow-2xl shadow-black/60 space-y-3.5 text-left relative overflow-hidden max-w-md w-full">
+          <div class="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#0c1322]/95 via-[#16132a]/92 to-[#1a0f20]/95 border border-sky-400/40 backdrop-blur-2xl shadow-2xl shadow-black/70 space-y-3.5 text-left relative overflow-hidden max-w-md w-full">
             
             <!-- Subtle ambient card light -->
             <div class="absolute -top-10 -right-10 w-28 h-28 bg-pink-500/15 rounded-full blur-xl pointer-events-none"></div>
@@ -177,11 +177,11 @@
     <!-- ============================================== -->
     <section id="gallery-section" class="w-full scroll-mt-24 space-y-8 flex flex-col items-center justify-center text-center mx-auto">
       <div class="space-y-2 max-w-xl mx-auto">
-        <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold bg-amber-950/60 px-3 py-1 rounded-full border border-amber-700/40">Snapshots &amp; Reminders</span>
-        <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-stone-100">
-          Moments &amp; Little Reminders 📸
+        <span class="text-xs uppercase tracking-widest text-amber-300 font-semibold bg-amber-950/70 px-3.5 py-1 rounded-full border border-amber-500/40 shadow-sm">Snapshots &amp; Reminders 📸</span>
+        <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+          Moments &amp; Little Reminders
         </h2>
-        <p class="text-stone-400 text-xs sm:text-sm mx-auto">
+        <p class="text-slate-200 text-xs sm:text-sm font-medium mx-auto text-shadow-crisp">
           Aesthetic polaroid cards crafted to remind you how special and cherished you are.
         </p>
       </div>
@@ -252,24 +252,24 @@
     <section class="w-full flex flex-col items-center justify-center text-center mx-auto">
 
       <!-- Nicknames Interactive Pill -->
-      <div class="inline-flex items-center gap-2 bg-slate-900/80 border border-sky-500/30 px-4 py-1.5 rounded-full mb-6 shadow-inner mx-auto">
-        <span class="text-stone-400 text-xs sm:text-sm">CAN I CALL YOU :</span>
-        <button id="nickname-trigger" class="text-xs sm:text-sm font-semibold text-pink-300 bg-pink-950/80 px-3 py-1 rounded-full border border-pink-500/40 hover:border-pink-300 transition-all flex items-center gap-1.5 cursor-pointer">
+      <div class="inline-flex items-center gap-2 bg-slate-900/90 border border-sky-400/40 px-4 py-1.5 rounded-full mb-6 shadow-inner mx-auto">
+        <span class="text-slate-200 text-xs sm:text-sm font-medium">CAN I CALL YOU :</span>
+        <button id="nickname-trigger" class="text-xs sm:text-sm font-semibold text-pink-200 bg-pink-950/90 px-3 py-1 rounded-full border border-pink-400/50 hover:border-pink-300 transition-all flex items-center gap-1.5 cursor-pointer">
           <span id="current-nickname">"Cadet Medhavie" 🎖️</span>
-          <span class="text-[10px] text-stone-400">↻ tap</span>
+          <span class="text-[10px] text-sky-300 font-semibold">↻ tap</span>
         </button>
       </div>
 
       <!-- LIVE TIMELINE COUNTER (Centered) -->
-      <div class="w-full max-w-2xl bg-gradient-to-b from-slate-900/90 to-indigo-950/90 border border-sky-500/30 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden group mx-auto">
+      <div class="w-full max-w-2xl bg-gradient-to-b from-slate-900/95 to-indigo-950/95 border border-sky-400/40 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden group mx-auto">
         <div class="absolute -right-12 -top-12 w-32 h-32 bg-sky-500/10 rounded-full blur-2xl group-hover:bg-sky-500/20 transition-all"></div>
         
-        <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/5">
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
           <div class="flex items-center space-x-2">
-            <span class="text-sky-400 animate-pulse text-lg">✨</span>
-            <span class="text-xs sm:text-sm font-medium uppercase tracking-widest text-stone-300">Uss din se aaj tkk total&nbsp;</span>
+            <span class="text-sky-300 animate-pulse text-lg">✨</span>
+            <span class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-slate-100 text-shadow-crisp">Uss din se aaj tkk total&nbsp;</span>
           </div>
-          <span class="text-xs font-mono text-sky-300 bg-sky-950/60 px-2.5 py-1 rounded-md border border-sky-500/40">Since 6 Sept 2024</span>
+          <span class="text-xs font-mono font-semibold text-sky-200 bg-sky-950/80 px-2.5 py-1 rounded-md border border-sky-400/50">Since 6 Sept 2024</span>
         </div>
 
         <!-- Live Clock Grid -->
@@ -292,7 +292,7 @@
           </div>
         </div>
 
-        <p class="text-xs text-stone-400 mt-4 italic font-light">INSPIRATION &nbsp; &nbsp; ADMIRATION &nbsp; &nbsp;MADUMME - MAHARANI &nbsp;SAB HO TUM&nbsp;</p>
+        <p class="text-xs text-pink-200 mt-4 font-medium tracking-wide text-shadow-crisp">INSPIRATION &nbsp; • &nbsp; ADMIRATION &nbsp; • &nbsp; MADUMME - MAHARANI &nbsp; • &nbsp; SAB HO TUM</p>
       </div>
 
     </section>
@@ -302,116 +302,116 @@
     <!-- ============================================== -->
     <section id="identity-section" class="w-full scroll-mt-24 space-y-10 flex flex-col items-center justify-center text-center mx-auto">
       <div class="space-y-2 max-w-xl mx-auto">
-        <span class="text-xs uppercase tracking-widest text-sky-400 font-semibold bg-sky-950/60 px-3 py-1 rounded-full border border-sky-500/40">The Dimensions of Medhavie</span>
-        <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-stone-100">
+        <span class="text-xs uppercase tracking-widest text-sky-200 font-semibold bg-sky-950/80 px-3.5 py-1 rounded-full border border-sky-400/50 shadow-sm">The Dimensions of Medhavie</span>
+        <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
           More Than Just A Name — A Force of Nature
         </h2>
-        <p class="text-stone-400 text-xs sm:text-sm mx-auto">I DO LIKE YOUR PRESENCE AROUND ME</p>
+        <p class="text-sky-200 font-medium text-xs sm:text-sm mx-auto text-shadow-crisp">I DO LIKE YOUR PRESENCE AROUND ME</p>
       </div>
 
       <!-- 4 Pillars Cards Grid (Centered) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mx-auto">
 
         <!-- Pillar 1: Punjab Cricket -->
-        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-slate-700/40 hover:border-amber-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10 backdrop-blur-md text-left">
+        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/90 border border-slate-700/60 hover:border-amber-400/70 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/20 backdrop-blur-md text-left">
           <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
               🏏
             </div>
-            <span class="text-[11px] font-mono uppercase bg-amber-500/15 text-amber-300 px-3 py-1 rounded-full border border-amber-500/25 font-semibold">State Player • Punjab</span>
+            <span class="text-[11px] font-mono uppercase bg-amber-500/20 text-amber-200 px-3 py-1 rounded-full border border-amber-500/40 font-semibold">State Player • Punjab</span>
           </div>
           <div class="mb-1">
-            <span class="text-[11px] font-serif text-amber-400 font-semibold tracking-wide block">⚔️ “युद्धाय कृतनिश्चयः” — Determined to Fight</span>
+            <span class="text-xs font-serif text-amber-300 font-semibold tracking-wide block">⚔️ “युद्धाय कृतनिश्चयः” — Determined to Fight</span>
           </div>
-          <h3 class="text-xl font-bold text-stone-100 mb-2 group-hover:text-amber-300 transition-colors">
+          <h3 class="text-xl font-bold text-white mb-2 group-hover:text-amber-200 transition-colors">
             The 22-Yard Warrior
           </h3>
-          <p class="text-stone-300 text-sm leading-relaxed mb-6">
+          <p class="text-slate-100 text-sm leading-relaxed mb-6 font-normal">
             Representing Punjab at state levels takes relentless sweat, dedication, and athletic fire. The discipline on the pitch, the timing of a shot, and the courage under pressure — pure match-winner mindset.
           </p>
-          <div class="pt-4 border-t border-slate-700/40 flex items-center justify-between">
-            <button id="cricket-shot-btn" class="interactive-tag hover:border-amber-400 text-amber-300 text-xs flex items-center space-x-1.5">
+          <div class="pt-4 border-t border-slate-700/60 flex items-center justify-between">
+            <button id="cricket-shot-btn" class="interactive-tag hover:border-amber-400 text-amber-200 text-xs flex items-center space-x-1.5 font-medium">
               <span>⚡ Play a Shot</span>
-              <span id="cricket-score" class="ml-1 font-mono font-bold text-white bg-amber-600/30 px-1.5 py-0.5 rounded">Hit 4!</span>
+              <span id="cricket-score" class="ml-1 font-mono font-bold text-white bg-amber-600/40 px-1.5 py-0.5 rounded">Hit 4!</span>
             </button>
-            <span class="text-xs text-stone-400 italic font-serif">“चरैवेति चरैवेति”</span>
+            <span class="text-xs text-slate-300 italic font-serif">“चरैवेति चरैवेति”</span>
           </div>
         </div>
 
         <!-- Pillar 2: NCC & Patriotism -->
-        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-slate-700/40 hover:border-sky-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-sky-500/10 backdrop-blur-md text-left">
+        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/90 border border-slate-700/60 hover:border-sky-400/70 transition-all duration-300 hover:shadow-2xl hover:shadow-sky-500/20 backdrop-blur-md text-left">
           <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+            <div class="w-12 h-12 rounded-2xl bg-sky-500/20 border border-sky-500/40 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
               🎖️
             </div>
-            <span class="text-[11px] font-mono uppercase bg-sky-500/15 text-sky-300 px-3 py-1 rounded-full border border-sky-500/25 font-semibold">NCC Cadet &amp; Leadership</span>
+            <span class="text-[11px] font-mono uppercase bg-sky-500/20 text-sky-200 px-3 py-1 rounded-full border border-sky-500/40 font-semibold">NCC Cadet &amp; Leadership</span>
           </div>
           <div class="mb-1">
-            <span class="text-[11px] font-serif text-sky-300 font-semibold tracking-wide block">🇮🇳 “सेवा परमो धर्मः” — Service Before Self</span>
+            <span class="text-xs font-serif text-sky-300 font-semibold tracking-wide block">🇮🇳 “सेवा परमो धर्मः” — Service Before Self</span>
           </div>
-          <h3 class="text-xl font-bold text-stone-100 mb-2 group-hover:text-sky-300 transition-colors">
+          <h3 class="text-xl font-bold text-white mb-2 group-hover:text-sky-200 transition-colors">
             The Cadet &amp; The Leader
           </h3>
-          <p class="text-stone-300 text-sm leading-relaxed mb-6">
-            Deep love for the Indian Armed Forces, Indian Geography, and the political fabric of Bharat. Natural leadership in uniform with an upright spine and the motto: <em class="text-sky-300">"न दैन्यं न पलायनम्"</em> (Neither weakness nor retreat).
+          <p class="text-slate-100 text-sm leading-relaxed mb-6 font-normal">
+            Deep love for the Indian Armed Forces, Indian Geography, and the political fabric of Bharat. Natural leadership in uniform with an upright spine and the motto: <em class="text-sky-300 font-semibold">"न दैन्यं न पलायनम्"</em> (Neither weakness nor retreat).
           </p>
-          <div class="pt-4 border-t border-slate-700/40 flex items-center justify-between">
-            <button id="salute-btn" class="interactive-tag hover:border-sky-400 text-sky-300 text-xs flex items-center space-x-1.5">
+          <div class="pt-4 border-t border-slate-700/60 flex items-center justify-between">
+            <button id="salute-btn" class="interactive-tag hover:border-sky-400 text-sky-200 text-xs flex items-center space-x-1.5 font-medium">
               <span>🇮🇳 Jai Hind Salute</span>
-              <span id="salute-status" class="ml-1 font-mono text-white text-[10px] bg-sky-600/40 px-1.5 py-0.5 rounded">🫡 Saluted!</span>
+              <span id="salute-status" class="ml-1 font-mono text-white text-[10px] bg-sky-600/50 px-1.5 py-0.5 rounded">🫡 Saluted!</span>
             </button>
-            <span class="text-xs text-stone-400 italic">Discipline &amp; Pride</span>
+            <span class="text-xs text-slate-300 italic">Discipline &amp; Pride</span>
           </div>
         </div>
 
         <!-- Pillar 3: Java DSA Ninja -->
-        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-slate-700/40 hover:border-pink-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-pink-500/10 backdrop-blur-md text-left">
+        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/90 border border-slate-700/60 hover:border-pink-400/70 transition-all duration-300 hover:shadow-2xl hover:shadow-pink-500/20 backdrop-blur-md text-left">
           <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 rounded-2xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+            <div class="w-12 h-12 rounded-2xl bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
               ☕
             </div>
-            <span class="text-[11px] font-mono uppercase bg-pink-500/15 text-pink-300 px-3 py-1 rounded-full border border-pink-500/25 font-semibold">Java • DSA Ninja</span>
+            <span class="text-[11px] font-mono uppercase bg-pink-500/20 text-pink-200 px-3 py-1 rounded-full border border-pink-500/40 font-semibold">Java • DSA Ninja</span>
           </div>
           <div class="mb-1">
-            <span class="text-[11px] font-serif text-pink-300 font-semibold tracking-wide block">💻 “उद्यमेन हि सिद्ध्यन्ति कार्याणि”</span>
+            <span class="text-xs font-serif text-pink-300 font-semibold tracking-wide block">💻 “उद्यमेन हि सिद्ध्यन्ति कार्याणि”</span>
           </div>
-          <h3 class="text-xl font-bold text-stone-100 mb-2 group-hover:text-pink-300 transition-colors">
+          <h3 class="text-xl font-bold text-white mb-2 group-hover:text-pink-200 transition-colors">
             The Algorithmic Mind
           </h3>
-          <p class="text-stone-300 text-sm leading-relaxed mb-6">
+          <p class="text-slate-100 text-sm leading-relaxed mb-6 font-normal">
             From Graphs to Dynamic Programming, mastering Java DSA takes structured thinking and persistence. Building logic block by block, debugging complexities with sharp clarity.
           </p>
-          <div class="pt-4 border-t border-slate-700/40 flex items-center justify-between">
-            <span class="interactive-tag text-pink-300 text-xs flex items-center space-x-1.5">
+          <div class="pt-4 border-t border-slate-700/60 flex items-center justify-between">
+            <span class="interactive-tag text-pink-200 text-xs flex items-center space-x-1.5 font-medium">
               <span>💻 Sharp Logic</span>
             </span>
-            <span class="text-xs text-stone-400 font-mono">Structured Clarity</span>
+            <span class="text-xs text-slate-300 font-mono">Structured Clarity</span>
           </div>
         </div>
 
         <!-- Pillar 4: The Resilient Soul -->
-        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-slate-700/40 hover:border-rose-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-rose-500/10 backdrop-blur-md text-left">
+        <div class="feature-card group relative p-6 sm:p-8 rounded-3xl bg-slate-900/90 border border-slate-700/60 hover:border-rose-400/70 transition-all duration-300 hover:shadow-2xl hover:shadow-rose-500/20 backdrop-blur-md text-left">
           <div class="flex items-start justify-between mb-4">
-            <div class="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+            <div class="w-12 h-12 rounded-2xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
               🌹
             </div>
-            <span class="text-[11px] font-mono uppercase bg-rose-500/15 text-rose-300 px-3 py-1 rounded-full border border-rose-500/25 font-semibold">Unbreakable Spirit</span>
+            <span class="text-[11px] font-mono uppercase bg-rose-500/20 text-rose-200 px-3 py-1 rounded-full border border-rose-500/40 font-semibold">Unbreakable Spirit</span>
           </div>
           <div class="mb-1">
-            <span class="text-[11px] font-serif text-rose-300 font-semibold tracking-wide block">🛡️ “धर्मो रक्षति रक्षितः”</span>
+            <span class="text-xs font-serif text-rose-300 font-semibold tracking-wide block">🛡️ “धर्मो रक्षति रक्षितः”</span>
           </div>
-          <h3 class="text-xl font-bold text-stone-100 mb-2 group-hover:text-rose-300 transition-colors">
+          <h3 class="text-xl font-bold text-white mb-2 group-hover:text-rose-200 transition-colors">
             The Real Girl Inside
           </h3>
-          <p class="text-stone-300 text-sm leading-relaxed mb-6">
+          <p class="text-slate-100 text-sm leading-relaxed mb-6 font-normal">
             You have walked through challenging phases, fought silent battles, and held yourself up with immense dignity. Behind all the tough armor is a truly genuine, kind, and precious person.
           </p>
-          <div class="pt-4 border-t border-slate-700/40 flex items-center justify-between">
-            <button id="rose-shower-btn" class="interactive-tag hover:border-rose-400 text-rose-300 text-xs flex items-center space-x-1.5">
+          <div class="pt-4 border-t border-slate-700/60 flex items-center justify-between">
+            <button id="rose-shower-btn" class="interactive-tag hover:border-rose-400 text-rose-200 text-xs flex items-center space-x-1.5 font-medium">
               <span>🌹 Send Rose Petals</span>
-              <span id="rose-counter" class="font-mono text-white text-[10px] bg-rose-600/40 px-1.5 py-0.5 rounded">0</span>
+              <span id="rose-counter" class="font-mono text-white text-[10px] bg-rose-600/50 px-1.5 py-0.5 rounded">0</span>
             </button>
-            <span class="text-xs text-stone-400 italic">Authentic &amp; Rare</span>
+            <span class="text-xs text-slate-300 italic">Authentic &amp; Rare</span>
           </div>
         </div>
 
@@ -422,33 +422,33 @@
     <!-- 5. REMEMBER WHO YOU ARE? (PSYCHOLOGICAL EMPOWERMENT & AFFIRMATIONS) -->
     <!-- ============================================== -->
     <section id="destress-section" class="w-full scroll-mt-24 flex flex-col items-center justify-center mx-auto space-y-8">
-      <div class="w-full max-w-4xl rounded-3xl bg-gradient-to-br from-slate-900/95 via-indigo-950/90 to-slate-900/85 border border-sky-500/30 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl relative overflow-hidden mx-auto space-y-8">
+      <div class="w-full max-w-4xl rounded-3xl bg-gradient-to-br from-slate-900/95 via-indigo-950/90 to-slate-900/90 border border-sky-400/40 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl relative overflow-hidden mx-auto space-y-8">
         
         <div class="absolute top-0 right-0 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <!-- Section Header -->
         <div class="text-center max-w-2xl mx-auto space-y-3">
           <div class="flex flex-wrap justify-center items-center gap-2">
-            <span class="text-xs uppercase tracking-widest text-pink-300 font-semibold bg-pink-950/60 px-3 py-1 rounded-full border border-pink-500/40">
+            <span class="text-xs uppercase tracking-widest text-pink-200 font-semibold bg-pink-950/80 px-3.5 py-1 rounded-full border border-pink-400/50 shadow-sm">
               Psychological Grounding &amp; Truths 🌸
             </span>
-            <span class="text-xs font-serif text-amber-300 font-semibold bg-amber-950/60 px-3 py-1 rounded-full border border-amber-700/40">
+            <span class="text-xs font-serif text-amber-200 font-semibold bg-amber-950/80 px-3.5 py-1 rounded-full border border-amber-500/40 shadow-sm">
               ⚔️ “शौर्यम् तेजो धृतिर्दाक्ष्यं”
             </span>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-stone-100">
+          <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             Remember Who You Are? 👑
           </h2>
-          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+          <p class="text-slate-100 text-xs sm:text-sm leading-relaxed font-normal">
             "Responsibilities, expectations, aur tension kabhi kabhi bohot heavy lagne lagti hain. Whenever self-doubt tries to enter your mind, tap each card below to reconnect with your real strength."
           </p>
 
           <!-- Interactive Progress Meter -->
           <div class="pt-2 flex items-center justify-center gap-3">
-            <span class="text-xs font-mono text-sky-300 bg-sky-950/80 px-3 py-1 rounded-full border border-sky-500/40" id="affirmation-counter">
+            <span class="text-xs font-mono font-semibold text-sky-200 bg-sky-950/90 px-3.5 py-1 rounded-full border border-sky-400/50" id="affirmation-counter">
               Truths Unlocked: 0 / 8 ⚡
             </span>
-            <button id="reset-affirmations-btn" class="text-[11px] text-stone-300 hover:text-white bg-slate-800/80 px-2.5 py-1 rounded-lg border border-slate-700/50 transition-all">
+            <button id="reset-affirmations-btn" class="text-[11px] text-sky-200 hover:text-white font-medium bg-slate-800/90 px-3 py-1 rounded-lg border border-sky-400/40 transition-all">
               Reset ↻
             </button>
           </div>
@@ -462,14 +462,14 @@
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <span class="text-2xl mb-1">👑</span>
-                <span class="text-xs font-semibold text-amber-300">Truth #1</span>
-                <p class="text-[11px] text-stone-300 mt-1">Jab problems badi lagein...</p>
-                <span class="text-[10px] text-sky-300 mt-2 font-mono">👆 Tap to flip</span>
+                <span class="text-xs font-bold text-amber-300">Truth #1</span>
+                <p class="text-[12px] text-white font-medium mt-1">Jab problems badi lagein...</p>
+                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
               </div>
               <div class="flip-card-back">
                 <span class="text-xs font-bold text-amber-300 uppercase tracking-wider">I AM THE BEST</span>
-                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Maine 100% storms survive kiye hain aur hamesha jeet kar nikli hu."</p>
-                <span class="text-[10px] text-amber-400 font-semibold mt-1">Unstoppable ✨</span>
+                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Maine 100% storms survive kiye hain aur hamesha jeet kar nikli hu."</p>
+                <span class="text-[11px] text-amber-300 font-bold mt-1">Unstoppable ✨</span>
               </div>
             </div>
           </div>
@@ -479,14 +479,14 @@
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <span class="text-2xl mb-1">🕊️</span>
-                <span class="text-xs font-semibold text-sky-300">Truth #2</span>
-                <p class="text-[11px] text-stone-300 mt-1">Jab aas-paas shor ho...</p>
-                <span class="text-[10px] text-sky-300 mt-2 font-mono">👆 Tap to flip</span>
+                <span class="text-xs font-bold text-sky-300">Truth #2</span>
+                <p class="text-[12px] text-white font-medium mt-1">Jab aas-paas shor ho...</p>
+                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
               </div>
               <div class="flip-card-back">
                 <span class="text-xs font-bold text-sky-300 uppercase tracking-wider">I AM THE CALMEST</span>
-                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Baahar ka koi bhi shor meri andar ki peace ko hila nahi sakta."</p>
-                <span class="text-[10px] text-sky-400 font-semibold mt-1">Inner Peace 🧘‍♀️</span>
+                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Baahar ka koi bhi shor meri andar ki peace ko hila nahi sakta."</p>
+                <span class="text-[11px] text-sky-300 font-bold mt-1">Inner Peace 🧘‍♀️</span>
               </div>
             </div>
           </div>
@@ -496,14 +496,14 @@
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <span class="text-2xl mb-1">⚡</span>
-                <span class="text-xs font-semibold text-yellow-300">Truth #3</span>
-                <p class="text-[11px] text-stone-300 mt-1">Jab aage badhna ho...</p>
-                <span class="text-[10px] text-sky-300 mt-2 font-mono">👆 Tap to flip</span>
+                <span class="text-xs font-bold text-yellow-300">Truth #3</span>
+                <p class="text-[12px] text-white font-medium mt-1">Jab aage badhna ho...</p>
+                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
               </div>
               <div class="flip-card-back">
                 <span class="text-xs font-bold text-yellow-300 uppercase tracking-wider">MOST ENERGETIC</span>
-                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Mere andar sports ka woh fire aur speed hai jo kabhi bujhta nahi."</p>
-                <span class="text-[10px] text-yellow-400 font-semibold mt-1">Pure Fire 🔥</span>
+                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Mere andar sports ka woh fire aur speed hai jo kabhi bujhta nahi."</p>
+                <span class="text-[11px] text-yellow-300 font-bold mt-1">Pure Fire 🔥</span>
               </div>
             </div>
           </div>
@@ -513,14 +513,14 @@
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <span class="text-2xl mb-1">💅</span>
-                <span class="text-xs font-semibold text-pink-300">Truth #4</span>
-                <p class="text-[11px] text-stone-300 mt-1">Style aur dimaag...</p>
-                <span class="text-[10px] text-sky-300 mt-2 font-mono">👆 Tap to flip</span>
+                <span class="text-xs font-bold text-pink-300">Truth #4</span>
+                <p class="text-[12px] text-white font-medium mt-1">Style aur dimaag...</p>
+                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
               </div>
               <div class="flip-card-back">
                 <span class="text-xs font-bold text-pink-300 uppercase tracking-wider">I AM A SLAY QUEEN</span>
-                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Hardest algorithms solve karna aur slay karna dono effortless hai."</p>
-                <span class="text-[10px] text-pink-400 font-semibold mt-1">Effortless Grace 👑</span>
+                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Hardest algorithms solve karna aur slay karna dono effortless hai."</p>
+                <span class="text-[11px] text-pink-300 font-bold mt-1">Effortless Grace 👑</span>
               </div>
             </div>
           </div>
@@ -530,14 +530,14 @@
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <span class="text-2xl mb-1">🏏</span>
-                <span class="text-xs font-semibold text-amber-300">Truth #5</span>
-                <p class="text-[11px] text-stone-300 mt-1">22-Yard pitch par...</p>
-                <span class="text-[10px] text-sky-300 mt-2 font-mono">👆 Tap to flip</span>
+                <span class="text-xs font-bold text-amber-300">Truth #5</span>
+                <p class="text-[12px] text-white font-medium mt-1">22-Yard pitch par...</p>
+                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
               </div>
               <div class="flip-card-back">
                 <span class="text-xs font-bold text-amber-300 uppercase tracking-wider">STATE ATHLETE</span>
-                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Punjab ke rang me ranga discipline, sweat aur match-winning grit."</p>
-                <span class="text-[10px] text-amber-400 font-semibold mt-1">Match Winner 🏆</span>
+                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Punjab ke rang me ranga discipline, sweat aur match-winning grit."</p>
+                <span class="text-[11px] text-amber-300 font-bold mt-1">Match Winner 🏆</span>
               </div>
             </div>
           </div>
@@ -547,14 +547,14 @@
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <span class="text-2xl mb-1">🎖️</span>
-                <span class="text-xs font-semibold text-sky-300">Truth #6</span>
-                <p class="text-[11px] text-stone-300 mt-1">Leadership aur team me...</p>
-                <span class="text-[10px] text-sky-300 mt-2 font-mono">👆 Tap to flip</span>
+                <span class="text-xs font-bold text-sky-300">Truth #6</span>
+                <p class="text-[12px] text-white font-medium mt-1">Leadership aur team me...</p>
+                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
               </div>
               <div class="flip-card-back">
                 <span class="text-xs font-bold text-sky-300 uppercase tracking-wider">SABKO SAATH LEKAR</span>
-                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Apne logon ko protect karna aur sabko inspire karte hue aage badhna."</p>
-                <span class="text-[10px] text-sky-400 font-semibold mt-1">True Leader 🫡</span>
+                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Apne logon ko protect karna aur sabko inspire karte hue aage badhna."</p>
+                <span class="text-[11px] text-sky-300 font-bold mt-1">True Leader 🫡</span>
               </div>
             </div>
           </div>
@@ -564,14 +564,14 @@
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <span class="text-2xl mb-1">🛡️</span>
-                <span class="text-xs font-semibold text-purple-300">Truth #7</span>
-                <p class="text-[11px] text-stone-300 mt-1">Musibat ke time...</p>
-                <span class="text-[10px] text-sky-300 mt-2 font-mono">👆 Tap to flip</span>
+                <span class="text-xs font-bold text-purple-300">Truth #7</span>
+                <p class="text-[12px] text-white font-medium mt-1">Musibat ke time...</p>
+                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
               </div>
               <div class="flip-card-back">
                 <span class="text-xs font-bold text-purple-300 uppercase tracking-wider">SELF-CONTROLLED</span>
-                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Apne dimaag aur emotions par full command. Steady, grounded, sharp."</p>
-                <span class="text-[10px] text-purple-400 font-semibold mt-1">Grounded Soul ⚓</span>
+                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Apne dimaag aur emotions par full command. Steady, grounded, sharp."</p>
+                <span class="text-[11px] text-purple-300 font-bold mt-1">Grounded Soul ⚓</span>
               </div>
             </div>
           </div>
@@ -581,14 +581,14 @@
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <span class="text-2xl mb-1">🌹</span>
-                <span class="text-xs font-semibold text-rose-300">Truth #8</span>
-                <p class="text-[11px] text-stone-300 mt-1">Har duty se aage...</p>
-                <span class="text-[10px] text-sky-300 mt-2 font-mono">👆 Tap to flip</span>
+                <span class="text-xs font-bold text-rose-300">Truth #8</span>
+                <p class="text-[12px] text-white font-medium mt-1">Har duty se aage...</p>
+                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
               </div>
               <div class="flip-card-back">
                 <span class="text-xs font-bold text-rose-300 uppercase tracking-wider">GENUINELY CHERISHED</span>
-                <p class="text-[11px] text-stone-200 mt-1.5 leading-snug">"Sirf achievements nahi, tumhare andar ka pyaara dil priceless hai."</p>
-                <span class="text-[10px] text-rose-400 font-semibold mt-1">Pure Gold 🤍</span>
+                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Sirf achievements nahi, tumhare andar ka pyaara dil priceless hai."</p>
+                <span class="text-[11px] text-rose-300 font-bold mt-1">Pure Gold 🤍</span>
               </div>
             </div>
           </div>
@@ -596,33 +596,33 @@
         </div>
 
         <!-- Master Celebration Affirmation Banner (Revealed when all 8 are flipped) -->
-        <div id="all-unlocked-banner" class="hidden p-6 rounded-2xl bg-gradient-to-r from-sky-950/80 via-purple-950/70 to-rose-950/80 border-2 border-pink-400/50 text-center animate-unfold space-y-2">
+        <div id="all-unlocked-banner" class="hidden p-6 rounded-2xl bg-gradient-to-r from-sky-950/90 via-purple-950/80 to-rose-950/90 border-2 border-pink-400/60 text-center animate-unfold space-y-2">
           <div class="text-3xl animate-bounce">👑✨🏆</div>
-          <h3 class="text-lg sm:text-xl font-bold text-stone-100 font-playfair">
+          <h3 class="text-lg sm:text-xl font-bold text-white font-playfair drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             You Are The One &amp; Only Medhavie!
           </h3>
-          <p class="text-xs sm:text-sm text-pink-200 italic max-w-xl mx-auto leading-relaxed">
+          <p class="text-xs sm:text-sm text-pink-100 italic max-w-xl mx-auto leading-relaxed font-medium text-shadow-crisp">
             "You are not just surviving life, Mahadevi — you are ruling it. Never let temporary tension make you forget your immense worth!"
           </p>
         </div>
 
         <!-- 4-7-8 Breathing Guide Mini Recharger -->
-        <div class="pt-6 border-t border-slate-700/40 flex flex-col items-center justify-center text-center space-y-4">
+        <div class="pt-6 border-t border-slate-700/60 flex flex-col items-center justify-center text-center space-y-4">
           <div class="space-y-1">
-            <h4 class="text-xs font-semibold text-stone-300 uppercase tracking-wider">Instant 4-7-8 Calm Reset</h4>
-            <p class="text-[11px] text-stone-400">Take a 30-second breath whenever pressure builds up.</p>
+            <h4 class="text-xs font-bold text-sky-200 uppercase tracking-wider">Instant 4-7-8 Calm Reset</h4>
+            <p class="text-xs text-slate-200 font-medium">Take a 30-second breath whenever pressure builds up.</p>
           </div>
 
           <div class="relative w-36 h-36 flex items-center justify-center my-2">
-            <div id="breath-circle" class="absolute inset-0 rounded-full border-2 border-sky-400/40 bg-sky-500/15 backdrop-blur-md transition-all duration-1000 flex items-center justify-center shadow-lg shadow-sky-500/10">
+            <div id="breath-circle" class="absolute inset-0 rounded-full border-2 border-sky-400/50 bg-sky-500/20 backdrop-blur-md transition-all duration-1000 flex items-center justify-center shadow-lg shadow-sky-500/20">
               <div class="text-center px-2">
-                <span id="breath-text" class="block text-sm font-bold text-sky-200 transition-all">Breathe In</span>
-                <span id="breath-timer" class="text-[11px] font-mono text-sky-300/80">4s</span>
+                <span id="breath-text" class="block text-sm font-bold text-white transition-all text-shadow-crisp">Breathe In</span>
+                <span id="breath-timer" class="text-xs font-mono font-bold text-sky-300">4s</span>
               </div>
             </div>
           </div>
 
-          <button id="toggle-breathe-btn" class="px-5 py-2 rounded-full bg-sky-500/20 border border-sky-400/40 text-sky-200 text-xs font-medium hover:bg-sky-500/30 transition-all">
+          <button id="toggle-breathe-btn" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-sky-600 to-pink-600 hover:from-sky-500 hover:to-pink-500 border border-sky-400/50 text-white text-xs font-semibold shadow-md transition-all active:scale-95">
             Start Breath Session 🧘‍♀️
           </button>
         </div>
@@ -635,36 +635,36 @@
     <!-- ============================================== -->
     <section id="question-section" class="w-full scroll-mt-24 space-y-6 flex flex-col items-center justify-center text-center mx-auto">
       <div class="space-y-2 max-w-lg mx-auto">
-        <span class="text-xs uppercase tracking-widest text-pink-300 font-semibold bg-pink-950/60 px-3 py-1 rounded-full border border-pink-500/40">A Special Question For You</span>
-        <h2 class="text-2xl sm:text-4xl font-playfair font-bold text-stone-100">
-          The Unbreakable Bond Agreement 🌸
+        <span class="text-xs uppercase tracking-widest text-pink-200 font-semibold bg-pink-950/80 px-3.5 py-1 rounded-full border border-pink-400/50 shadow-sm">A Special Question For You 🌸</span>
+        <h2 class="text-2xl sm:text-4xl font-playfair font-bold text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+          The Unbreakable Bond Agreement
         </h2>
-        <p class="text-stone-400 text-xs sm:text-sm mx-auto">
+        <p class="text-slate-200 text-xs sm:text-sm font-medium mx-auto text-shadow-crisp">
           No complicated terms, just a simple heartfelt question!
         </p>
       </div>
 
       <div class="max-w-2xl w-full question-arena p-8 sm:p-12 flex flex-col items-center justify-center text-center shadow-2xl relative mx-auto">
         
-        <div class="mb-6 p-2 rounded-3xl bg-slate-900/80 border border-pink-400/30 shadow-xl max-w-xs mx-auto">
+        <div class="mb-6 p-2 rounded-3xl bg-slate-900/90 border border-pink-400/50 shadow-xl max-w-xs mx-auto">
           <img src="assets/couple_art.png" alt="Boy holding girl's chin with love" class="w-48 sm:w-56 h-auto object-cover rounded-2xl mx-auto">
         </div>
 
-        <h3 class="text-xl sm:text-2xl md:text-3xl font-playfair font-bold text-stone-100 mb-3 leading-snug">I TRUST GOD AND HIS PLAN</h3>
+        <h3 class="text-xl sm:text-2xl md:text-3xl font-playfair font-bold text-white mb-3 leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">I TRUST GOD AND HIS PLAN</h3>
         
-        <p class="text-xs sm:text-sm text-stone-300 font-light mb-8 max-w-md italic mx-auto">TUM EMOTIONAL OR SENSITIVE HO OR MUJHE SOMETHING SOMETHING DIKHTA HAI ITNA COMMAN KAISE HAI HUM MAI SAB</p>
+        <p class="text-xs sm:text-sm text-pink-100 font-medium mb-8 max-w-md italic mx-auto text-shadow-crisp">TUM EMOTIONAL OR SENSITIVE HO OR MUJHE SOMETHING SOMETHING DIKHTA HAI ITNA COMMAN KAISE HAI HUM MAI SAB</p>
 
         <div id="buttons-stage" class="relative w-full max-w-md h-28 flex items-center justify-center gap-6 mx-auto">
-          <button id="agreement-yes-btn" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-sky-500 via-pink-500 to-rose-500 hover:from-sky-400 hover:to-rose-400 text-white font-bold text-sm shadow-xl hover:shadow-pink-500/40 hover:scale-105 active:scale-95 transition-all flex items-center space-x-2 z-20 border border-pink-400/40">
+          <button id="agreement-yes-btn" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-sky-500 via-pink-500 to-rose-500 hover:from-sky-400 hover:to-rose-400 text-white font-bold text-sm shadow-xl hover:shadow-pink-500/40 hover:scale-105 active:scale-95 transition-all flex items-center space-x-2 z-20 border border-pink-400/50">
             <span>YES, Absolutely! 🥰</span>
           </button>
 
-          <button id="runaway-no-btn" class="px-6 py-3 rounded-full bg-slate-800/90 hover:bg-slate-700/90 text-stone-300 font-medium text-xs border border-slate-600/40 shadow-md transition-all z-20 whitespace-nowrap">
+          <button id="runaway-no-btn" class="px-6 py-3 rounded-full bg-slate-800/95 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-500/60 shadow-md transition-all z-20 whitespace-nowrap">
             <span>No 🙈</span>
           </button>
         </div>
 
-        <p id="runaway-hint" class="text-[11px] text-stone-400 mt-2 italic transition-all h-5 text-pink-300 font-semibold">"Punjab batting line-up doesn't give up! 💪"</p>
+        <p id="runaway-hint" class="text-xs text-pink-300 font-bold mt-2 italic transition-all h-5 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">"Punjab batting line-up doesn't give up! 💪"</p>
       </div>
     </section>
 
@@ -673,11 +673,11 @@
     <!-- ============================================== -->
     <section id="letter-section" class="w-full scroll-mt-24 space-y-8 flex flex-col items-center justify-center text-center mx-auto">
       <div class="space-y-2 max-w-md mx-auto">
-        <span class="text-xs uppercase tracking-widest text-rose-300 font-semibold bg-rose-950/60 px-3 py-1 rounded-full border border-rose-500/40">STRAIGHT From The Heart</span>
-        <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-stone-100">
-          A Letter TO You, Medhavie 💌
+        <span class="text-xs uppercase tracking-widest text-rose-200 font-semibold bg-rose-950/80 px-3.5 py-1 rounded-full border border-rose-400/50 shadow-sm">STRAIGHT From The Heart 💌</span>
+        <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+          A Letter TO You, Medhavie
         </h2>
-        <p class="text-stone-400 text-xs sm:text-sm mx-auto">
+        <p class="text-slate-200 text-xs sm:text-sm font-medium mx-auto text-shadow-crisp">
           Tap the wax seal below to unlock and unfold what I've wanted to share with you.
         </p>
       </div>
@@ -685,42 +685,42 @@
       <div class="max-w-2xl w-full flex flex-col items-center justify-center mx-auto">
         <div id="envelope-wrapper" class="w-full relative cursor-pointer group transition-transform duration-300 hover:scale-[1.01] mx-auto">
           
-          <div id="envelope-closed" class="w-full bg-gradient-to-b from-[#fdf2f4] via-[#fce7eb] to-[#f8d7df] border-2 border-pink-300/80 rounded-3xl p-8 sm:p-12 text-rose-950 shadow-2xl flex flex-col items-center justify-center text-center relative overflow-hidden transition-all duration-700 mx-auto hidden">
-            <div class="text-xs font-mono tracking-widest uppercase text-pink-700/80 mb-2">Confidential &amp; Warm</div>
+          <div id="envelope-closed" class="w-full bg-gradient-to-b from-[#fdf2f4] via-[#fce7eb] to-[#f8d7df] border-2 border-pink-300/90 rounded-3xl p-8 sm:p-12 text-rose-950 shadow-2xl flex flex-col items-center justify-center text-center relative overflow-hidden transition-all duration-700 mx-auto hidden">
+            <div class="text-xs font-mono font-bold tracking-widest uppercase text-pink-800 mb-2">Confidential &amp; Warm</div>
             <div class="font-dancing text-2xl sm:text-3xl font-bold text-rose-950 mb-6">To: Medhavie (Mahadevi)</div>
 
-            <div id="wax-seal" class="w-20 h-20 rounded-full bg-gradient-to-tr from-rose-700 via-pink-600 to-rose-500 shadow-xl border-4 border-rose-300/60 flex items-center justify-center text-white font-serif text-2xl font-bold hover:scale-110 active:scale-95 transition-all shadow-black/50 animate-pulse mx-auto">
+            <div id="wax-seal" class="w-20 h-20 rounded-full bg-gradient-to-tr from-rose-700 via-pink-600 to-rose-500 shadow-xl border-4 border-rose-300/80 flex items-center justify-center text-white font-serif text-2xl font-bold hover:scale-110 active:scale-95 transition-all shadow-black/50 animate-pulse mx-auto">
               <span>M</span>
             </div>
 
-            <p class="text-xs text-rose-800/80 mt-6 font-medium tracking-wide">
+            <p class="text-xs text-rose-900 mt-6 font-semibold tracking-wide">
               (Click the wax seal to open)
             </p>
           </div>
 
-          <div id="envelope-open" class="w-full bg-[#fffbfc] text-stone-800 rounded-3xl p-6 sm:p-10 md:p-12 shadow-2xl border border-pink-200/80 relative animate-unfold font-outfit text-left mx-auto">
-            <div class="flex items-center justify-between border-b border-pink-200/80 pb-4 mb-6">
+          <div id="envelope-open" class="w-full bg-[#fffbfc] text-stone-900 rounded-3xl p-6 sm:p-10 md:p-12 shadow-2xl border border-pink-200/90 relative animate-unfold font-outfit text-left mx-auto">
+            <div class="flex items-center justify-between border-b border-pink-200/90 pb-4 mb-6">
               <div>
                 <span class="font-dancing text-2xl sm:text-3xl font-bold text-rose-950">Dear Medhavie,</span>
-                <span class="block text-[11px] text-stone-500 font-mono">Known since 06.09.2024</span>
+                <span class="block text-xs text-rose-800 font-mono font-semibold">Known since 06.09.2024</span>
               </div>
               <div class="text-right">
-                <span class="text-xs font-semibold text-rose-800 uppercase tracking-widest">A Heartfelt Note</span>
+                <span class="text-xs font-bold text-rose-800 uppercase tracking-widest">A Heartfelt Note</span>
                 <span class="block text-lg">🌹</span>
               </div>
             </div>
 
-            <div class="space-y-4 text-sm sm:text-base leading-relaxed text-stone-700 font-normal">
-              <p><span class="font-semibold text-stone-900">tumhe dekh kr jaan kr maine toh yeh beginning mai hee jaan liya ki&nbsp;tum aam ladkiyon jaisi nahi ho.</span>&nbsp;</p><div>you are something different or tumhare liye jitne pappad bhelne padhe mai haste haste jhel jaunga sab&nbsp;</div><p></p>
+            <div class="space-y-4 text-sm sm:text-base leading-relaxed text-stone-900 font-normal">
+              <p><span class="font-bold text-stone-950">tumhe dekh kr jaan kr maine toh yeh beginning mai hee jaan liya ki&nbsp;tum aam ladkiyon jaisi nahi ho.</span>&nbsp;</p><div>you are something different or tumhare liye jitne pappad bhelne padhe mai haste haste jhel jaunga sab&nbsp;</div><p></p>
 
-              <p>Mujhe sabse acchi tumhari andar ki woh emotional sensitive si ladki pasand aayi. Or woh tumhara khud ko chehre hatho se chipa lena tumhari woh honesty... energetic vibes hai itni mast hai or samjhdaari waaah itta thodi hote hai everyone will fall in love if they got to know what you are<span class="font-semibold text-rose-900">.</span>
+              <p>Mujhe sabse acchi tumhari andar ki woh emotional sensitive si ladki pasand aayi. Or woh tumhara khud ko chehre hatho se chipa lena tumhari woh honesty... energetic vibes hai itni mast hai or samjhdaari waaah itta thodi hote hai everyone will fall in love if they got to know what you are<span class="font-bold text-rose-900">.</span>
               </p>
 
               <p>
                 Maine dekha hai tum kitni ambitious ho apni life ko lekar. Tumne life mein bohot kuch dekha aur jhela hai, fir bhi tum har subah khadi hoti ho aur aage badhti ho. Bas kabhi kabhi tum bohot zyada tension le leti ho — har cheez ko khud solve karne ka bojh utha leti ho.
               </p>
 
-              <div class="my-4 p-4 rounded-xl bg-pink-50/90 border-l-4 border-rose-400 text-stone-800 italic text-sm">
+              <div class="my-4 p-4 rounded-xl bg-pink-50/90 border-l-4 border-rose-500 text-rose-950 italic text-sm font-medium shadow-sm">
                 "Hamesha itna strong rehna zaroori nahi hota, Medu Vada. Kabhi kabhi bas saans lena, rukna aur khud par proud feel karna bhi kaafi hota hai."
               </div>
 
@@ -732,23 +732,23 @@
                 Tumhare political debates, Indian army aur geography ke baare mein baat karne ka shauk, tumhari smile, aur tumhari honesty — everything about you is special.
               </p>
 
-              <p class="pt-2 font-medium text-stone-900">
+              <p class="pt-2 font-bold text-stone-950">
                 Never lose that spark, Mahadevi. Tum jaisi ho, perfect ho. ✨
               </p>
             </div>
 
-            <div class="my-6 p-4 rounded-2xl bg-pink-50/80 border border-pink-200/80 flex items-center justify-center gap-4 mx-auto">
+            <div class="my-6 p-4 rounded-2xl bg-pink-50/90 border border-pink-200/90 flex items-center justify-center gap-4 mx-auto shadow-sm">
               <img src="assets/cat_roses.png" alt="Cute Cat With Roses" class="w-20 sm:w-24 h-auto object-contain">
-              <div class="text-xs text-rose-950 italic font-medium">
+              <div class="text-xs text-rose-950 italic font-semibold">
                 "Always sending you courage, calmness, and flowers whenever life gets heavy!"
               </div>
             </div>
 
-            <div class="mt-8 pt-4 border-t border-pink-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="mt-8 pt-4 border-t border-pink-200/90 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div class="font-dancing text-xl text-rose-950 font-bold">
                 Always cheering for you, always in your corner 🤍
               </div>
-              <button id="send-reaction-btn" class="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold shadow-md flex items-center space-x-1.5 transition-all"><span>Sent with Love ❤️</span></button>
+              <button id="send-reaction-btn" class="px-5 py-2.5 rounded-full bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold shadow-md flex items-center space-x-1.5 transition-all"><span>Sent with Love ❤️</span></button>
             </div>
           </div>
         </div>
@@ -758,11 +758,11 @@
     <!-- ============================================== -->
     <!-- 10. FOOTER -->
     <!-- ============================================== -->
-    <footer class="w-full text-center pt-10 border-t border-slate-800/60 space-y-4 text-xs text-stone-400 mx-auto">
-      <p>
-        Crafted with deep respect &amp; admiration for <span class="text-sky-300 font-semibold">Medhavie</span> 🌸
+    <footer class="w-full text-center pt-10 border-t border-slate-800/80 space-y-4 text-xs text-slate-200 mx-auto">
+      <p class="font-medium">
+        Crafted with deep respect &amp; admiration for <span class="text-sky-300 font-bold">Medhavie</span> 🌸
       </p>
-      <div class="flex items-center justify-center space-x-4 text-stone-400">
+      <div class="flex items-center justify-center space-x-4 text-slate-200 font-medium">
         <span>CHULBHULI. &nbsp;LAKDI HO</span>
         <span>•</span>
         <span>BEST MOM BANOGI BHAROSA RKHO KHUD PR</span>
@@ -771,7 +771,7 @@
         <span>•</span>
         <span>🌹 Feb 23</span>
       </div>
-      <p class="text-[11px] text-stone-500 font-mono">NHI PTA TUM MUJHE ACCPET KABHI KAROGI YA NHI (VERBALLY) BUT MAINE DEKH LIYA YOUR EYES SAYS IT ALL</p>
+      <p class="text-xs text-sky-200 font-mono font-medium">NHI PTA TUM MUJHE ACCPET KABHI KAROGI YA NHI (VERBALLY) BUT MAINE DEKH LIYA YOUR EYES SAYS IT ALL</p>
     </footer>
 
   </main>
@@ -780,22 +780,22 @@
   <!-- MODAL: RAJNISH CONFIRMATION POPUP -->
   <!-- ============================================== -->
   <div id="confirmation-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900/95 border-2 border-pink-500/40 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl space-y-5 animate-unfold relative overflow-hidden mx-auto">
+    <div class="bg-slate-900/98 border-2 border-pink-500/50 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl space-y-5 animate-unfold relative overflow-hidden mx-auto">
       <div class="absolute -right-8 -top-8 w-24 h-24 bg-pink-500/20 rounded-full blur-xl"></div>
       
       <div class="flex justify-center">
-        <img src="assets/couple_art.png" alt="Couple Art" class="w-40 sm:w-44 h-auto object-cover rounded-2xl drop-shadow-md border border-pink-400/30 mx-auto">
+        <img src="assets/couple_art.png" alt="Couple Art" class="w-40 sm:w-44 h-auto object-cover rounded-2xl drop-shadow-md border border-pink-400/40 mx-auto">
       </div>
 
-      <h3 class="text-xl sm:text-2xl font-playfair font-bold text-stone-100">
+      <h3 class="text-xl sm:text-2xl font-playfair font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
         Ek baar fir soch lo... 😉
       </h3>
 
-      <div class="p-3.5 rounded-2xl bg-slate-950/70 border border-pink-500/30 text-xs sm:text-sm text-stone-200 leading-relaxed font-light">
-        <p class="mb-2 font-medium text-pink-300">
+      <div class="p-4 rounded-2xl bg-slate-950/80 border border-pink-500/40 text-xs sm:text-sm text-slate-100 leading-relaxed font-normal">
+        <p class="mb-2 font-bold text-pink-300">
           "Yahan <strong class="text-white font-bold">Rajnish</strong> ki baat ho rahi hai! 🌟"
         </p>
-        <p class="text-stone-300 text-xs">
+        <p class="text-slate-200 text-xs leading-relaxed font-normal">
           Lifetime 24/7 unlimited cheering, de-stressing support, and Punjab cricket fan club package included! Final lock kar dein?
         </p>
       </div>
@@ -804,7 +804,7 @@
         <button id="modal-confirm-btn" class="flex-1 py-3 rounded-full bg-gradient-to-r from-sky-500 via-pink-500 to-rose-500 hover:from-sky-400 hover:to-rose-400 text-white font-bold text-xs sm:text-sm shadow-lg transition-all active:scale-95">
           Haan Baba, 100% Lock In! 🔒❤️
         </button>
-        <button id="modal-yes-too-btn" class="flex-1 py-3 rounded-full bg-slate-800/80 hover:bg-slate-700/80 text-sky-300 font-medium text-xs border border-sky-500/30 transition-all active:scale-95">
+        <button id="modal-yes-too-btn" class="flex-1 py-3 rounded-full bg-slate-800/90 hover:bg-slate-700 text-sky-200 font-semibold text-xs border border-sky-400/40 transition-all active:scale-95">
           Soch Liya, YES hi hai! 🥰
         </button>
       </div>
@@ -815,18 +815,18 @@
   <!-- MODAL: FINAL CELEBRATION CONTRACT POPUP -->
   <!-- ============================================== -->
   <div id="celebration-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
-    <div class="bg-gradient-to-b from-slate-900/95 via-indigo-950/90 to-slate-900/95 border-2 border-pink-400/40 rounded-3xl p-6 sm:p-10 max-w-lg w-full text-center shadow-2xl space-y-6 animate-unfold mx-auto">
+    <div class="bg-gradient-to-b from-slate-900/98 via-indigo-950/95 to-slate-900/98 border-2 border-pink-400/50 rounded-3xl p-6 sm:p-10 max-w-lg w-full text-center shadow-2xl space-y-6 animate-unfold mx-auto">
       <div class="text-5xl animate-bounce">🎉🏆✨</div>
 
-      <h3 class="text-2xl sm:text-3xl font-playfair font-bold text-stone-100">
+      <h3 class="text-2xl sm:text-3xl font-playfair font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
         Agreement Sealed, Mahadevi!
       </h3>
 
-      <div class="p-4 rounded-2xl bg-slate-950/80 border border-sky-500/30 text-xs sm:text-sm text-sky-200 space-y-2">
-        <p class="font-semibold text-pink-300">
+      <div class="p-4 rounded-2xl bg-slate-950/85 border border-sky-400/40 text-xs sm:text-sm text-sky-200 space-y-2">
+        <p class="font-bold text-pink-300">
           📜 Official Support Contract Active:
         </p>
-        <p class="text-stone-300 text-xs leading-relaxed">
+        <p class="text-slate-100 text-xs leading-relaxed font-normal">
           From this moment onwards, whenever you feel overloaded with stress or tension, remember you have a dedicated friend &amp; supporter in <strong>Rajnish</strong> forever in your corner!
         </p>
       </div>
