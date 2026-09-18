@@ -835,13 +835,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeCelebrationBtn = document.getElementById('close-celebration-btn');
 
   const runawayPhrases = [
-    "Medu Vada, 'No' is disabled by Java compiler! ☕",
-    "Catch me if you can, State Cricketer! 🏃‍♀️🏏",
-    "Oops! 'No' button jumped to safe harbor! ⚓",
-    "Rajnish ke samne 'No' option error throw karta hai! 😂",
-    "Punjab batting line-up doesn't give up! 💪",
-    "Only 'YES' has O(1) time complexity! 😉",
-    "Mahadevi, 'No' is not on the syllabus! 👑"
+    "Medu Vada, 'No' is disabled by Java compiler!",
+    "Catch me if you can, athlete 🏃‍♀️",
+    "Nhi hoga rehne do",
+    "Rajnish ke samne 'No' option doesn't exist!",
+    "Samjh nhi aaya ek baar mai?",
+    "Only 'YES' has O(1) time complexity!",
+    "Mahadevi, 'No' is not in option"
   ];
   let runawayCount = 0;
 
