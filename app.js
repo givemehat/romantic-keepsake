@@ -354,7 +354,36 @@ document.addEventListener('DOMContentLoaded', () => {
     treeCanvas.height = 680;
     treeApp = new LoveTree(treeCanvas, 1100, 680);
     treeCanvas.classList.add('clickable-seed');
+    ensureSeedPrompt();
     renderSeedPulsing();
+  }
+
+  function ensureSeedPrompt() {
+    let prompt = document.getElementById('tree-seed-prompt');
+    const stage = document.getElementById('tree-stage-wrapper');
+    if (!prompt && stage && !treeStarted) {
+      prompt = document.createElement('div');
+      prompt.id = 'tree-seed-prompt';
+      prompt.className = 'absolute z-30 flex flex-col items-center justify-center p-6 text-center transition-all duration-700 pointer-events-auto';
+      prompt.innerHTML = `
+        <button id="start-tree-btn" class="group relative px-8 py-4 rounded-full bg-gradient-to-r from-rose-500 via-pink-500 to-sky-400 text-white font-semibold text-base sm:text-lg shadow-[0_0_35px_rgba(244,63,94,0.7)] hover:shadow-[0_0_55px_rgba(56,189,248,0.85)] hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/50 backdrop-blur-xl flex items-center space-x-3 cursor-pointer">
+          <span class="text-2xl animate-bounce">💖</span>
+          <span class="tracking-wide drop-shadow-md">Click To Bloom Our Love Tree ✨</span>
+          <span class="text-xl group-hover:rotate-12 transition-transform">🌸</span>
+        </button>
+        <p class="text-xs sm:text-sm text-pink-200/90 mt-3.5 font-normal tracking-wide drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
+          ✨ Tap the button to watch the heart tree grow & unveil our story ✨
+        </p>
+      `;
+      stage.appendChild(prompt);
+    }
+    const btn = document.getElementById('start-tree-btn');
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        startTreeSequence();
+      });
+    }
   }
 
   let seedPulseAngle = 0;
@@ -375,11 +404,12 @@ document.addEventListener('DOMContentLoaded', () => {
     cancelAnimationFrame(seedAnimId);
     treeCanvas.classList.remove('clickable-seed');
 
-    if (treeSeedPrompt) {
-      treeSeedPrompt.style.opacity = '0';
-      treeSeedPrompt.style.transform = 'translate(-50%, -50%) scale(0.9)';
-      treeSeedPrompt.style.pointerEvents = 'none';
-      setTimeout(() => treeSeedPrompt.remove(), 700);
+    const prompt = document.getElementById('tree-seed-prompt');
+    if (prompt) {
+      prompt.style.opacity = '0';
+      prompt.style.transform = 'translate(-50%, -50%) scale(0.9)';
+      prompt.style.pointerEvents = 'none';
+      setTimeout(() => prompt.remove(), 700);
     }
 
     playSoundEffect(523, 'triangle', 0.4);
@@ -408,10 +438,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Reveal typewriter card on left as blossoms open
-    if (treeTextOverlay) {
-      treeTextOverlay.classList.remove('opacity-0', 'pointer-events-none', 'hidden');
-      treeTextOverlay.classList.add('opacity-100');
-      const lines = treeTextOverlay.querySelectorAll('.typewriter-line');
+    const overlay = document.getElementById('tree-text-overlay');
+    if (overlay) {
+      overlay.classList.remove('opacity-0', 'pointer-events-none', 'hidden');
+      overlay.classList.add('opacity-100');
+      const lines = overlay.querySelectorAll('.typewriter-line');
       lines.forEach((line) => {
         const delay = parseInt(line.getAttribute('data-delay') || '0', 10);
         setTimeout(() => {
@@ -454,14 +485,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  if (startTreeBtn) {
-    startTreeBtn.addEventListener('click', (e) => {
+  const btn = document.getElementById('start-tree-btn');
+  if (btn) {
+    btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      startTreeSequence();
-    });
-  }
-  if (treeSeedPrompt) {
-    treeSeedPrompt.addEventListener('click', () => {
       startTreeSequence();
     });
   }

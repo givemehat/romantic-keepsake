@@ -92,11 +92,20 @@
         <!-- Canvas for the Growing Blooming Love Tree -->
         <canvas id="tree-canvas" width="1100" height="680" class=""></canvas>
 
-        <!-- Initial Seed Invitation Prompt -->
-        
+        <!-- Initial Seed Invitation Prompt & Interactive Button -->
+        <div id="tree-seed-prompt" class="absolute z-30 flex flex-col items-center justify-center p-6 text-center transition-all duration-700 pointer-events-auto">
+          <button id="start-tree-btn" class="group relative px-8 py-4 rounded-full bg-gradient-to-r from-rose-500 via-pink-500 to-sky-400 text-white font-semibold text-base sm:text-lg shadow-[0_0_35px_rgba(244,63,94,0.7)] hover:shadow-[0_0_55px_rgba(56,189,248,0.85)] hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/50 backdrop-blur-xl flex items-center space-x-3 cursor-pointer">
+            <span class="text-2xl animate-bounce">💖</span>
+            <span class="tracking-wide drop-shadow-md">Click To Bloom Our Love Tree ✨</span>
+            <span class="text-xl group-hover:rotate-12 transition-transform">🌸</span>
+          </button>
+          <p class="text-xs sm:text-sm text-pink-200/90 mt-3.5 font-normal tracking-wide drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
+            ✨ Tap the button to watch the heart tree grow & unveil our story ✨
+          </p>
+        </div>
 
         <!-- Left-Hand Typewriter Text Overlay -->
-        <div id="tree-text-overlay" class="">
+        <div id="tree-text-overlay" class="opacity-0 pointer-events-none transition-all duration-1000">
           <div class="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#0c1322]/95 via-[#16132a]/92 to-[#1a0f20]/95 border border-sky-400/40 backdrop-blur-2xl shadow-2xl shadow-black/70 space-y-3.5 text-left relative overflow-hidden max-w-md w-full">
             
             <!-- Subtle ambient card light -->
@@ -343,198 +352,6 @@
             <span class="text-xs text-slate-300 italic">Authenticity &amp; Rare</span>
           </div>
         </div>
-
-      </div>
-    </section>
-
-    <!-- ============================================== -->
-    <!-- 5. REMEMBER WHO YOU ARE? (PSYCHOLOGICAL EMPOWERMENT & AFFIRMATIONS) -->
-    <!-- ============================================== -->
-    <section id="destress-section" class="w-full scroll-mt-24 flex flex-col items-center justify-center mx-auto space-y-8">
-      <div class="w-full max-w-4xl rounded-3xl bg-gradient-to-br from-slate-900/95 via-indigo-950/90 to-slate-900/90 border border-sky-400/40 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl relative overflow-hidden mx-auto space-y-8">
-        
-        <div class="absolute top-0 right-0 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none">T</div>
-
-        <!-- Section Header -->
-        <div class="text-center max-w-2xl mx-auto space-y-3">
-          <div class="flex flex-wrap justify-center items-center gap-2">
-            <span class="text-xs uppercase tracking-widest text-pink-200 font-semibold bg-pink-950/80 px-3.5 py-1 rounded-full border border-pink-400/50 shadow-sm">
-              Psychological Grounding &amp; Truths 🌸
-            </span>
-            <span class="text-xs font-serif text-amber-200 font-semibold bg-amber-950/80 px-3.5 py-1 rounded-full border border-amber-500/40 shadow-sm">
-              ⚔️ “शौर्यम् तेजो धृतिर्दाक्ष्यं”
-            </span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-playfair font-bold text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
-            Remember Who You Are? 👑
-          </h2>
-          <p class="text-slate-100 text-xs sm:text-sm leading-relaxed font-normal">
-            "Responsibilities, expectations, aur tension kabhi kabhi bohot heavy lagne lagti hain. Whenever self-doubt tries to enter your mind, tap each card below to reconnect with your real strength."
-          </p>
-
-          <!-- Interactive Progress Meter -->
-          <div class="pt-2 flex items-center justify-center gap-3">
-            <span class="text-xs font-mono font-semibold text-sky-200 bg-sky-950/90 px-3.5 py-1 rounded-full border border-sky-400/50" id="affirmation-counter">
-              Truths Unlocked: 0 / 8 ⚡
-            </span>
-            <button id="reset-affirmations-btn" class="text-[11px] text-sky-200 hover:text-white font-medium bg-slate-800/90 px-3 py-1 rounded-lg border border-sky-400/40 transition-all">
-              Reset ↻
-            </button>
-          </div>
-        </div>
-
-        <!-- 3D Flip Affirmation Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full" id="affirmations-grid">
-          
-          <!-- Card 1 -->
-          <div class="flip-card-container" data-card-id="1">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <span class="text-2xl mb-1">👑</span>
-                <span class="text-xs font-bold text-amber-300">Truth #1</span>
-                <p class="text-[12px] text-white font-medium mt-1">Jab problems badi lagein...</p>
-                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
-              </div>
-              <div class="flip-card-back">
-                <span class="text-xs font-bold text-amber-300 uppercase tracking-wider">I AM THE BEST</span>
-                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Maine 100% storms survive kiye hain aur hamesha jeet kar nikli hu."</p>
-                <span class="text-[11px] text-amber-300 font-bold mt-1">Unstoppable ✨</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="flip-card-container" data-card-id="2">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <span class="text-2xl mb-1">🕊️</span>
-                <span class="text-xs font-bold text-sky-300">Truth #2</span>
-                <p class="text-[12px] text-white font-medium mt-1">Jab aas-paas shor ho...</p>
-                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
-              </div>
-              <div class="flip-card-back">
-                <span class="text-xs font-bold text-sky-300 uppercase tracking-wider">I AM THE CALMEST</span>
-                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Baahar ka koi bhi shor meri andar ki peace ko hila nahi sakta."</p>
-                <span class="text-[11px] text-sky-300 font-bold mt-1">Inner Peace 🧘‍♀️</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="flip-card-container" data-card-id="3">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <span class="text-2xl mb-1">⚡</span>
-                <span class="text-xs font-bold text-yellow-300">Truth #3</span>
-                <p class="text-[12px] text-white font-medium mt-1">Jab aage badhna ho...</p>
-                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
-              </div>
-              <div class="flip-card-back">
-                <span class="text-xs font-bold text-yellow-300 uppercase tracking-wider">MOST ENERGETIC</span>
-                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Mere andar sports ka woh fire aur speed hai jo kabhi bujhta nahi."</p>
-                <span class="text-[11px] text-yellow-300 font-bold mt-1">Pure Fire 🔥</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="flip-card-container" data-card-id="4">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <span class="text-2xl mb-1">💅</span>
-                <span class="text-xs font-bold text-pink-300">Truth #4</span>
-                <p class="text-[12px] text-white font-medium mt-1">Style aur dimaag...</p>
-                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
-              </div>
-              <div class="flip-card-back">
-                <span class="text-xs font-bold text-pink-300 uppercase tracking-wider">I AM A SLAY QUEEN</span>
-                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Hardest algorithms solve karna aur slay karna dono effortless hai."</p>
-                <span class="text-[11px] text-pink-300 font-bold mt-1">Effortless Grace 👑</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="flip-card-container" data-card-id="5">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <span class="text-2xl mb-1">🏏</span>
-                <span class="text-xs font-bold text-amber-300">Truth #5</span>
-                <p class="text-[12px] text-white font-medium mt-1">22-Yard pitch par...</p>
-                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
-              </div>
-              <div class="flip-card-back">
-                <span class="text-xs font-bold text-amber-300 uppercase tracking-wider">STATE ATHLETE</span>
-                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Punjab ke rang me ranga discipline, sweat aur match-winning grit."</p>
-                <span class="text-[11px] text-amber-300 font-bold mt-1">Match Winner 🏆</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="flip-card-container" data-card-id="6">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <span class="text-2xl mb-1">🎖️</span>
-                <span class="text-xs font-bold text-sky-300">Truth #6</span>
-                <p class="text-[12px] text-white font-medium mt-1">Leadership aur team me...</p>
-                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
-              </div>
-              <div class="flip-card-back">
-                <span class="text-xs font-bold text-sky-300 uppercase tracking-wider">SABKO SAATH LEKAR</span>
-                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Apne logon ko protect karna aur sabko inspire karte hue aage badhna."</p>
-                <span class="text-[11px] text-sky-300 font-bold mt-1">True Leader 🫡</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 7 -->
-          <div class="flip-card-container" data-card-id="7">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <span class="text-2xl mb-1">🛡️</span>
-                <span class="text-xs font-bold text-purple-300">Truth #7</span>
-                <p class="text-[12px] text-white font-medium mt-1">Musibat ke time...</p>
-                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
-              </div>
-              <div class="flip-card-back">
-                <span class="text-xs font-bold text-purple-300 uppercase tracking-wider">SELF-CONTROLLED</span>
-                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Apne dimaag aur emotions par full command. Steady, grounded, sharp."</p>
-                <span class="text-[11px] text-purple-300 font-bold mt-1">Grounded Soul ⚓</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 8 -->
-          <div class="flip-card-container" data-card-id="8">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <span class="text-2xl mb-1">🌹</span>
-                <span class="text-xs font-bold text-rose-300">Truth #8</span>
-                <p class="text-[12px] text-white font-medium mt-1">Har duty se aage...</p>
-                <span class="text-[11px] text-sky-300 mt-2 font-mono font-semibold">👆 Tap to flip</span>
-              </div>
-              <div class="flip-card-back">
-                <span class="text-xs font-bold text-rose-300 uppercase tracking-wider">GENUINELY CHERISHED</span>
-                <p class="text-[12px] text-slate-100 font-medium mt-1.5 leading-snug">"Sirf achievements nahi, tumhare andar ka pyaara dil priceless hai."</p>
-                <span class="text-[11px] text-rose-300 font-bold mt-1">Pure Gold 🤍</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Master Celebration Affirmation Banner (Revealed when all 8 are flipped) -->
-        <div id="all-unlocked-banner" class="hidden p-6 rounded-2xl bg-gradient-to-r from-sky-950/90 via-purple-950/80 to-rose-950/90 border-2 border-pink-400/60 text-center animate-unfold space-y-2">
-          <div class="text-3xl animate-bounce">👑✨🏆</div>
-          <h3 class="text-lg sm:text-xl font-bold text-white font-playfair drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-            You Are The One &amp; Only Medhavie!
-          </h3>
-          <p class="text-xs sm:text-sm text-pink-100 italic max-w-xl mx-auto leading-relaxed font-medium text-shadow-crisp">
-            "You are not just surviving life, Mahadevi — you are ruling it. Never let temporary tension make you forget your immense worth!"
-          </p>
-        </div>
-
 
       </div>
     </section>
