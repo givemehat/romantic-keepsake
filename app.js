@@ -105,8 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const ctx = this.tree.ctx;
       const len = this.length / 2;
       ctx.save();
-      ctx.strokeStyle = '#a3c28d';
-      ctx.shadowColor = '#84cc16';
+      ctx.strokeStyle = '#fda4af';
+      ctx.shadowColor = '#f43f5e';
       ctx.shadowBlur = 8;
       ctx.lineWidth = this.height;
       ctx.lineCap = 'round';
@@ -150,8 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const ctx = this.tree.ctx;
       ctx.save();
       ctx.beginPath();
-      ctx.fillStyle = '#a3c28d';
-      ctx.shadowColor = '#657e55';
+      ctx.fillStyle = '#fda4af';
+      ctx.shadowColor = '#f43f5e';
       ctx.shadowBlur = 4;
       ctx.arc(p.x, p.y, Math.max(0.6, this.radius), 0, Math.PI * 2);
       ctx.fill();
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.tree = tree;
       this.point = point;
       this.figure = figure;
-      const hues = ['#f43f5e', '#fb7185', '#fda4af', '#fecdd3', '#e11d48', '#84cc16', '#fbbf24'];
+      const hues = ['#f43f5e', '#fb7185', '#fda4af', '#fecdd3', '#e11d48', '#38bdf8', '#c084fc', '#fbbf24'];
       this.color = color || hues[Math.floor(Math.random() * hues.length)];
       this.alpha = alpha || (Math.random() * 0.6 + 0.4);
       this.angle = Math.random() * Math.PI * 2;
@@ -471,8 +471,8 @@ document.addEventListener('DOMContentLoaded', () => {
       this.isPetal = Math.random() > 0.4;
       this.opacity = Math.random() * 0.4 + 0.25;
       this.color = this.isPetal 
-        ? `rgba(${220 + Math.random() * 35}, ${50 + Math.random() * 40}, ${90 + Math.random() * 40}, ${this.opacity})`
-        : `rgba(163, 194, 141, ${this.opacity * 0.9})`;
+        ? `rgba(${240 + Math.random() * 15}, ${110 + Math.random() * 40}, ${150 + Math.random() * 40}, ${this.opacity})`
+        : `rgba(56, 189, 248, ${this.opacity * 0.9})`;
     }
     update() {
       this.y += this.speedY;
@@ -495,7 +495,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bgCtx.fill();
       } else {
         bgCtx.fillStyle = this.color;
-        bgCtx.shadowColor = 'rgba(163, 194, 141, 0.8)';
+        bgCtx.shadowColor = 'rgba(56, 189, 248, 0.8)';
         bgCtx.shadowBlur = 6;
         bgCtx.beginPath();
         bgCtx.arc(0, 0, this.size * 0.22, 0, Math.PI * 2);
@@ -678,7 +678,7 @@ document.addEventListener('DOMContentLoaded', () => {
           particleCount: 25,
           spread: 60,
           origin: { y: 0.7 },
-          colors: ['#84cc16', '#a3c28d', '#ffffff']
+          colors: ['#38bdf8', '#fb7185', '#ffffff']
         });
       }
     });
@@ -818,8 +818,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (affirmationCounter) {
           affirmationCounter.textContent = `Truths Unlocked: ${flippedSet.size} / 8 ⚡`;
-          affirmationCounter.classList.add('scale-105', 'border-lime-400');
-          setTimeout(() => affirmationCounter.classList.remove('scale-105', 'border-lime-400'), 300);
+          affirmationCounter.classList.add('scale-105', 'border-sky-400');
+          setTimeout(() => affirmationCounter.classList.remove('scale-105', 'border-sky-400'), 300);
         }
 
         if (flippedSet.size === 8) {
@@ -833,7 +833,7 @@ document.addEventListener('DOMContentLoaded', () => {
               particleCount: 80,
               spread: 100,
               origin: { y: 0.6 },
-              colors: ['#84cc16', '#a3c28d', '#fbbf24', '#f43f5e']
+              colors: ['#38bdf8', '#fb7185', '#fbbf24', '#f43f5e']
             });
           }
         }
@@ -912,7 +912,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (runawayHint) {
       runawayHint.textContent = `"${runawayPhrases[runawayCount % runawayPhrases.length]}"`;
-      runawayHint.classList.add('text-lime-300', 'font-semibold');
+      runawayHint.classList.add('text-pink-300', 'font-semibold');
     }
     runawayCount++;
   }
@@ -949,7 +949,7 @@ document.addEventListener('DOMContentLoaded', () => {
         particleCount: 100,
         spread: 120,
         origin: { y: 0.5 },
-        colors: ['#84cc16', '#a3c28d', '#f43f5e', '#fbbf24']
+        colors: ['#38bdf8', '#fb7185', '#f43f5e', '#fbbf24']
       });
       setTimeout(() => {
         confetti({
@@ -957,14 +957,14 @@ document.addEventListener('DOMContentLoaded', () => {
           angle: 60,
           spread: 80,
           origin: { x: 0 },
-          colors: ['#84cc16', '#eab308']
+          colors: ['#38bdf8', '#fbbf24']
         });
         confetti({
           particleCount: 60,
           angle: 120,
           spread: 80,
           origin: { x: 1 },
-          colors: ['#f43f5e', '#a3c28d']
+          colors: ['#f43f5e', '#38bdf8']
         });
       }, 300);
     }
@@ -1000,7 +1000,7 @@ document.addEventListener('DOMContentLoaded', () => {
         particleCount: 60,
         spread: 90,
         origin: { y: 0.6 },
-        colors: ['#84cc16', '#a3c28d', '#f43f5e']
+        colors: ['#38bdf8', '#fb7185', '#f43f5e']
       });
     }
   }
@@ -1011,14 +1011,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (sendReactionBtn) {
     sendReactionBtn.addEventListener('click', () => {
       sendReactionBtn.innerHTML = `<span>Sent with Love ❤️</span>`;
-      sendReactionBtn.classList.replace('bg-emerald-700', 'bg-lime-700');
+      sendReactionBtn.classList.replace('bg-rose-700', 'bg-pink-600');
       playSoundEffect(784, 'sine', 0.3);
       if (window.confetti) {
         confetti({
           particleCount: 50,
           spread: 70,
           origin: { y: 0.7 },
-          colors: ['#84cc16', '#f43f5e']
+          colors: ['#38bdf8', '#f43f5e']
         });
       }
     });

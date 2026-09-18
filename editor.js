@@ -153,7 +153,7 @@
             particleCount: 50,
             spread: 60,
             origin: { y: 0.9, x: 0.9 },
-            colors: ['#84cc16', '#10b981', '#fbbf24']
+            colors: ['#38bdf8', '#fb7185', '#fbbf24']
           });
         }
       } else {
