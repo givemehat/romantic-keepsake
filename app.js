@@ -72,8 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.shadowBlur = 25;
       ctx.translate(this.point.x, this.point.y);
       ctx.beginPath();
-      ctx.moveTo(0, 0);
-      for (let i = 0; i < this.figure.length; i++) {
+      const first = this.figure.get(0, this.scale);
+      ctx.moveTo(first.x, -first.y);
+      for (let i = 1; i < this.figure.length; i++) {
         const p = this.figure.get(i, this.scale);
         ctx.lineTo(p.x, -p.y);
       }
@@ -150,8 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const ctx = this.tree.ctx;
       ctx.save();
       ctx.beginPath();
-      ctx.fillStyle = '#5a3838';
-      ctx.shadowColor = 'rgba(90, 56, 56, 0.4)';
+      ctx.fillStyle = '#4a2828';
+      ctx.shadowColor = 'rgba(74, 40, 40, 0.4)';
       ctx.shadowBlur = 3;
       ctx.arc(p.x, p.y, Math.max(0.6, this.radius), 0, Math.PI * 2);
       ctx.fill();
@@ -165,12 +166,12 @@ document.addEventListener('DOMContentLoaded', () => {
       this.point = point;
       this.figure = figure;
       // Romantic cherry blossom heart hues
-      const hues = ['#f43f5e', '#fb7185', '#fda4af', '#fecdd3', '#e11d48', '#f472b6', '#ff758f', '#fbb6ce'];
+      const hues = ['#f43f5e', '#fb7185', '#fda4af', '#fecdd3', '#e11d48', '#f472b6', '#ff758f', '#fbb6ce', '#ffe4e6'];
       this.color = color || hues[Math.floor(Math.random() * hues.length)];
       this.alpha = alpha || (Math.random() * 0.4 + 0.6);
       this.angle = Math.random() * Math.PI * 2;
       this.scale = scale || 0.05;
-      this.maxScale = Math.random() * 0.25 + 0.35;
+      this.maxScale = Math.random() * 0.22 + 0.32;
       this.place = place;
       this.speed = speed;
     }
@@ -192,8 +193,9 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.scale(this.scale, this.scale);
       ctx.rotate(this.angle);
       ctx.beginPath();
-      ctx.moveTo(0, 0);
-      for (let i = 0; i < this.figure.length; i++) {
+      const first = this.figure.get(0);
+      ctx.moveTo(first.x, -first.y);
+      for (let i = 1; i < this.figure.length; i++) {
         const p = this.figure.get(i);
         ctx.lineTo(p.x, -p.y);
       }
@@ -335,11 +337,14 @@ document.addEventListener('DOMContentLoaded', () => {
           this.blooms.push(new TreeBloom(this, new Point(x, y), this.figure, null, 0.9, 0.8, target, random(140, 220)));
         }
       }
-    }
-  }
   }
 
   const treeCanvas = document.getElementById('tree-canvas');
+  const startTreeBtn = document.getElementById('start-tree-btn');
+  const treeSeedPrompt = document.getElementById('tree-seed-prompt');
+  const treeTextOverlay = document.getElementById('tree-text-overlay');
+  const postBloomReveal = document.getElementById('post-bloom-reveal');
+
   let treeApp = null;
   let treeStarted = false;
 
@@ -364,19 +369,17 @@ document.addEventListener('DOMContentLoaded', () => {
     seedAnimId = requestAnimationFrame(renderSeedPulsing);
   }
 
-  const seedInstruction = document.getElementById('seed-instruction');
-  const treeTextOverlay = document.getElementById('tree-text-overlay');
-  const postBloomReveal = document.getElementById('post-bloom-reveal');
-
   async function startTreeSequence() {
     if (treeStarted) return;
     treeStarted = true;
     cancelAnimationFrame(seedAnimId);
     treeCanvas.classList.remove('clickable-seed');
 
-    if (seedInstruction) {
-      seedInstruction.style.opacity = '0';
-      setTimeout(() => seedInstruction.remove(), 700);
+    if (treeSeedPrompt) {
+      treeSeedPrompt.style.opacity = '0';
+      treeSeedPrompt.style.transform = 'translate(-50%, -50%) scale(0.9)';
+      treeSeedPrompt.style.pointerEvents = 'none';
+      setTimeout(() => treeSeedPrompt.remove(), 700);
     }
 
     playSoundEffect(523, 'triangle', 0.4);
@@ -404,13 +407,10 @@ document.addEventListener('DOMContentLoaded', () => {
       await sleep(10);
     }
 
-    while (treeApp.canFlower()) {
-      treeApp.flower(3);
-      await sleep(12);
-    }
-
+    // Reveal typewriter card on left as blossoms open
     if (treeTextOverlay) {
-      treeTextOverlay.classList.remove('hidden');
+      treeTextOverlay.classList.remove('opacity-0', 'pointer-events-none', 'hidden');
+      treeTextOverlay.classList.add('opacity-100');
       const lines = treeTextOverlay.querySelectorAll('.typewriter-line');
       lines.forEach((line) => {
         const delay = parseInt(line.getAttribute('data-delay') || '0', 10);
@@ -421,11 +421,26 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    while (treeApp.canFlower()) {
+      treeApp.flower(4);
+      await sleep(10);
+    }
+
+    // Confetti celebration pop
+    if (window.confetti) {
+      confetti({
+        particleCount: 65,
+        spread: 80,
+        origin: { x: 0.68, y: 0.5 },
+        colors: ['#f43f5e', '#fb7185', '#38bdf8', '#fda4af', '#fbb6ce']
+      });
+    }
+
     if (postBloomReveal) {
       setTimeout(() => {
         postBloomReveal.classList.remove('opacity-0', 'translate-y-6');
         postBloomReveal.classList.add('opacity-100', 'translate-y-0');
-      }, 2500);
+      }, 1500);
     }
 
     function loopJump() {
@@ -439,6 +454,17 @@ document.addEventListener('DOMContentLoaded', () => {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  if (startTreeBtn) {
+    startTreeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      startTreeSequence();
+    });
+  }
+  if (treeSeedPrompt) {
+    treeSeedPrompt.addEventListener('click', () => {
+      startTreeSequence();
+    });
+  }
   if (treeCanvas) {
     treeCanvas.addEventListener('click', () => {
       if (treeStarted) return;

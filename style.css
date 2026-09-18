@@ -139,6 +139,15 @@
   cursor: pointer;
 }
 
+/* Tree Seed Invitation Prompt & Button */
+#tree-seed-prompt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 35;
+}
+
 /* Typewriter Text Overlay on Tree Stage */
 #tree-text-overlay {
   position: absolute;
