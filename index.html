@@ -92,11 +92,20 @@
         <!-- Canvas for the Growing Blooming Love Tree -->
         <canvas id="tree-canvas" width="1100" height="680" class=""></canvas>
 
-        <!-- Initial Seed Invitation Prompt -->
-        
+        <!-- Initial Seed Invitation Prompt & Interactive Button -->
+        <div id="tree-seed-prompt" class="absolute z-30 flex flex-col items-center justify-center p-6 text-center transition-all duration-700 pointer-events-auto">
+          <button id="start-tree-btn" class="group relative px-8 py-4 rounded-full bg-gradient-to-r from-rose-500 via-pink-500 to-sky-400 text-white font-semibold text-base sm:text-lg shadow-[0_0_35px_rgba(244,63,94,0.7)] hover:shadow-[0_0_55px_rgba(56,189,248,0.85)] hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/50 backdrop-blur-xl flex items-center space-x-3 cursor-pointer">
+            <span class="text-2xl animate-bounce">💖</span>
+            <span class="tracking-wide drop-shadow-md">Click To Bloom Our Love Tree ✨</span>
+            <span class="text-xl group-hover:rotate-12 transition-transform">🌸</span>
+          </button>
+          <p class="text-xs sm:text-sm text-pink-200/90 mt-3.5 font-normal tracking-wide drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
+            ✨ Tap the button to watch the heart tree grow & unveil our story ✨
+          </p>
+        </div>
 
         <!-- Left-Hand Typewriter Text Overlay -->
-        <div id="tree-text-overlay" class="">
+        <div id="tree-text-overlay" class="opacity-0 pointer-events-none transition-all duration-1000">
           <div class="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-[#0c1322]/95 via-[#16132a]/92 to-[#1a0f20]/95 border border-sky-400/40 backdrop-blur-2xl shadow-2xl shadow-black/70 space-y-3.5 text-left relative overflow-hidden max-w-md w-full">
             
             <!-- Subtle ambient card light -->
