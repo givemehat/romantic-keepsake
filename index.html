@@ -154,7 +154,7 @@
             <!-- Live Countdown Panel -->
             <div id="tree-clock-box" class="pt-1.5 flex flex-col items-center justify-center space-y-1 text-center relative z-10">
               <span class="text-[10px] uppercase font-mono tracking-widest text-sky-300 font-semibold">DEKHO</span>
-              <div id="tree-clock-text" class="text-xs sm:text-sm font-mono font-bold text-sky-200 tracking-wider drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]">742 Days • 21 Hours • 58 Mins • 20 Secs</div>
+              <div id="tree-clock-text" class="text-xs sm:text-sm font-mono font-bold text-sky-200 tracking-wider drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]">742 Days • 22 Hours • 3 Mins • 27 Secs</div>
             </div>
 
           </div>
@@ -246,6 +246,56 @@
       </div>
     </section>
 
+    <!-- ============================================== -->
+    <!-- 2. LIVE TIMELINE COUNTER -->
+    <!-- ============================================== -->
+    <section class="w-full flex flex-col items-center justify-center text-center mx-auto">
+
+      <!-- Nicknames Interactive Pill -->
+      <div class="inline-flex items-center gap-2 bg-slate-900/90 border border-sky-400/40 px-4 py-1.5 rounded-full mb-6 shadow-inner mx-auto">
+        <span class="text-slate-200 text-xs sm:text-sm font-medium">CAN I CALL YOU :</span>
+        <button id="nickname-trigger" class="text-xs sm:text-sm font-semibold text-pink-200 bg-pink-950/90 px-3 py-1 rounded-full border border-pink-400/50 hover:border-pink-300 transition-all flex items-center gap-1.5 cursor-pointer">
+          <span id="current-nickname" style="opacity: 1;">"Cadet Medhavie" 🎖️</span>
+          <span class="text-[10px] text-sky-300 font-semibold">↻ tap</span>
+        </button>
+      </div>
+
+      <!-- LIVE TIMELINE COUNTER (Centered) -->
+      <div class="w-full max-w-2xl bg-gradient-to-b from-slate-900/95 to-indigo-950/95 border border-sky-400/40 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden group mx-auto">
+        <div class="absolute -right-12 -top-12 w-32 h-32 bg-sky-500/10 rounded-full blur-2xl group-hover:bg-sky-500/20 transition-all"></div>
+        
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+          <div class="flex items-center space-x-2">
+            <span class="text-sky-300 animate-pulse text-lg">✨</span>
+            <span class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-slate-100 text-shadow-crisp">Uss din se aaj tkk total&nbsp;</span>
+          </div>
+          <span class="text-xs font-mono font-semibold text-sky-200 bg-sky-950/80 px-2.5 py-1 rounded-md border border-sky-400/50">Since 6 Sept 2024</span>
+        </div>
+
+        <!-- Live Clock Grid -->
+        <div class="grid grid-cols-4 gap-2 sm:gap-4 my-2">
+          <div class="counter-box">
+            <span id="days-count" class="counter-num text-sky-300">742</span>
+            <span class="counter-label">Days</span>
+          </div>
+          <div class="counter-box">
+            <span id="hours-count" class="counter-num text-amber-300">22</span>
+            <span class="counter-label">Hours</span>
+          </div>
+          <div class="counter-box">
+            <span id="mins-count" class="counter-num text-pink-300">3</span>
+            <span class="counter-label">Minutes</span>
+          </div>
+          <div class="counter-box">
+            <span id="secs-count" class="counter-num text-rose-300">27</span>
+            <span class="counter-label">Seconds</span>
+          </div>
+        </div>
+
+        <p class="text-xs text-pink-200 mt-4 font-medium tracking-wide text-shadow-crisp">INSPIRATION &nbsp; • &nbsp; ADMIRATION &nbsp; • &nbsp; MADUMME - MAHARANI &nbsp; • &nbsp; SAB HO TUM</p>
+      </div>
+
+    </section>
 
     <!-- ============================================== -->
     <!-- 3. THE MULTIFACETED JOURNEY (4 PILLARS) -->
@@ -661,7 +711,7 @@
             </div>
 
             <div class="space-y-4 text-sm sm:text-base leading-relaxed text-stone-900 font-normal">
-              <p><span class="font-bold text-stone-950">tumhe dekh kr jaan kr maine toh yeh beginning mai hee jaan liya ki&nbsp;tum aam ladkiyon jaisi nahi ho.</span>&nbsp;</p><div>you are something different or tumhare liye jitne pappad bhelne padhe mai haste haste jhel jaunga sab&nbsp;</div><p></p>
+              <p><font color="#0c0a09"><b>Recently when I saw you in ncc mere ko laga bhaishab kya ladki hai Aura le kr chalti aapne aap mai or firr mujhe ussmai ek pyaari si ladki dekhi :) jis pr pighalna toh natural tha</b></font></p><div>you are something different or tumhare liye jitne pappad bhelne padhe mai haste haste jhel jaunga sab&nbsp;</div><p></p>
 
               <p>Mujhe sabse acchi tumhari andar ki woh emotional sensitive si ladki pasand aayi. Or woh tumhara khud ko chehre hatho se chipa lena tumhari woh honesty... energetic vibes hai itni mast hai or samjhdaari waaah itta thodi hote hai everyone will fall in love if they got to know what you are<span class="font-bold text-rose-900">.</span>
               </p>
@@ -672,17 +722,14 @@
                 "Hamesha itna strong rehna zaroori nahi hota, Medu Vada. Kabhi kabhi bas saans lena, rukna aur khud par proud feel karna bhi kaafi hota hai."
               </div>
 
-              <p>
-                I know shayad tum mere baare mein abhi utna feel na karti ho ya utna na maanti ho, aur sach kahoon toh mujhe koi jaldi ya expectations nahi hain. Mera dil bas itna chahta tha ki main tumhe yeh bata saku ki tum kitni inspiring, genuine aur precious ho.
+              <p>Aur sach kahoon toh mujhe koi jaldi ya expectations nahi hain. Mera dil bas itna chahta tha ki main tumhe yeh bata saku ki tum kitni mastikhor, even genuinely bhot precious ho.
               </p>
 
               <p>
-                Tumhare political debates, Indian army aur geography ke baare mein baat karne ka shauk, tumhari smile, aur tumhari honesty — everything about you is special.
-              </p>
+                Tumhare political debates, Indian army aur geography ke baare mein baat karne ka shauk, tumhari smile, aur tumhari honesty/rutba everything about you is special in my perspective.</p>
 
               <p class="pt-2 font-bold text-stone-950">
-                Never lose that spark, Mahadevi. Tum jaisi ho, perfect ho. ✨
-              </p>
+                Never lose that spark, SHIVI. Tum jaisi ho, perfect ho aapne aap mai.</p>
             </div>
 
             <div class="my-6 p-4 rounded-2xl bg-pink-50/90 border border-pink-200/90 flex items-center justify-center gap-4 mx-auto shadow-sm">
