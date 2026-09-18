@@ -702,26 +702,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 3. TIMELINE COUNTER
+  // 3. TIMELINE COUNTER (Removed upon user request)
   // ========================================================
-  const knownDate = new Date('2024-09-06T00:00:00');
-
-  function updateTimeline() {
-    const now = new Date();
-    const diff = Math.max(0, now - knownDate);
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const mins = Math.floor((diff / (1000 * 60)) % 60);
-    const secs = Math.floor((diff / 1000) % 60);
-
-    const treeClockText = document.getElementById('tree-clock-text');
-    if (treeClockText) {
-      treeClockText.textContent = `${days} Days • ${hours} Hours • ${mins} Mins • ${secs} Secs`;
-    }
-  }
-  setInterval(updateTimeline, 1000);
-  updateTimeline();
 
 
   // ========================================================
