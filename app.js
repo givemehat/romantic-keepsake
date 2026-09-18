@@ -959,12 +959,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!runawayNoBtn || !buttonsStage) return;
 
     const stageRect = buttonsStage.getBoundingClientRect();
-    const maxX = (stageRect.width / 2) - 50;
-    const maxY = (stageRect.height / 2) - 20;
+    const maxX = Math.max(80, (stageRect.width / 2) - 60);
+    const maxY = Math.max(35, (stageRect.height / 2) - 18);
 
     const randomX = (Math.random() * (maxX * 2) - maxX);
     const randomY = (Math.random() * (maxY * 2) - maxY);
 
+    runawayNoBtn.style.transition = 'transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1)';
     runawayNoBtn.style.transform = `translate(${randomX}px, ${randomY}px) scale(0.95)`;
     playSoundEffect(850 + Math.random() * 200, 'triangle', 0.1, 0.08);
 

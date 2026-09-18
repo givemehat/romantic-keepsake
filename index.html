@@ -52,15 +52,15 @@
 
     <div class="flex items-center space-x-3">
       <!-- Ambient Audio Toggle Button with Sound Bars -->
-      <button id="audio-toggle-btn" class="glass-btn px-3.5 py-2 rounded-full border border-sky-400/40 bg-slate-900/70 backdrop-blur-md flex items-center space-x-2 text-xs font-medium text-stone-200 transition-all shadow-lg active:scale-95 border-lime-400 bg-lime-950/80" title="Toggle Calming Ambient Melody">
-        <div id="audio-visualizer" class="items-center space-x-0.5 flex">
+      <button id="audio-toggle-btn" class="glass-btn px-3.5 py-2 rounded-full border border-sky-400/40 bg-slate-900/70 backdrop-blur-md flex items-center space-x-2 text-xs font-medium text-stone-200 transition-all shadow-lg active:scale-95 cursor-pointer" title="Toggle Calming Ambient Melody">
+        <div id="audio-visualizer" class="items-center space-x-0.5 hidden">
           <span class="sound-bar"></span>
           <span class="sound-bar"></span>
           <span class="sound-bar"></span>
           <span class="sound-bar"></span>
         </div>
-        <span id="audio-icon" class="text-base">🔊</span>
-        <span id="audio-status-text" class="hidden md:inline">Playing Melody</span>
+        <span id="audio-icon" class="text-base">🎵</span>
+        <span id="audio-status-text" class="hidden md:inline">Play Melody</span>
       </button>
     </div>
   </header>
