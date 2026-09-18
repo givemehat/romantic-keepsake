@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
   class HeartShape {
     constructor() {
       this.points = [];
-      for (let i = 10; i < 30; i += 0.2) {
-        const t = i / Math.PI;
+      const step = Math.PI / 40;
+      for (let t = 0; t <= Math.PI * 2; t += step) {
         const x = 16 * Math.pow(Math.sin(t), 3);
         const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
         this.points.push(new Point(x, y));
@@ -105,9 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const ctx = this.tree.ctx;
       const len = this.length / 2;
       ctx.save();
-      ctx.strokeStyle = '#fda4af';
-      ctx.shadowColor = '#f43f5e';
-      ctx.shadowBlur = 8;
+      ctx.strokeStyle = 'rgba(244, 63, 94, 0.6)';
+      ctx.shadowColor = 'rgba(244, 63, 94, 0.6)';
+      ctx.shadowBlur = 6;
       ctx.lineWidth = this.height;
       ctx.lineCap = 'round';
       ctx.translate(this.point.x, this.point.y);
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const p = bezier([this.p1, this.p2, this.p3], this.len * this.t);
         this.draw(p);
         this.len++;
-        this.radius *= 0.975;
+        this.radius *= 0.985;
       } else {
         this.tree.removeBranch(this);
         this.tree.addBranchData(this.subBranches);
@@ -150,9 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const ctx = this.tree.ctx;
       ctx.save();
       ctx.beginPath();
-      ctx.fillStyle = '#fda4af';
-      ctx.shadowColor = '#f43f5e';
-      ctx.shadowBlur = 4;
+      ctx.fillStyle = '#5a3838';
+      ctx.shadowColor = 'rgba(90, 56, 56, 0.4)';
+      ctx.shadowBlur = 3;
       ctx.arc(p.x, p.y, Math.max(0.6, this.radius), 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
@@ -164,18 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
       this.tree = tree;
       this.point = point;
       this.figure = figure;
-      const hues = ['#f43f5e', '#fb7185', '#fda4af', '#fecdd3', '#e11d48', '#38bdf8', '#c084fc', '#fbbf24'];
+      // Romantic cherry blossom heart hues
+      const hues = ['#f43f5e', '#fb7185', '#fda4af', '#fecdd3', '#e11d48', '#f472b6', '#ff758f', '#fbb6ce'];
       this.color = color || hues[Math.floor(Math.random() * hues.length)];
-      this.alpha = alpha || (Math.random() * 0.6 + 0.4);
+      this.alpha = alpha || (Math.random() * 0.4 + 0.6);
       this.angle = Math.random() * Math.PI * 2;
-      this.scale = scale || 0.1;
-      this.maxScale = Math.random() * 0.6 + 0.6;
+      this.scale = scale || 0.05;
+      this.maxScale = Math.random() * 0.25 + 0.35;
       this.place = place;
       this.speed = speed;
     }
     flower() {
       this.draw();
-      this.scale += 0.06;
+      this.scale += 0.035;
       if (this.scale > this.maxScale) {
         this.tree.removeBloom(this);
       }
@@ -186,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.fillStyle = this.color;
       ctx.globalAlpha = this.alpha;
       ctx.shadowColor = this.color;
-      ctx.shadowBlur = 6;
+      ctx.shadowBlur = 3;
       ctx.translate(this.point.x, this.point.y);
       ctx.scale(this.scale, this.scale);
       ctx.rotate(this.angle);
@@ -206,8 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         this.draw();
         this.point = this.place.sub(this.point).div(this.speed).add(this.point);
-        this.angle += 0.04;
-        this.speed = Math.max(10, this.speed - 0.5);
+        this.angle += 0.03;
+        this.speed = Math.max(12, this.speed - 0.4);
       }
     }
   }
