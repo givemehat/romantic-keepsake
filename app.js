@@ -797,59 +797,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // ========================================================
-  // 7. JAVA DSA INTERACTIVE TERMINAL
-  // ========================================================
-  const runJavaBtn = document.getElementById('run-java-btn');
-  const optimizeBtn = document.getElementById('optimize-stress-btn');
-  const terminalOutput = document.getElementById('terminal-output');
 
-  if (runJavaBtn && terminalOutput) {
-    runJavaBtn.addEventListener('click', () => {
-      terminalOutput.innerHTML = '';
-      const lines = [
-        `$ javac Medhavie.java`,
-        `[OK] Compiled successfully (0 warnings, 0 errors)`,
-        `$ java Medhavie`,
-        `>> Loading Attributes: [Punjab Cricket 🏏, NCC Cadet 🎖️, Java Master ☕]`,
-        `>> Soul Status: Deep, Compassionate & Resilient 🌹`,
-        `>> Checking Stress Levels: High Ambition Detected... Applying Calm Protocol.`,
-        `>> Output: "Medhavie, you are destined for wonderful things. Keep your head high!" ✨`
-      ];
-
-      lines.forEach((line, i) => {
-        setTimeout(() => {
-          const p = document.createElement('p');
-          p.className = i >= 3 ? 'text-lime-300' : 'text-stone-300';
-          p.textContent = line;
-          terminalOutput.appendChild(p);
-          playSoundEffect(300 + i * 80, 'sine', 0.08);
-        }, i * 300);
-      });
-    });
-  }
-
-  if (optimizeBtn && terminalOutput) {
-    optimizeBtn.addEventListener('click', () => {
-      terminalOutput.innerHTML = '';
-      const lines = [
-        `$ jcmd Medhavie GC.run --target=Overthinking`,
-        `[INFO] Garbage Collector started...`,
-        `[INFO] Freed 100% of unnecessary doubts & tension.`,
-        `[INFO] Allocated: Infinite Confidence & Peaceful Heart ❤️`,
-        `>> Stress Space Complexity optimized to O(0).`
-      ];
-      lines.forEach((line, i) => {
-        setTimeout(() => {
-          const p = document.createElement('p');
-          p.className = 'text-cyan-300';
-          p.textContent = line;
-          terminalOutput.appendChild(p);
-          playSoundEffect(450 + i * 90, 'triangle', 0.08);
-        }, i * 250);
-      });
-    });
-  }
 
 
 
