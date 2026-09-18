@@ -19,15 +19,15 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#080b13] text-stone-100 font-outfit antialiased selection:bg-rose-500 selection:text-white relative overflow-x-hidden min-h-screen flex flex-col items-center justify-start">
+<body class="bg-[#080c18] text-stone-100 font-outfit antialiased selection:bg-rose-500 selection:text-white relative overflow-x-hidden min-h-screen flex flex-col items-center justify-start">
 
   <!-- Ambient Video Background Layer (Dreamy Video Background) -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <video id="bg-video" autoplay loop muted playsinline class="w-full h-full object-cover opacity-85 filter brightness-100 contrast-100">
+    <video id="bg-video" autoplay loop muted playsinline class="w-full h-full object-cover opacity-90 filter brightness-105 contrast-100">
       <source src="assets/dreamy_background.mp4" type="video/mp4">
     </video>
-    <!-- Soft Dreamy Neutral/Sky-Rose Overlay (Zero Green Tint) -->
-    <div class="absolute inset-0 bg-gradient-to-b from-[#06080e]/40 via-transparent to-[#080914]/50 backdrop-brightness-[0.96]"></div>
+    <!-- Soft Dreamy Translucent Sky-Pink Ambient Veil (Zero Muddiness) -->
+    <div class="absolute inset-0 bg-gradient-to-b from-sky-950/20 via-transparent to-pink-950/30 backdrop-brightness-[0.98]"></div>
   </div>
 
   <!-- Background Animated Canvas (Petals & Dreamy Stardust) -->
@@ -37,9 +37,9 @@
   <canvas id="heart-canvas"></canvas>
 
   <!-- Dreamy Sky-Blue & Romantic Pink Ambient Glow Orbs -->
-  <div class="fixed top-[-10%] left-[-10%] w-[520px] h-[520px] bg-sky-500/15 rounded-full blur-[140px] pointer-events-none z-0"></div>
-  <div class="fixed bottom-[-10%] right-[-10%] w-[620px] h-[620px] bg-pink-500/15 rounded-full blur-[160px] pointer-events-none z-0"></div>
-  <div class="fixed top-[40%] right-[15%] w-[420px] h-[420px] bg-rose-500/15 rounded-full blur-[130px] pointer-events-none z-0"></div>
+  <div class="fixed top-[-10%] left-[-10%] w-[550px] h-[550px] bg-sky-400/25 rounded-full blur-[140px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-[-10%] right-[-10%] w-[650px] h-[650px] bg-pink-400/25 rounded-full blur-[160px] pointer-events-none z-0"></div>
+  <div class="fixed top-[40%] right-[15%] w-[450px] h-[450px] bg-rose-400/20 rounded-full blur-[130px] pointer-events-none z-0"></div>
 
   <!-- Background Audio Element from kunal-beatz/Crush -->
   <audio id="bg-audio" src="assets/music.mp3" loop preload="auto"></audio>
@@ -48,12 +48,12 @@
   <header class="fixed top-4 left-0 right-0 z-50 px-4 max-w-4xl mx-auto flex items-center justify-between">
     <div class="glass-pill px-4 py-2 flex items-center space-x-2 rounded-full shadow-lg">
       <span class="text-sky-300 font-dancing text-xl font-bold">Medhavie</span>
-      <span class="text-xs bg-pink-950/50 text-pink-300 border border-pink-500/30 px-2 py-0.5 rounded-full">Mahadevi 👑</span>
+      <span class="text-xs bg-pink-950/60 text-pink-300 border border-pink-400/40 px-2 py-0.5 rounded-full">Mahadevi 👑</span>
     </div>
 
     <div class="flex items-center space-x-3">
       <!-- Ambient Audio Toggle Button with Sound Bars -->
-      <button id="audio-toggle-btn" class="glass-btn px-3.5 py-2 rounded-full border border-sky-500/30 bg-slate-900/80 backdrop-blur-md flex items-center space-x-2 text-xs font-medium text-stone-200 transition-all shadow-lg active:scale-95" title="Toggle Calming Ambient Melody">
+      <button id="audio-toggle-btn" class="glass-btn px-3.5 py-2 rounded-full border border-sky-400/40 bg-slate-900/70 backdrop-blur-md flex items-center space-x-2 text-xs font-medium text-stone-200 transition-all shadow-lg active:scale-95" title="Toggle Calming Ambient Melody">
         <div id="audio-visualizer" class="items-center space-x-0.5 hidden">
           <span class="sound-bar"></span>
           <span class="sound-bar"></span>
@@ -76,16 +76,16 @@
       
       <!-- Stage Header Badges -->
       <div class="flex flex-wrap justify-center items-center gap-2 mb-4 mx-auto">
-        <span class="badge-pill border-rose-500/40 bg-rose-950/40 text-rose-300">
+        <span class="badge-pill border-rose-400/50 bg-rose-950/50 text-rose-200">
           🌹 23rd February
         </span>
-        <span class="badge-pill border-amber-500/40 bg-amber-950/40 text-amber-300">
+        <span class="badge-pill border-amber-400/50 bg-amber-950/50 text-amber-200">
           🏏 Miss Coach
         </span>
-        <span class="badge-pill border-sky-500/40 bg-sky-950/40 text-sky-300">
+        <span class="badge-pill border-sky-400/50 bg-sky-950/50 text-sky-200">
           🎖️ NCC Cadet
         </span>
-        <span class="badge-pill border-pink-500/40 bg-pink-950/40 text-pink-300 font-serif">
+        <span class="badge-pill border-pink-400/50 bg-pink-950/50 text-pink-200 font-serif">
           ⚔️ “वीर भोग्या वसुन्धरा”
         </span>
       </div>
@@ -98,15 +98,15 @@
 
         <!-- Initial Seed Invitation Prompt -->
         <div id="seed-instruction" class="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-700">
-          <div class="glass-pill px-6 py-3 rounded-full border border-rose-500/40 shadow-2xl backdrop-blur-xl pointer-events-auto flex items-center space-x-3 mb-28 animate-bounce">
+          <div class="glass-pill px-6 py-3 rounded-full border border-pink-400/60 shadow-2xl backdrop-blur-xl pointer-events-auto flex items-center space-x-3 mb-28 animate-bounce">
             <span class="text-2xl animate-pulse">👆</span>
-            <span class="text-xs sm:text-sm font-semibold text-rose-200">Tap the pulsing Heart Seed below to bloom the tree</span>
+            <span class="text-xs sm:text-sm font-semibold text-pink-100">Tap the pulsing Heart Seed below to bloom the tree</span>
           </div>
         </div>
 
         <!-- Left-Hand Typewriter Text Overlay -->
         <div id="tree-text-overlay" class="hidden">
-          <div class="p-6 rounded-2xl bg-slate-900/90 border border-sky-500/30 backdrop-blur-xl shadow-2xl space-y-3 text-left">
+          <div class="p-6 rounded-2xl bg-slate-900/80 border border-sky-400/40 backdrop-blur-xl shadow-2xl space-y-3 text-left">
             
             <div class="flex items-center justify-between border-b border-sky-500/20 pb-2 mb-2">
               <span class="font-dancing text-2xl sm:text-3xl font-bold text-sky-300">For Medhavie ✨</span>

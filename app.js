@@ -67,10 +67,27 @@ document.addEventListener('DOMContentLoaded', () => {
     draw() {
       const ctx = this.tree.ctx;
       ctx.save();
-      ctx.fillStyle = this.color;
-      ctx.shadowColor = 'rgba(244, 63, 94, 0.8)';
-      ctx.shadowBlur = 15;
       ctx.translate(this.point.x, this.point.y);
+
+      // Outer soft glowing aura with sky-blue and pink
+      const aura = ctx.createRadialGradient(0, -10, 5, 0, -10, 45 * (this.scale / 2.4));
+      aura.addColorStop(0, 'rgba(251, 113, 133, 0.45)');
+      aura.addColorStop(0.5, 'rgba(56, 189, 248, 0.25)');
+      aura.addColorStop(1, 'rgba(244, 63, 94, 0)');
+      ctx.fillStyle = aura;
+      ctx.beginPath();
+      ctx.arc(0, -10, 45 * (this.scale / 2.4), 0, Math.PI * 2);
+      ctx.fill();
+
+      // Glowing romantic heart gradient
+      const heartGrad = ctx.createLinearGradient(0, -30, 0, 15);
+      heartGrad.addColorStop(0, '#fbcfe8');
+      heartGrad.addColorStop(0.5, '#fb7185');
+      heartGrad.addColorStop(1, '#f43f5e');
+      ctx.fillStyle = heartGrad;
+      ctx.shadowColor = 'rgba(251, 113, 133, 0.9)';
+      ctx.shadowBlur = 20;
+
       ctx.beginPath();
       ctx.moveTo(0, 0);
       for (let i = 0; i < this.figure.length; i++) {
