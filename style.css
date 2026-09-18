@@ -109,8 +109,8 @@
 #tree-stage-wrapper {
   position: relative;
   width: 100%;
-  max-width: 1000px;
-  min-height: 580px;
+  max-width: 1080px;
+  min-height: 620px;
   margin: 0 auto;
   border-radius: 2.2rem;
   overflow: hidden;
@@ -142,20 +142,24 @@
 /* Typewriter Text Overlay on Tree Stage */
 #tree-text-overlay {
   position: absolute;
-  left: 5%;
-  top: 6%;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 90%;
-  max-width: 440px;
+  max-width: 420px;
   z-index: 20;
   pointer-events: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   #tree-text-overlay {
-    left: 50%;
-    transform: translateX(-50%);
-    top: 5%;
-    width: 92%;
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: 1.5rem auto;
+    width: 94%;
+    max-width: 440px;
   }
 }
 

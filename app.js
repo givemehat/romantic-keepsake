@@ -219,8 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
       this.ctx = canvas.getContext('2d');
       this.width = width;
       this.height = height;
+      this.treeCenterX = 720; // Shift tree to the right side
 
-      this.seed = new TreeSeed(this, new Point(width / 2, height / 2 + 30));
+      this.seed = new TreeSeed(this, new Point(this.treeCenterX, height / 2 + 30));
       this.footer = new TreeFooter(this, width, 4, 12);
       this.branches = [];
       this.blooms = [];
@@ -231,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initBranchesData() {
-      const cx = this.width / 2;
+      const cx = this.treeCenterX;
       const cy = this.height;
       this.rawBranchData = [
         [cx, cy, cx + 25, cy - 430, cx - 35, cy - 480, 24, 90, [
@@ -284,15 +285,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initBloomsCache(num = 450) {
-      const r = 210;
+      const r = 205;
       const w = this.width;
       const h = this.height;
+      const cx = this.treeCenterX;
+      const cy = h - (h - 60) / 2;
       for (let i = 0; i < num; i++) {
         let x, y;
         while (true) {
-          x = random(40, w - 40);
+          x = random(cx - r - 40, Math.min(w - 20, cx + r + 40));
           y = random(40, h - 100);
-          if (inHeart(x - w / 2, h - (h - 60) / 2 - y, r)) {
+          if (inHeart(x - cx, cy - y, r)) {
             this.bloomsCache.push(new TreeBloom(this, new Point(x, y), this.figure));
             break;
           }
@@ -322,17 +325,18 @@ document.addEventListener('DOMContentLoaded', () => {
         this.blooms[i].jump();
       }
       if (this.blooms.length < 15) {
-        const r = 210;
         const w = this.width;
         const h = this.height;
+        const cx = this.treeCenterX;
         for (let i = 0; i < random(1, 3); i++) {
-          let x = random(w / 2 - 200, w / 2 + 200);
+          let x = random(cx - 180, Math.min(w - 30, cx + 180));
           let y = random(100, 400);
-          const target = new Point(random(-50, w + 50), h + 40);
+          const target = new Point(random(cx - 350, w + 50), h + 40);
           this.blooms.push(new TreeBloom(this, new Point(x, y), this.figure, null, 0.9, 0.8, target, random(140, 220)));
         }
       }
     }
+  }
   }
 
   const treeCanvas = document.getElementById('tree-canvas');
