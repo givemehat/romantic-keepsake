@@ -1,89 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Fira+Code:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Caveat:wght@600;700&family=Quicksand:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700;800&family=Dancing+Script:wght@600;700&family=Fira+Code:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Quicksand:wght@500;600;700&display=swap');
 
-/* Typography Utilities */
-.font-dancing {
-  font-family: 'Dancing Script', cursive;
+/* ======================================================== */
+/* 0. DESIGN SYSTEM & CSS VARIABLES */
+/* ======================================================== */
+:root {
+  --theme-bg: #080c18;
+  --theme-surface: rgba(12, 19, 34, 0.85);
+  --card-bg: linear-gradient(135deg, rgba(11, 17, 33, 0.88) 0%, rgba(26, 17, 42, 0.88) 50%, rgba(11, 17, 33, 0.88) 100%);
+  --card-hover: linear-gradient(135deg, rgba(20, 31, 58, 0.94) 0%, rgba(42, 22, 58, 0.94) 100%);
+  --sky-accent: #38bdf8;
+  --sky-glow: rgba(56, 189, 248, 0.45);
+  --pink-accent: #fb7185;
+  --pink-glow: rgba(251, 113, 133, 0.45);
+  --rose-primary: #f43f5e;
+  --gold-accent: #fcd34d;
+  --card-border: rgba(56, 189, 248, 0.35);
+  --pink-border: rgba(251, 113, 133, 0.4);
+  --letter-paper: #fffcf9;
 }
 
-.font-caveat {
-  font-family: 'Caveat', cursive;
+/* Base HTML & Mobile Viewport Setup */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
-.font-playfair {
-  font-family: 'Playfair Display', serif;
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--theme-bg);
+  color: #f5f5f4;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-.font-outfit {
-  font-family: 'Outfit', sans-serif;
+/* ======================================================== */
+/* 1. TYPOGRAPHY SYSTEM */
+/* ======================================================== */
+.font-dancing { font-family: 'Dancing Script', cursive; }
+.font-caveat { font-family: 'Caveat', cursive; }
+.font-playfair { font-family: 'Playfair Display', Georgia, serif; }
+.font-outfit { font-family: 'Outfit', sans-serif; }
+.font-mono { font-family: 'Fira Code', ui-monospace, monospace; }
+.font-quicksand { font-family: 'Quicksand', sans-serif; }
+.font-serif, [class*="font-serif"] { 
+  font-family: 'Noto Serif Devanagari', 'Playfair Display', Georgia, serif; 
 }
 
-.font-mono {
-  font-family: 'Fira Code', monospace;
-}
-
-.font-quicksand {
-  font-family: 'Quicksand', sans-serif;
+/* Fluid Typography Utilities */
+p, .feature-card p, .question-arena p {
+  font-size: clamp(0.92rem, 2.4vw, 1.02rem);
+  line-height: 1.68;
 }
 
 /* High-Contrast Crisp Text Shadow Utilities for Perfect Legibility */
 .text-shadow-crisp {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(0, 0, 0, 0.95);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 1px 3px rgba(0, 0, 0, 0.95);
 }
 
 .text-shadow-glow {
-  text-shadow: 0 0 14px rgba(56, 189, 248, 0.6), 0 2px 6px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 0 14px rgba(56, 189, 248, 0.65), 0 2px 6px rgba(0, 0, 0, 0.9);
 }
 
 .text-shadow-pink {
-  text-shadow: 0 0 14px rgba(251, 113, 133, 0.6), 0 2px 6px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 0 14px rgba(251, 113, 133, 0.65), 0 2px 6px rgba(0, 0, 0, 0.9);
 }
 
 .text-shadow-gold {
-  text-shadow: 0 0 16px rgba(253, 224, 71, 0.7), 0 2px 8px rgba(0, 0, 0, 0.95);
+  text-shadow: 0 0 16px rgba(253, 224, 71, 0.75), 0 2px 8px rgba(0, 0, 0, 0.95);
 }
 
-/* Dreamy Pastel Sky-Blue & Blushing Pink Theme Variables */
-:root {
-  --theme-bg: #070a14;
-  --card-bg: linear-gradient(135deg, rgba(11, 17, 33, 0.88) 0%, rgba(26, 17, 42, 0.88) 50%, rgba(11, 17, 33, 0.88) 100%);
-  --card-hover: linear-gradient(135deg, rgba(20, 31, 58, 0.92) 0%, rgba(42, 22, 58, 0.92) 100%);
-  --sky-accent: #38bdf8;
-  --pink-accent: #fb7185;
-  --rose-glow: #f43f5e;
-  --card-border: rgba(56, 189, 248, 0.4);
-  --pink-border: rgba(251, 113, 133, 0.45);
+/* ======================================================== */
+/* 2. SECTION SCROLL REVEAL & STAGGER */
+/* ======================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
-/* Perfect Centering Utility */
-.section-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Floating hearts canvas */
-#heart-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* High-Contrast Luminous Glassmorphism */
+/* ======================================================== */
+/* 3. GLASSMORPHISM & UI ACCENTS */
+/* ======================================================== */
 .glass-pill {
-  background: linear-gradient(135deg, rgba(11, 17, 33, 0.88) 0%, rgba(30, 18, 42, 0.85) 50%, rgba(11, 22, 42, 0.88) 100%);
+  background: linear-gradient(135deg, rgba(11, 17, 33, 0.9) 0%, rgba(30, 18, 42, 0.88) 50%, rgba(11, 22, 42, 0.9) 100%);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1.5px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 20px rgba(56, 189, 248, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
 .glass-card {
@@ -91,10 +103,11 @@
   border: 1.5px solid var(--card-border);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(56, 189, 248, 0.2);
 }
 
 .glass-btn {
+  min-height: 44px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -109,32 +122,36 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.35rem 0.75rem;
+  padding: 0.45rem 0.85rem;
+  min-height: 44px;
   border-radius: 9999px;
   background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(12px);
   cursor: pointer;
   user-select: none;
+  touch-action: manipulation;
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .interactive-tag:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-  border-color: rgba(251, 113, 133, 0.6);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
+  border-color: rgba(251, 113, 133, 0.65);
 }
 
 .interactive-tag:active {
-  transform: scale(0.96);
+  transform: scale(0.95);
 }
 
-/* Tree Opening Container - High Contrast Dreamy Arena */
+/* ======================================================== */
+/* 4. THE GRAND LOVE TREE STAGE & RESPONSIVE CANVAS */
+/* ======================================================== */
 #tree-stage-wrapper {
   position: relative;
   width: 100%;
   max-width: 1080px;
-  min-height: 620px;
+  min-height: 520px;
   margin: 0 auto;
   border-radius: 2.2rem;
   overflow: hidden;
@@ -142,10 +159,16 @@
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 2px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7), 0 0 50px rgba(56, 189, 248, 0.35), 0 0 40px rgba(251, 113, 133, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.75), 0 0 50px rgba(56, 189, 248, 0.35), 0 0 40px rgba(251, 113, 133, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 768px) {
+  #tree-stage-wrapper {
+    min-height: 640px;
+  }
 }
 
 #tree-canvas {
@@ -154,7 +177,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   z-index: 10;
   cursor: default;
 }
@@ -163,34 +186,38 @@
   cursor: pointer;
 }
 
-/* Tree Seed Invitation Prompt & Button */
 #tree-seed-prompt {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 35;
+  width: 90%;
+  max-width: 440px;
 }
 
-/* Typewriter Text Overlay on Tree Stage */
 #tree-text-overlay {
   position: absolute;
-  left: 20px;
+  left: 24px;
   top: 50%;
   transform: translateY(-50%);
   width: 90%;
-  max-width: 420px;
-  z-index: 20;
+  max-width: 430px;
+  z-index: 25;
   pointer-events: auto;
 }
 
 @media (max-width: 860px) {
+  #tree-stage-wrapper {
+    flex-direction: column;
+    padding-bottom: 2rem;
+  }
   #tree-text-overlay {
     position: relative;
     left: auto;
     top: auto;
     transform: none;
-    margin: 1.5rem auto;
+    margin: 1.5rem auto 0 auto;
     width: 94%;
     max-width: 440px;
   }
@@ -210,7 +237,7 @@
 }
 
 /* ======================================================== */
-/* POLAROID GALLERY WITH WASHI TAPE & TILT */
+/* 5. VINTAGE POLAROID PHOTO GALLERY */
 /* ======================================================== */
 .polaroid-grid {
   display: flex;
@@ -227,37 +254,28 @@
 
 .polaroid-card {
   position: relative;
-  width: 100%;
   width: 275px;
   background: #ffffff;
   padding: 0.9rem 0.9rem 1.4rem 0.9rem;
   border-radius: 0.6rem;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 25px rgba(251, 113, 133, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.9);
-  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
   cursor: pointer;
   margin: 0;
+  touch-action: manipulation;
 }
 
 .polaroid-card:hover {
-  transform: scale(1.05) translateY(-6px) rotate(0deg) !important;
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(56, 189, 248, 0.5);
+  transform: scale(1.06) translateY(-8px) rotate(0deg) !important;
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.7), 0 0 35px rgba(56, 189, 248, 0.55);
   z-index: 30;
 }
 
-.polaroid-rotate-left {
-  transform: rotate(-2.5deg);
-}
+.polaroid-rotate-left { transform: rotate(-2.5deg); }
+.polaroid-rotate-right { transform: rotate(2.5deg); }
+.polaroid-rotate-mid { transform: rotate(-1deg); }
 
-.polaroid-rotate-right {
-  transform: rotate(2.5deg);
-}
-
-.polaroid-rotate-mid {
-  transform: rotate(-1deg);
-}
-
-/* Washi Tape Effect */
 .washi-tape {
   position: absolute;
   top: -12px;
@@ -298,71 +316,22 @@
 }
 
 /* ======================================================== */
-/* REMEMBER WHO YOU ARE - 3D FLIP CARDS */
+/* 6. PILLAR CARDS & DESKTOP 3D TILT */
 /* ======================================================== */
-.flip-card-container {
-  perspective: 1000px;
-  width: 100%;
-  min-height: 120px;
-  cursor: pointer;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 120px;
-  text-align: center;
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+.feature-card {
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   transform-style: preserve-3d;
 }
 
-.flip-card-inner.flipped {
-  transform: rotateY(180deg);
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover {
+    transform: translateY(-4px) scale(1.015);
+  }
 }
 
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-radius: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
-.flip-card-front {
-  background: linear-gradient(135deg, rgba(11, 17, 33, 0.95) 0%, rgba(26, 17, 40, 0.95) 100%);
-  border: 1.5px solid rgba(56, 189, 248, 0.45);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  color: #ffffff;
-  transition: all 0.3s ease;
-}
-
-.flip-card-front:hover {
-  border-color: rgba(251, 113, 133, 0.8);
-  transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6), 0 0 25px rgba(251, 113, 133, 0.4);
-}
-
-.flip-card-back {
-  background: linear-gradient(135deg, rgba(15, 23, 44, 0.98) 0%, rgba(42, 16, 40, 0.98) 100%);
-  border: 1.5px solid rgba(251, 113, 133, 0.7);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  transform: rotateY(180deg);
-  box-shadow: 0 0 30px rgba(251, 113, 133, 0.4);
-  color: #ffffff;
-}
-
-/* Runaway Question Arena */
+/* ======================================================== */
+/* 7. RUNAWAY QUESTION ARENA & BOUNDED PHYSICS */
+/* ======================================================== */
 .question-arena {
   position: relative;
   min-height: 400px;
@@ -383,20 +352,83 @@
 }
 
 #runaway-no-btn {
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  will-change: transform, left, top;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+  touch-action: manipulation;
 }
 
-/* Modal Backdrop */
+/* ======================================================== */
+/* 8. WAX SEAL & VINTAGE HEARTFELT LETTER */
+/* ======================================================== */
+#envelope-open {
+  background: var(--letter-paper);
+  background-image: radial-gradient(rgba(244, 63, 94, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+#wax-seal {
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+#wax-seal:active {
+  transform: scale(0.92);
+}
+
+/* Staggered letter paragraph unfolding */
+#envelope-open.animate-unfold p,
+#envelope-open.animate-unfold div {
+  animation: letterFadeIn 0.6s ease-out both;
+}
+
+@keyframes letterFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======================================================== */
+/* 9. MODALS & LIGHTBOX */
+/* ======================================================== */
 .modal-backdrop {
   background: rgba(4, 7, 15, 0.88);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Audio Visualizer Waves */
+body.modal-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+@keyframes unfoldAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-unfold {
+  animation: unfoldAnimation 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ======================================================== */
+/* 10. AUDIO SOUND EQUALIZER */
+/* ======================================================== */
 .sound-bar {
   width: 3px;
   height: 12px;
@@ -414,146 +446,44 @@
   50% { transform: scaleY(1.2); }
 }
 
-/* Badges */
-.badge-pill {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.4rem 0.9rem;
-  border-radius: 9999px;
-  border-width: 1.5px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 12px rgba(251, 113, 133, 0.25);
+/* ======================================================== */
+/* 11. SPARKLE CURSOR TRAIL (DESKTOP ONLY) */
+/* ======================================================== */
+.sparkle-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  animation: sparkleAnim 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Timeline Counter */
-.counter-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 0.5rem;
-  background: linear-gradient(135deg, rgba(11, 17, 33, 0.95) 0%, rgba(26, 17, 40, 0.95) 100%);
-  border: 1.5px solid rgba(56, 189, 248, 0.45);
-  backdrop-filter: blur(20px);
-  border-radius: 1rem;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 8px 25px rgba(0, 0, 0, 0.5);
-}
-
-.counter-num {
-  font-family: 'Fira Code', monospace;
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-@media (min-width: 640px) {
-  .counter-num {
-    font-size: 1.85rem;
-  }
-}
-
-.counter-label {
-  font-size: 0.65rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #e2e8f0;
-  margin-top: 0.25rem;
-}
-
-/* Breathing Sphere animation states */
-.breathe-expand {
-  transform: scale(1.35);
-  background: rgba(56, 189, 248, 0.35) !important;
-  border-color: rgba(56, 189, 248, 0.9) !important;
-  box-shadow: 0 0 50px rgba(56, 189, 248, 0.7) !important;
-}
-
-.breathe-hold {
-  transform: scale(1.35);
-  background: rgba(251, 113, 133, 0.35) !important;
-  border-color: rgba(251, 113, 133, 0.9) !important;
-  box-shadow: 0 0 55px rgba(251, 113, 133, 0.7) !important;
-}
-
-.breathe-contract {
-  transform: scale(0.85);
-  background: rgba(168, 85, 247, 0.3) !important;
-  border-color: rgba(168, 85, 247, 0.8) !important;
-  box-shadow: 0 0 35px rgba(168, 85, 247, 0.5) !important;
-}
-
-/* Stress Bubble Wrap */
-.stress-bubble {
-  padding: 0.75rem 0.5rem;
-  border-radius: 1rem;
-  background: rgba(11, 17, 33, 0.9);
-  border: 1.5px solid rgba(56, 189, 248, 0.4);
-  backdrop-filter: blur(16px);
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #ffffff;
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  cursor: pointer;
-  user-select: none;
-}
-
-.stress-bubble:hover {
-  transform: translateY(-2px);
-  border-color: rgba(244, 63, 94, 0.85);
-  background: rgba(30, 41, 59, 0.95);
-  box-shadow: 0 0 15px rgba(251, 113, 133, 0.4);
-}
-
-.stress-bubble.popped {
-  background: rgba(11, 17, 33, 0.6);
-  border-color: rgba(251, 113, 133, 0.6);
-  color: #fb7185;
-  transform: scale(0.94);
-  opacity: 0.75;
-}
-
-/* Envelope & Letter Transitions */
-@keyframes unfoldAnimation {
+@keyframes sparkleAnim {
   0% {
-    opacity: 0;
-    transform: scale(0.92) translateY(20px);
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
   100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2) translateY(16px);
   }
-}
-
-.animate-unfold {
-  animation: unfoldAnimation 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #080b13;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #38bdf8;
 }
 
 /* ======================================================== */
-/* LIVE VISUAL TEXT EDITOR DOCK */
+/* 12. ACCESSIBILITY & PREFERS-REDUCED-MOTION */
+/* ======================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .sound-bar { animation: none; height: 14px; }
+  .animate-bounce, .animate-pulse { animation: none; }
+}
+
+/* ======================================================== */
+/* 13. LIVE VISUAL TEXT EDITOR DOCK */
 /* ======================================================== */
 #editor-dock {
   position: fixed;
