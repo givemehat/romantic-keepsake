@@ -9,11 +9,11 @@
   const dock = document.createElement('div');
   dock.id = 'editor-dock';
   dock.innerHTML = `
-    <button id="toggle-edit-mode-btn" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-lime-500/20 text-lime-300 border border-lime-500/40 hover:bg-lime-500/30 transition-all flex items-center gap-1.5 cursor-pointer">
+    <button id="toggle-edit-mode-btn" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/40 hover:bg-pink-500/30 transition-all flex items-center gap-1.5 cursor-pointer">
       <span>✏️</span>
       <span id="edit-mode-label">Edit Text: OFF</span>
     </button>
-    <button id="save-content-btn" class="hidden text-xs font-semibold px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-md transition-all flex items-center gap-1.5 cursor-pointer">
+    <button id="save-content-btn" class="hidden text-xs font-semibold px-3 py-1.5 rounded-full bg-gradient-to-r from-sky-500 to-pink-500 hover:from-sky-400 hover:to-pink-400 text-white shadow-md transition-all flex items-center gap-1.5 cursor-pointer">
       <span>💾</span>
       <span id="save-btn-label">Save to Code</span>
     </button>
@@ -30,7 +30,7 @@
   function showStatus(msg, isSuccess = true) {
     if (!statusText) return;
     statusText.textContent = msg;
-    statusText.className = `text-[11px] font-mono hidden sm:inline ${isSuccess ? 'text-lime-300' : 'text-rose-400'}`;
+    statusText.className = `text-[11px] font-mono hidden sm:inline ${isSuccess ? 'text-pink-300' : 'text-rose-400'}`;
   }
 
   function getEligibleElements() {
@@ -56,9 +56,9 @@
 
     if (isEditMode) {
       document.body.classList.add('edit-mode-active');
-      toggleBtn.classList.replace('bg-lime-500/20', 'bg-amber-500/30');
-      toggleBtn.classList.replace('text-lime-300', 'text-amber-300');
-      toggleBtn.classList.replace('border-lime-500/40', 'border-amber-500/50');
+      toggleBtn.classList.replace('bg-pink-500/20', 'bg-amber-500/30');
+      toggleBtn.classList.replace('text-pink-300', 'text-amber-300');
+      toggleBtn.classList.replace('border-pink-500/40', 'border-amber-500/50');
       modeLabel.textContent = 'Edit Text: ON';
       saveBtn.classList.remove('hidden');
       showStatus('Click any text to edit directly ✍️');
@@ -75,9 +75,9 @@
 
     } else {
       document.body.classList.remove('edit-mode-active');
-      toggleBtn.classList.replace('bg-amber-500/30', 'bg-lime-500/20');
-      toggleBtn.classList.replace('text-amber-300', 'text-lime-300');
-      toggleBtn.classList.replace('border-amber-500/50', 'border-lime-500/40');
+      toggleBtn.classList.replace('bg-amber-500/30', 'bg-pink-500/20');
+      toggleBtn.classList.replace('text-amber-300', 'text-pink-300');
+      toggleBtn.classList.replace('border-amber-500/50', 'border-pink-500/40');
       modeLabel.textContent = 'Edit Text: OFF';
       saveBtn.classList.add('hidden');
       showStatus('');
