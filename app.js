@@ -518,6 +518,76 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   animateBg();
 
+  // ========================================================
+  // FLOATING HEARTS PARTICLE CANVAS (From romantic-invitation)
+  // ========================================================
+  const heartCanvas = document.getElementById('heart-canvas');
+  if (heartCanvas) {
+    const hCtx = heartCanvas.getContext('2d');
+    let hWidth = heartCanvas.width = window.innerWidth;
+    let hHeight = heartCanvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      hWidth = heartCanvas.width = window.innerWidth;
+      hHeight = heartCanvas.height = window.innerHeight;
+    });
+
+    const floatingHearts = [];
+    const heartCount = window.innerWidth < 640 ? 16 : 28;
+
+    class FloatingHeart {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * hWidth;
+        this.y = hHeight + Math.random() * 50;
+        this.size = Math.random() * 14 + 10;
+        this.speed = Math.random() * 0.8 + 0.4;
+        this.opacity = Math.random() * 0.45 + 0.15;
+        this.swing = Math.random() * 2;
+        this.swingSpeed = Math.random() * 0.02 + 0.01;
+        this.color = Math.random() > 0.5 ? 'rgba(244, 63, 94,' : 'rgba(251, 113, 133,';
+      }
+      update() {
+        this.y -= this.speed;
+        this.x += Math.sin(this.swing) * 0.6;
+        this.swing += this.swingSpeed;
+        if (this.y < -30) {
+          this.reset();
+        }
+      }
+      draw() {
+        hCtx.save();
+        hCtx.translate(this.x, this.y);
+        hCtx.scale(this.size / 20, this.size / 20);
+        hCtx.fillStyle = `${this.color} ${this.opacity})`;
+        hCtx.beginPath();
+        hCtx.moveTo(0, 0);
+        hCtx.bezierCurveTo(-10, -10, -20, 5, 0, 20);
+        hCtx.bezierCurveTo(20, 5, 10, -10, 0, 0);
+        hCtx.fill();
+        hCtx.restore();
+      }
+    }
+
+    for (let i = 0; i < heartCount; i++) {
+      const h = new FloatingHeart();
+      h.y = Math.random() * hHeight;
+      floatingHearts.push(h);
+    }
+
+    function animateFloatingHearts() {
+      hCtx.clearRect(0, 0, hWidth, hHeight);
+      floatingHearts.forEach(h => {
+        h.update();
+        h.draw();
+      });
+      requestAnimationFrame(animateFloatingHearts);
+    }
+    animateFloatingHearts();
+  }
+
 
   // ========================================================
   // 2. TIMELINE COUNTER (KNOWN SINCE SEPT 6, 2024)
