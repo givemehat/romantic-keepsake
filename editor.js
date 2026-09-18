@@ -242,6 +242,9 @@
       cloneTreeText.classList.remove('opacity-100');
     }
 
+    const cloneClock = clone.querySelector('#tree-clock-box');
+    if (cloneClock) cloneClock.remove();
+
     const cleanHtml = '<!DOCTYPE html>\n' + clone.outerHTML;
 
     if (isEditMode) {
