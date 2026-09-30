@@ -1,5 +1,5 @@
 /**
- * Medhavie's Dedicated Web App
+ * Romantic Interactive Keepsake Web App
  * Features: High-DPI Love Tree Canvas Engine with Offscreen Buffer, Particle System, Typewriter, 
  * Polaroid Lightbox, Interactive Pillars, Runaway "No" Physics, 
  * Smooth Audio Fading & Sparkle Cursor.
@@ -835,13 +835,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeCelebrationBtn = document.getElementById('close-celebration-btn');
 
   const runawayPhrases = [
-    "Medu Vada, 'No' is disabled by Java compiler!",
-    "Catch me if you can, athlete 🏃‍♀️",
-    "Nhi hoga rehne do",
-    "Rajnish ke samne 'No' option doesn't exist!",
-    "Samjh nhi aaya ek baar mai?",
-    "Only 'YES' has O(1) time complexity!",
-    "Mahadevi, 'No' is not in option"
+    "'No' is disabled by Java compiler! ☕",
+    "Catch me if you can! 🏃‍♀️✨",
+    "Oops! 'No' button jumped to safe harbor! ⚓",
+    "Here 'No' option throws an error! 😂",
+    "Only 'YES' has O(1) time complexity! 😉",
+    "'No' is not on the syllabus! 👑",
+    "The only right choice is YES! 💖"
   ];
   let runawayCount = 0;
 
