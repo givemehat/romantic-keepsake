@@ -10,6 +10,7 @@ Anyone can easily fork or clone this repository, customize the names, memories, 
 
 - 🌸 **Interactive Blooming Heart Tree**: Growing procedural tree animation on high-DPI HTML5 canvas with falling sakura petals.
 - 📸 **Vintage Polaroid Photo Gallery**: Washi-taped photo cards with tap-to-zoom lightbox and smooth hover micro-interactions.
+- 🫙 **Little Jar of Warmth**: Interactive daily affirmation and sweetness capsule with audio chimes and stardust confetti.
 - 🎵 **Ambient Music Player**: Smooth background melody with live animated audio equalizer bars.
 - 💌 **Wax-Sealed Unfolding Letter**: Click-to-open wax seal with realistic unfolding animation and heartfelt notes.
 - 🏃‍♂️ **Playful Runaway "No" Button**: Physics-based evasive button that playfully dodges touches and clicks.

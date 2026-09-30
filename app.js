@@ -1172,4 +1172,92 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+
+  // ========================================================
+  // 10. LITTLE JAR OF WARMTH (DAILY AFFIRMATION CAPSULE)
+  // ========================================================
+  const drawCapsuleBtn = document.getElementById('draw-capsule-btn');
+  const jarIconContainer = document.getElementById('jar-icon-container');
+  const capsuleText = document.getElementById('capsule-text');
+  const capsuleCard = document.getElementById('capsule-card');
+
+  const warmthNotes = [
+    "Your smile has this effortless way of making the whole day feel lighter and brighter. ✨",
+    "Never forget how capable, resilient, and brilliant you are. You've got this! 💪",
+    "You are someone's favorite notification and easiest reason to smile. 🌸",
+    "Resting is productive too. Take a breath and be gentle with yourself today. 🤍",
+    "The world is undeniably a kinder, prettier place with you in it. 🌍✨",
+    "Your laugh is genuinely one of the sweetest sounds on Earth. 😊",
+    "Whatever is meant for you will never pass you by. Trust the journey. 🌟",
+    "You deserve all the quiet peace, sweet moments, and warm hugs life can offer. 🐾",
+    "Even on cloudy days, your inner warmth shines straight through. ☀️",
+    "Proud of you for showing up, trying your best, and keeping your kind heart intact. 💖",
+    "You are rare, irreplaceable, and truly cherished just as you are. 🌹",
+    "Sending you an extra dose of courage, comfort, and starlight today! 🌌"
+  ];
+
+  let lastNoteIndex = -1;
+
+  function drawWarmthNote() {
+    if (!capsuleText) return;
+    
+    let nextIndex;
+    do {
+      nextIndex = Math.floor(Math.random() * warmthNotes.length);
+    } while (nextIndex === lastNoteIndex && warmthNotes.length > 1);
+    
+    lastNoteIndex = nextIndex;
+
+    // Pulse animation
+    if (capsuleCard) {
+      capsuleCard.classList.add('scale-95', 'opacity-50');
+      setTimeout(() => {
+        capsuleText.textContent = `"${warmthNotes[nextIndex]}"`;
+        capsuleCard.classList.remove('scale-95', 'opacity-50');
+        capsuleCard.classList.add('scale-100', 'opacity-100');
+      }, 200);
+    } else {
+      capsuleText.textContent = `"${warmthNotes[nextIndex]}"`;
+    }
+
+    // Playful harp notes
+    [523, 659, 784, 1046].forEach((freq, idx) => {
+      setTimeout(() => playSoundEffect(freq, 'sine', 0.2, 0.05), idx * 80);
+    });
+
+    if (window.confetti) {
+      confetti({
+        particleCount: 25,
+        spread: 70,
+        origin: { y: 0.65 },
+        colors: ['#fda4af', '#f43f5e', '#38bdf8', '#fef08a']
+      });
+    }
+  }
+
+  if (drawCapsuleBtn) {
+    drawCapsuleBtn.addEventListener('click', drawWarmthNote);
+  }
+  if (jarIconContainer) {
+    jarIconContainer.addEventListener('click', drawWarmthNote);
+  }
+
+
+  // ========================================================
+  // 11. DYNAMIC TIME-OF-DAY AMBIENT HEADER GREETING
+  // ========================================================
+  const headerSubPill = document.querySelector('header .glass-pill span:last-child');
+  if (headerSubPill) {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) {
+      headerSubPill.textContent = "Morning Sunshine ☀️";
+    } else if (hour >= 12 && hour < 17) {
+      headerSubPill.textContent = "Warmest Wishes 🌤️";
+    } else if (hour >= 17 && hour < 21) {
+      headerSubPill.textContent = "Evening Starlight 🌙";
+    } else {
+      headerSubPill.textContent = "Sweet Dreams & Starlight ✨";
+    }
+  }
+
 });
