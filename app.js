@@ -786,7 +786,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const saluteStatus = document.getElementById('salute-status');
   if (saluteBtn && saluteStatus) {
     saluteBtn.addEventListener('click', () => {
-      saluteStatus.textContent = "🫡 Jai Hind!";
+      saluteStatus.textContent = "🤗 Warm Hug Sent!";
       [392, 523, 659, 784].forEach((freq, idx) => {
         setTimeout(() => playSoundEffect(freq, 'triangle', 0.22, 0.1), idx * 110);
       });
@@ -795,7 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
           particleCount: 30,
           spread: 70,
           origin: { y: 0.7 },
-          colors: ['#ff9933', '#ffffff', '#138808']
+          colors: ['#38bdf8', '#fb7185', '#f43f5e']
         });
       }
     });
